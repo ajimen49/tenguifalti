@@ -386,7 +386,7 @@ body {
         <button class="state-btn orange" onclick="setStateFromSheet('orange')">🔄 REPETIDA</button>
       </div>
       <div class="repeat-section" id="repeat-section" style="display:none">
-        <div class="repeat-label">Quantes vegades la tens?</div>
+        <div class="repeat-label">Quantes de repetides en tens?</div>
         <div class="repeat-controls">
           <button class="repeat-btn" onclick="changeRepeat(-1)">−</button>
           <div class="repeat-count" id="repeat-count">2</div>
@@ -405,14 +405,14 @@ const CARDS = [{"id": "1", "name": "Escudo D. Alavés"}, {"id": "1 Bis", "name":
 const state = {};
 const repeats = {};
 
-// Load from localStorage if available
+// Load from sessionStorage if available
 try {
-  const saved = localStorage.getItem('adrenalyn_state');
+  const saved = sessionStorage.getItem('adrenalyn_state');
   if (saved) { const d = JSON.parse(saved); Object.assign(state, d.state || {}); Object.assign(repeats, d.repeats || {}); }
 } catch(e) {}
 
 function save() {
-  try { localStorage.setItem('adrenalyn_state', JSON.stringify({state, repeats})); } catch(e) {}
+  try { sessionStorage.setItem('adrenalyn_state', JSON.stringify({state, repeats})); } catch(e) {}
 }
 
 function getState(id) { return state[id] || 'red'; }
@@ -625,7 +625,7 @@ document.getElementById('grid').addEventListener('touchstart', e => {
   longPressTimer = setTimeout(() => {
     longPressTimer = null;
     openSheet(tile.dataset.id);
-  }, 500);
+  }, 800);
 }, {passive: true});
 
 document.getElementById('grid').addEventListener('touchend', () => {
