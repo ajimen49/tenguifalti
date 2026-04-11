@@ -106,7 +106,7 @@ input { flex: 1; min-width: 140px; }
     <select id="filter">
       <option value="all">Totes</option>
       <option value="green">✅ Tinc</option>
-      <option value="orange">🔁 Repetides</option>
+      <option value="orange">👥 Repetides</option>
       <option value="red">❌ Falten</option>
     </select>
   </div>
@@ -114,12 +114,12 @@ input { flex: 1; min-width: 140px; }
     <span>✅ <span id="g">0</span></span>
     <span>🔁 <span id="o">0</span></span>
     <span>❌ <span id="r">0</span></span>
-    <span style="color:#555;font-weight:normal;font-size:11px;margin-left:auto">toc=canvia · mantén=detall</span>
+    <span style="color:#555;font-weight:normal;font-size:11px;margin-left:auto">Toc curt=canvi d'estat · Toc llarg=detalls</span>
   </div>
 </header>
 
 <div class="grid" id="grid"></div>
-<div class="empty" id="empty" style="display:none">Cap carta trobada</div>
+<div class="empty" id="empty" style="display:none">No he trobat cap carta!</div>
 
 <!-- Sheet -->
 <div class="overlay" id="overlay" onclick="overlayClick(event)">
@@ -128,15 +128,15 @@ input { flex: 1; min-width: 140px; }
     <div class="state-btns">
       <button class="red"    onclick="setState('red')">❌ Falta</button>
       <button class="green"  onclick="setState('green')">✅ Tinc</button>
-      <button class="orange" onclick="setState('orange')">🔁 Repetida</button>
+      <button class="orange" onclick="setState('orange')">👥 Repetida</button>
     </div>
     <div class="repes-row" id="repesRow" style="display:none">
-      <span>Quantes repetides?</span>
+      <span>Quantes vegades la tens?</span>
       <button onclick="changeRep(-1)">−</button>
       <div class="cnt" id="repCnt">2</div>
       <button onclick="changeRep(1)">+</button>
     </div>
-    <button class="close-btn" onclick="closeSheet()">Tancar</button>
+    <button class="close-btn" onclick="closeSheet()">Tanca</button>
   </div>
 </div>
 
