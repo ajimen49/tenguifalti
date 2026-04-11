@@ -612,29 +612,42 @@ document.getElementById('search').addEventListener('input', e => {
   buildGrid();
 });
 
-// Tile clicks — cycle on single tap, open sheet on long press
-document.getElementById('grid').addEventListener('click', e => {
-  const tile = e.target.closest('.card-tile');
-  if (tile) cycleState(tile.dataset.id);
-});
-
+// Toc curt = rota colors | Pulsació llarga (800ms) = obre panell
 let longPressTimer = null;
+let longPressFired = false;
+
 document.getElementById('grid').addEventListener('touchstart', e => {
   const tile = e.target.closest('.card-tile');
   if (!tile) return;
+  longPressFired = false;
   longPressTimer = setTimeout(() => {
+    longPressFired = true;
     longPressTimer = null;
     openSheet(tile.dataset.id);
   }, 800);
 }, {passive: true});
 
-document.getElementById('grid').addEventListener('touchend', () => {
-  if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
+document.getElementById('grid').addEventListener('touchend', e => {
+  if (longPressTimer) {
+    clearTimeout(longPressTimer);
+    longPressTimer = null;
+    const tile = e.target.closest('.card-tile');
+    if (tile) cycleState(tile.dataset.id);
+  }
 }, {passive: true});
 
 document.getElementById('grid').addEventListener('touchmove', () => {
   if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; }
 }, {passive: true});
+
+// Click per a ratolí (desktop). En mòbil el navegador llança un click sintètic
+// després del touch — sourceCapabilities permet distingir-los.
+document.getElementById('grid').addEventListener('click', e => {
+  if (e.sourceCapabilities && e.sourceCapabilities.firesTouchEvents) return;
+  if (!e.sourceCapabilities) return; // mòbil sense sourceCapabilities: ignorar
+  const tile = e.target.closest('.card-tile');
+  if (tile) cycleState(tile.dataset.id);
+});
 
 // Init
 buildGrid();
