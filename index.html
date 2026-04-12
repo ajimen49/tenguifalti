@@ -12,9 +12,10 @@ html, body {
   font-family:Arial;
   background:#111;
   color:#fff;
-  touch-action:manipulation; /* 🔥 evita zoom */
+  touch-action:manipulation;
 }
 
+/* HEADER */
 header{
   position:sticky;
   top:0;
@@ -29,17 +30,42 @@ header{
   align-items:center;
 }
 
-.stats span{
-  margin-left:8px;
+h1{font-size:18px}
+
+.stats{
+  display:flex;
+  align-items:center;
+  gap:6px;
   font-weight:bold;
 }
 
-.stats .g{ color:#2ecc71; }
-.stats .o{ color:#f39c12; }
-.stats .r{ color:#e74c3c; }
-  
-h1{font-size:18px;margin-bottom:6px}
+/* cada bloc */
+.stat{
+  display:flex;
+  align-items:center;
+  gap:4px;
+}
 
+/* quadradet */
+.stat i{
+  width:10px;
+  height:10px;
+  border-radius:2px;
+  display:inline-block;
+}
+
+/* colors */
+.stat.t i{ background:#ecf0f1; }
+.stat.g i{ background:#27ae60; }
+.stat.o i{ background:#d07a18; }
+.stat.r i{ background:#c0392b; }
+
+/* separadors */
+.sep{
+  opacity:0.4;
+  margin:0 2px;
+}
+  
 /* SEARCH */
 .search-wrapper{position:relative}
 .search-wrapper input{
@@ -59,7 +85,6 @@ h1{font-size:18px;margin-bottom:6px}
   background:none;
   border:none;
   color:#aaa;
-  font-size:16px;
 }
 
 /* CONTROLS */
@@ -78,11 +103,11 @@ h1{font-size:18px;margin-bottom:6px}
   font-size:16px;
 }
 
-/* BOTONS */
+/* BUTTONS */
 .market-bar{
   display:flex;
   gap:6px;
-  margin-bottom:6px;
+  margin:6px 0;
 }
 .market-bar button{
   flex:1;
@@ -91,7 +116,6 @@ h1{font-size:18px;margin-bottom:6px}
   border-radius:6px;
   background:#444;
   color:white;
-  touch-action:manipulation;
 }
 
 /* GRID */
@@ -100,7 +124,7 @@ h1{font-size:18px;margin-bottom:6px}
   grid-template-columns:repeat(auto-fill,minmax(70px,1fr));
   gap:6px;
   padding:8px;
-  padding-bottom:120px; /* espai keypad */
+  padding-bottom:120px;
 }
 
 .card{
@@ -108,12 +132,11 @@ h1{font-size:18px;margin-bottom:6px}
   border-radius:8px;
   display:flex;
   flex-direction:column;
-  justify-content:flex-start; /* 🔥 alineat a dalt */
+  justify-content:flex-start;
   align-items:center;
-  font-size:12px;
+  padding-top:6px;
   text-align:center;
   cursor:pointer;
-  padding-top:6px;
 }
 
 .red{background:#c0392b}
@@ -121,14 +144,20 @@ h1{font-size:18px;margin-bottom:6px}
 .green{background:#27ae60}
 
 .card b{
-  font-size:16px;
+  font-size:14px;
   margin-bottom:2px;
 }
 
 .card small{
-  font-size:10px;
+  font-size:9px;
   line-height:1.1;
-  opacity:.8;
+  display:block;
+}
+
+/* 🔥 eliminar línies de punts */
+.card, .card *{
+  text-decoration:none !important;
+  border-bottom:none !important;
 }
 
 /* KEYPAD */
@@ -141,26 +170,20 @@ h1{font-size:18px;margin-bottom:6px}
   padding:6px;
   border-top:1px solid #333;
 }
-  
-.kp-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-}
-  
-.kp-grid button {
-  padding:12px;   /* abans 10px */
-  font-size:18px; /* abans 16px */
+
+.kp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
 }
 
 .kp-grid button{
-  padding:10px;
-  font-size:16px;
+  padding:12px;
+  font-size:18px;
   border:none;
   border-radius:8px;
   background:#444;
   color:white;
-  touch-action:manipulation;
   -webkit-tap-highlight-color:transparent;
 }
 
@@ -189,26 +212,24 @@ h1{font-size:18px;margin-bottom:6px}
   background:#444;
   color:white;
 }
-.modal-box .btn-red {
-  background:#c0392b;
+.btn-red{background:#c0392b}
+.btn-orange{background:#d07a18}
+
+/* ROTATION BLOCK */
+#rotateWarning{
+  position:fixed;
+  inset:0;
+  background:#111;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
 }
 
-.modal-box .btn-orange {
-  background:#d07a18;
+@media (orientation: landscape){
+  #rotateWarning{display:flex}
+  body > *:not(#rotateWarning){display:none !important}
 }
-
-.card, 
-.card * {
-  text-decoration: none !important;
-  -webkit-text-decoration: none !important;
-  border-bottom: none !important;
-  text-decoration-line: none !important;
-}
-
-.card small {
-  display:block;
-}
-  
 </style>
 </head>
 
@@ -219,16 +240,23 @@ h1{font-size:18px;margin-bottom:6px}
 <div class="header-row">
   <h1>CONTROL ADRENALYN XL</h1>
   <div class="stats">
-    <span class="g" id="countG">0</span>
-    <span class="o" id="countO">0</span>
-    <span class="r" id="countR">0</span>
+  <span class="stat t"><i></i><span id="countT">0</span></span>
+  <span class="sep">|</span>
+
+  <span class="stat g"><i></i><span id="countG">0</span></span>
+  <span class="sep">|</span>
+
+  <span class="stat o"><i></i><span id="countO">0</span></span>
+  <span class="sep">|</span>
+
+  <span class="stat r"><i></i><span id="countR">0</span></span>
   </div>
 </div>
 
 <div class="market-bar">
-<button onclick="setMode('album')">📘 ÀLBUM</button>
-<button onclick="setMode('market')">🤝 FER CANVIS</button>
-<button onclick="openExport()">📤 EXPORTA</button>
+<button onclick="setMode('album')">📘 Àlbum</button>
+<button onclick="setMode('market')">🤝 Mercat</button>
+<button onclick="openExport()">📤 Exportar</button>
 </div>
 
 <div class="search-wrapper">
@@ -240,8 +268,8 @@ h1{font-size:18px;margin-bottom:6px}
 <select id="filter">
 <option value="all">Estat</option>
 <option value="green">Tinc</option>
-<option value="orange">Repetida</option>
-<option value="red">Falta</option>
+<option value="orange">Repetides</option>
+<option value="red">Falten</option>
 </select>
 
 <select id="typeFilter">
@@ -251,10 +279,6 @@ h1{font-size:18px;margin-bottom:6px}
 <option value="influencers">Influencers</option>
 <option value="protas">Protas</option>
 <option value="supercrack">Supercrack</option>
-<option value="diamantes">Diamantes</option>
-<option value="kryptonita">Kryptonita</option>
-<option value="momentum">Momentum</option>
-<option value="limitada">Limitada</option>
 </select>
 </div>
 
@@ -276,22 +300,21 @@ h1{font-size:18px;margin-bottom:6px}
     <button onclick="kp('8')">8</button>
     <button onclick="kp('9')">9</button>
 
-    <!-- última fila simplificada -->
     <button onclick="kp(' / ')">/</button>
     <button onclick="kp('0')">0</button>
     <button onclick="kpBack()">⌫</button>
   </div>
 </div>
-</div>
 
-<!-- MODAL -->
 <div class="modal" id="exportModal">
   <div class="modal-box">
-    <button class="btn-red" onclick="exportMissing()">LES CARTES QUE FALTEN</button>
-    <button class="btn-orange" onclick="exportRepeats()">LES CARTES REPETIDES</button>
-    <button onclick="closeExport()">Cancel·la</button>
+    <button class="btn-red" onclick="exportMissing()">LES QUE FALTEN</button>
+    <button class="btn-orange" onclick="exportRepeats()">LES REPETIDES</button>
+    <button onclick="closeExport()">CANCEL·LA</button>
   </div>
 </div>
+
+<div id="rotateWarning">Gira el dispositiu 📱</div>
 
 <script>
 
@@ -308,14 +331,10 @@ function setMode(m){
   mode=m;
   document.getElementById('search').value='';
   document.getElementById('search').blur();
-
-  document.getElementById('keypad').style.display =
-    m==="market" ? "block" : "none";
-
+  document.getElementById('keypad').style.display = m==="market"?"block":"none";
   render();
 }
 
-// evitar teclat natiu
 document.getElementById('search').addEventListener('focus', ()=>{
   if(mode==="market") document.getElementById('search').blur();
 });
@@ -330,6 +349,7 @@ function kp(v){
   i.value+=v;
   render();
 }
+
 function kpBack(){
   const i=document.getElementById('search');
   i.value=i.value.slice(0,-1);
@@ -345,8 +365,6 @@ function getType(c){
     if(n<=441)return'protas';
     if(n<=467)return'supercrack';
   }
-  if(c.name.includes("Momentum"))return'momentum';
-  if(c.name.includes("Limitada"))return'limitada';
   return'base';
 }
 
@@ -357,45 +375,41 @@ function cycle(id){
   render();
 }
 
-// EXPORT
 function openExport(){document.getElementById('exportModal').classList.add('open')}
 function closeExport(){document.getElementById('exportModal').classList.remove('open')}
 
-function share(t){
-  navigator.share?navigator.share({text:t}):alert(t);
-}
-
 function exportMissing(){
-  share("Falten:\n"+cards.filter(c=>getState(c.id)==='red').map(c=>c.id).join(", "));
+  alert(cards.filter(c=>getState(c.id)==='red').map(c=>c.id).join(", "));
   closeExport();
 }
 
 function exportRepeats(){
-  share("Repetides:\n"+cards.filter(c=>getState(c.id)==='orange').map(c=>c.id).join(", "));
+  alert(cards.filter(c=>getState(c.id)==='orange').map(c=>c.id).join(", "));
   closeExport();
 }
 
-// RENDER
 function render(){
 
   const grid=document.getElementById('grid');
   grid.innerHTML="";
 
+  let g=0,o=0,r=0;
+
+  let total = cards.length;
+  
   const search=document.getElementById('search').value.toLowerCase();
   const filter=document.getElementById('filter').value;
   const type=document.getElementById('typeFilter').value;
 
-  const nums=search.split(/[,\-\/]/).map(n=>n.trim()).filter(Boolean);
+  const nums=search.split(/[\/]/).map(n=>n.trim()).filter(Boolean);
 
-  let g=0, o=0, r=0;
-  
   cards.forEach(c=>{
     const st=getState(c.id);
 
     if(st==='green') g++;
     else if(st==='orange') o++;
     else r++;
-    
+
     if(mode==="market"){
       if(!nums.length) return;
       if(!nums.includes(c.id)) return;
@@ -413,46 +427,22 @@ function render(){
 
     div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
 
-    // 👉 tap vs scroll + long press
-    let startX=0,startY=0,moved=false,pressTimer=null;
-
-    div.addEventListener("touchstart",(e)=>{
-      const t=e.touches[0];
-      startX=t.clientX;
-      startY=t.clientY;
-      moved=false;
-
-      pressTimer=setTimeout(()=>{ /* openSheet(c) */ },500);
-    });
-
-    div.addEventListener("touchmove",(e)=>{
-      const t=e.touches[0];
-      if(Math.abs(t.clientX-startX)>10 || Math.abs(t.clientY-startY)>10){
-        moved=true;
-        if(pressTimer){clearTimeout(pressTimer);pressTimer=null;}
-      }
-    });
-
-    div.addEventListener("touchend",()=>{
-      if(pressTimer){
-        clearTimeout(pressTimer);
-        if(!moved) cycle(c.id);
-      }
-    });
-
-    div.addEventListener("click",()=>cycle(c.id));
+    div.onclick=()=>cycle(c.id);
 
     grid.appendChild(div);
   });
+
+  document.getElementById('countT').textContent = total;
+  document.getElementById('countG').textContent = g;
+  document.getElementById('countO').textContent = o;
+  document.getElementById('countR').textContent = r;
 }
 
-document.getElementById('search').addEventListener('input',render);
-document.getElementById('filter').addEventListener('change',render);
-document.getElementById('typeFilter').addEventListener('change',render);
+  document.getElementById('search').addEventListener('input',render);
+  document.getElementById('filter').addEventListener('change',render);
+  document.getElementById('typeFilter').addEventListener('change',render);
+  document.getElementById('countT').textContent = total;
 
-document.getElementById('countG').textContent = g;
-document.getElementById('countO').textContent = o;
-document.getElementById('countR').textContent = r;
 render();
 
 </script>
