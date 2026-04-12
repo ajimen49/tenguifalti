@@ -27,12 +27,10 @@ header{
 }
 
 /* BLOCS */
-.header-block{
-  height:56px;
-  display:flex;
-  align-items:center;
-  padding:0 10px;
-  background:#222;
+.header-block {
+  height: auto;
+  min-height: 44px;
+  padding: 8px 10px;
 }
 
 /* LOGO + STATS */
@@ -50,9 +48,10 @@ header{
   display:flex;
   align-items:center;
 }
-.logo img{
-  height:100%;
-  width:auto;
+  
+.logo img {
+  height: clamp(24px, 4vw, 40px);
+  width: auto;
 }
 
 /* STATS */
@@ -140,16 +139,14 @@ header{
   padding:8px;
 }
 
-.card{
-  aspect-ratio:1;
-  border-radius:8px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
-  text-align:center;
-  padding-top:6px;
+.card small {
+  font-size: clamp(7px, 1vw, 9px);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
+  
 .card *{text-align:center}
 
 .red{background:#c0392b}
