@@ -106,12 +106,12 @@ h1{font-size:18px;margin-bottom:6px}
 .green{background:#27ae60}
 
 .card b{
-  font-size:13px;
+  font-size:16px;
   margin-bottom:2px;
 }
 
 .card small{
-  font-size:8px;
+  font-size:10px;
   line-height:1.1;
   opacity:.8;
 }
@@ -127,10 +127,9 @@ h1{font-size:18px;margin-bottom:6px}
   border-top:1px solid #333;
 }
 
-.kp-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
+.kp-grid button {
+  padding:12px;   /* abans 10px */
+  font-size:18px; /* abans 16px */
 }
 
 .kp-grid button{
@@ -237,14 +236,12 @@ h1{font-size:18px;margin-bottom:6px}
     <button onclick="kp('8')">8</button>
     <button onclick="kp('9')">9</button>
 
+    <!-- última fila simplificada -->
     <button onclick="kp(' / ')">/</button>
     <button onclick="kp('0')">0</button>
-    <button onclick="kp(' - ')">-</button>
-
-    <button onclick="kp(', ')">,</button>
     <button onclick="kpBack()">⌫</button>
-    <button onclick="clearSearch()">NETEJA</button>
   </div>
+</div>
 </div>
 
 <!-- MODAL -->
