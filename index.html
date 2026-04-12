@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Adrenalyn XL</title>
 
+<!-- QR libs -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -17,89 +21,96 @@ html,body{
 
 /* HEADER */
 header{
+  display:flex;
+  flex-direction:column;
+  background:#222;
   position:sticky;
   top:0;
-  background:#222;
-  padding:10px;
   z-index:10;
 }
-  
+
 .header-block{
-  height:56px;            /* 🔥 totes iguals */
+  height:56px;
   display:flex;
   align-items:center;
+  padding:0 10px;
 }
-  
+
+.header-top{
+  padding:5px 10px;
+}
+
 .header-row{
+  width:100%;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
-.header-top{
-  padding:5px 0;          /* aire del logo */
-}
-
-.market-bar,
-.search-wrapper,
-.controls{
+/* LOGO */
+.logo{
   height:100%;
   display:flex;
   align-items:center;
 }
-
-.search-wrapper input,
-.controls select{
-  height:36px;
-}
-  
-/* LOGO */
 .logo img{
-  height:30px;
+  height:100%;
   width:auto;
-  display:block;
 }
 
 /* STATS */
 .stats{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:18px;
   font-weight:bold;
 }
-
 .stat{
   display:flex;
   align-items:center;
-  gap:4px;
+  gap:6px;
   cursor:pointer;
 }
-
 .stat i{
-  width:10px;
-  height:10px;
-  border-radius:2px;
+  width:12px;
+  height:12px;
+  border-radius:3px;
 }
-
 .stat.t i{background:#ecf0f1}
 .stat.g i{background:#27ae60}
 .stat.o i{background:#d07a18}
 .stat.r i{background:#c0392b}
 
-.sep{
-  opacity:.4;
+.sep{opacity:.4}
+
+/* BUTTONS */
+.market-bar{
+  width:100%;
+  display:flex;
+  gap:6px;
+}
+.market-bar button{
+  flex:1;
+  height:36px;
+  border:none;
+  border-radius:6px;
+  background:#444;
+  color:white;
+}
+.market-bar button.active{
+  outline:2px solid white;
 }
 
 /* SEARCH */
-.search-wrapper{position:relative;margin-top:6px}
+.search-wrapper{width:100%;position:relative}
 .search-wrapper input{
   width:100%;
-  padding:10px 35px 10px 10px;
-  border-radius:6px;
+  height:36px;
+  padding:0 35px 0 10px;
   border:none;
+  border-radius:6px;
   background:#333;
   color:white;
-  font-size:16px;
 }
 .clear-btn{
   position:absolute;
@@ -111,39 +122,19 @@ header{
   color:#aaa;
 }
 
-/* CONTROLS */
+/* FILTERS */
 .controls{
+  width:100%;
   display:flex;
   gap:6px;
-  margin-top:6px;
 }
 .controls select{
   flex:1;
-  padding:8px;
-  border-radius:6px;
+  height:36px;
   border:none;
+  border-radius:6px;
   background:#333;
   color:white;
-}
-
-/* BUTTONS */
-.market-bar{
-  display:flex;
-  gap:6px;
-  margin-top:6px;
-}
-.market-bar button{
-  flex:1;
-  padding:6px;
-  border:none;
-  border-radius:6px;
-  background:#444;
-  color:white;
-}
-
-.market-bar button.active{
-  outline:2px solid white;
-  box-shadow:0 0 6px rgba(255,255,255,.4);
 }
 
 /* GRID */
@@ -163,24 +154,13 @@ header{
   justify-content:flex-start;
   align-items:center;
   padding-top:6px;
-  text-align:center;
 }
-
 .red{background:#c0392b}
 .orange{background:#d07a18}
 .green{background:#27ae60}
 
 .card b{font-size:14px}
-.card small{
-  font-size:9px;
-  display:block;
-}
-
-/* eliminar línies */
-.card,.card *{
-  text-decoration:none !important;
-  border-bottom:none !important;
-}
+.card small{font-size:9px;display:block}
 
 /* KEYPAD */
 #keypad{
@@ -192,13 +172,11 @@ header{
   padding:6px;
   border-top:1px solid #333;
 }
-
 .kp-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
 }
-
 .kp-grid button{
   padding:12px;
   font-size:18px;
@@ -222,7 +200,7 @@ header{
   background:#222;
   padding:20px;
   border-radius:10px;
-  width:80%;
+  width:90%;
 }
 .modal-box button{
   width:100%;
@@ -234,7 +212,7 @@ header{
 .btn-red{background:#c0392b}
 .btn-orange{background:#d07a18}
 
-/* ROTATION */
+/* ROTATION només mòbil */
 #rotateWarning{
   position:fixed;
   inset:0;
@@ -244,7 +222,7 @@ header{
   justify-content:center;
   z-index:9999;
 }
-@media (orientation: landscape){
+@media (orientation: landscape) and (pointer: coarse){
   #rotateWarning{display:flex}
   body>*:not(#rotateWarning){display:none !important}
 }
@@ -255,59 +233,60 @@ header{
 
 <header>
 
-<div class="header-row">
-  <div class="logo">
-    <img src="img/adrenalyn_logo.png" alt="Adrenalyn XL">
+<div class="header-block header-top">
+  <div class="header-row">
+    <div class="logo">
+      <img src="img/adrenalyn_logo.png">
+    </div>
+
+    <div class="stats">
+      <span class="stat t" onclick="filterByState('all')"><i></i><span id="countT">0</span></span>
+      <span class="sep">|</span>
+      <span class="stat g" onclick="filterByState('green')"><i></i><span id="countG">0</span></span>
+      <span class="sep">|</span>
+      <span class="stat o" onclick="filterByState('orange')"><i></i><span id="countO">0</span></span>
+      <span class="sep">|</span>
+      <span class="stat r" onclick="filterByState('red')"><i></i><span id="countR">0</span></span>
+    </div>
   </div>
+</div>
 
-  <div class="stats">
-    <span class="stat t" onclick="filterByState('all')"><i></i><span id="countT">0</span></span>
-    <span class="sep">|</span>
-    <span class="stat g" onclick="filterByState('green')"><i></i><span id="countG">0</span></span>
-    <span class="sep">|</span>
-    <span class="stat o" onclick="filterByState('orange')"><i></i><span id="countO">0</span></span>
-    <span class="sep">|</span>
-    <span class="stat r" onclick="filterByState('red')"><i></i><span id="countR">0</span></span>
+<div class="header-block">
+  <div class="market-bar">
+    <button id="btnAlbum" onclick="setMode('album')">📘</button>
+    <button id="btnMarket" onclick="setMode('market')">🤝</button>
+    <button onclick="openData()">💾</button>
   </div>
 </div>
 
-<div class="market-bar">
-<button id="btnAlbum" onclick="setMode('album')">📘 ÀLBUM</button>
-<button id="btnMarket" onclick="setMode('market')">🤝 MERCAT</button>
-<button onclick="openExport()">📤 EXPORTACIÓ</button>
+<div class="header-block">
+  <div class="search-wrapper">
+    <input id="search">
+    <button class="clear-btn" onclick="clearSearch()">✕</button>
+  </div>
 </div>
 
-<div class="search-wrapper">
-<input id="search" placeholder="Cerca...">
-<button class="clear-btn" onclick="clearSearch()">✕</button>
-</div>
+<div class="header-block">
+  <div class="controls">
+    <select id="filter">
+      <option value="all">Estat</option>
+      <option value="green">Tinc</option>
+      <option value="orange">Repetides</option>
+      <option value="red">Falten</option>
+    </select>
 
-<div class="controls">
-<select id="filter">
-<option value="all">Estat</option>
-<option value="green">Tinc</option>
-<option value="orange">Repetides</option>
-<option value="red">Falten</option>
-</select>
-
-<select id="typeFilter">
-<option value="all">Tipus</option>
-<option value="base">Base</option>
-<option value="vamos">Vamos</option>
-<option value="guantes">Guantes</option>
-<option value="kryptonita">Kryptonita</option>
-<option value="diamantes">Diamantes</option>
-<option value="influencers">Influencers</option>
-<option value="protas">Protas</option>
-<option value="supercrack">Supercrack</option>
-<option value="champions">Champions</option>
-<option value="balonoro">Balón Oro</option>
-<option value="momentum">Momentum</option>
-<option value="limitada">Limitada</option>
-<option value="autografo">Autógrafos</option>
-<option value="total-kings">Total Kings</option>
-<option value="new-master">New Master</option>
-</select>
+    <select id="typeFilter">
+      <option value="all">Tipus</option>
+      <option value="base">Base</option>
+      <option value="vamos">Vamos</option>
+      <option value="guantes">Guantes</option>
+      <option value="kryptonita">Kryptonita</option>
+      <option value="diamantes">Diamantes</option>
+      <option value="influencers">Influencers</option>
+      <option value="protas">Protas</option>
+      <option value="supercrack">Supercrack</option>
+    </select>
+  </div>
 </div>
 
 </header>
@@ -331,11 +310,14 @@ header{
   </div>
 </div>
 
-<div class="modal" id="exportModal">
+<!-- MODAL DADES -->
+<div class="modal" id="dataModal">
   <div class="modal-box">
-    <button class="btn-red" onclick="exportMissing()">LES QUE FALTEN</button>
-    <button class="btn-orange" onclick="exportRepeats()">LES REPETIDES</button>
-    <button onclick="closeExport()">CANCEL·LA</button>
+    <button onclick="exportQR()">📤 Exportar QR</button>
+    <button onclick="exportText()">📄 Exportar text</button>
+    <button onclick="importQR()">📥 Importar QR</button>
+    <button onclick="importText()">⌨️ Importar text</button>
+    <button onclick="closeData()">Cancel·la</button>
   </div>
 </div>
 
@@ -354,131 +336,140 @@ let mode="album";
 
 function setMode(m){
   mode=m;
-  document.getElementById('btnAlbum').classList.toggle('active',m==='album');
-  document.getElementById('btnMarket').classList.toggle('active',m==='market');
-  document.getElementById('search').value='';
-  document.getElementById('keypad').style.display=m==="market"?"block":"none";
+  btnAlbum.classList.toggle('active',m==='album');
+  btnMarket.classList.toggle('active',m==='market');
+  keypad.style.display=m==="market"?"block":"none";
   render();
 }
 
 function filterByState(s){
   setMode('album');
-  document.getElementById('filter').value=s;
+  filter.value=s;
   render();
 }
 
-function clearSearch(){
-  document.getElementById('search').value='';
-  render();
+function clearSearch(){search.value='';render();}
+
+function kp(v){search.value+=v;render();}
+function kpBack(){search.value=search.value.slice(0,-1);render();}
+
+// DATA MODAL
+function openData(){dataModal.classList.add('open')}
+function closeData(){dataModal.classList.remove('open')}
+
+// EXPORT TEXT
+function exportText(){
+  const falt=cards.filter(c=>getState(c.id)==='red').map(c=>c.id);
+  const rep=cards.filter(c=>getState(c.id)==='orange').map(c=>c.id);
+
+  const txt=`FALTEN: ${falt.join(", ")}\nREPETIDES: ${rep.join(", ")}`;
+
+  navigator.share?navigator.share({text:txt}):alert(txt);
 }
 
-function kp(v){
-  document.getElementById('search').value+=v;
-  render();
+// IMPORT TEXT
+function importText(){
+  const txt=prompt("Enganxa dades");
+  if(!txt)return;
+
+  txt.match(/FALTEN:\s*([0-9,\s]+)/i)?.[1]
+    ?.split(",").forEach(id=>state[id.trim()]='red');
+
+  txt.match(/REPETIDES:\s*([0-9,\s]+)/i)?.[1]
+    ?.split(",").forEach(id=>state[id.trim()]='orange');
+
+  save();render();
 }
 
-function kpBack(){
-  const i=document.getElementById('search');
-  i.value=i.value.slice(0,-1);
-  render();
+// EXPORT QR
+function exportQR(){
+  let g=[],o=[],r=[];
+  Object.entries(state).forEach(([id,v])=>{
+    if(v==='green')g.push(id);
+    else if(v==='orange')o.push(id);
+    else r.push(id);
+  });
+
+  const data=`g:${g.join(',')}|o:${o.join(',')}|r:${r.join(',')}`;
+  showQR(data);
 }
 
-function getType(c){
-  const n=parseInt(c.id);
-  const name=c.name.toLowerCase();
+function showQR(text){
+  const m=document.createElement('div');
+  m.className='modal open';
+  const b=document.createElement('div');
+  b.className='modal-box';
+  const c=document.createElement('canvas');
+  QRCode.toCanvas(c,text);
+  b.appendChild(c);
+  const btn=document.createElement('button');
+  btn.textContent="Tancar";
+  btn.onclick=()=>m.remove();
+  b.appendChild(btn);
+  m.appendChild(b);
+  document.body.appendChild(m);
+}
 
-  if(!isNaN(n)){
-    if(n<=360)return'base';
-    if(n<=380)return'vamos';
-    if(n<=387)return'guantes';
-    if(n<=396)return'kryptonita';
-    if(n<=414)return'diamantes';
-    if(n<=423)return'influencers';
-    if(n<=441)return'protas';
-    if(n<=467)return'supercrack';
-    if(n===468)return'champions';
-    if(n<=474)return'balonoro';
-  }
+// IMPORT QR
+function importQR(){
+  const reader=document.createElement('div');
+  reader.id="qr-reader";
 
-  if(name.includes('momentum'))return'momentum';
-  if(name.includes('limitada'))return'limitada';
-  if(name.includes('autógrafo'))return'autografo';
-  if(c.id.startsWith('TK/'))return'total-kings';
-  if(c.id.startsWith('NM/'))return'new-master';
+  const m=document.createElement('div');
+  m.className='modal open';
+  const b=document.createElement('div');
+  b.className='modal-box';
 
-  return'base';
+  b.appendChild(reader);
+  m.appendChild(b);
+  document.body.appendChild(m);
+
+  const scanner=new Html5Qrcode("qr-reader");
+
+  scanner.start({facingMode:"environment"},{fps:10,qrbox:200},
+    txt=>{
+      scanner.stop();
+      m.remove();
+      txt.split('|').forEach(p=>{
+        const [t,l]=p.split(':');
+        l?.split(',').forEach(id=>{
+          if(t==='g')state[id]='green';
+          if(t==='o')state[id]='orange';
+          if(t==='r')state[id]='red';
+        });
+      });
+      save();render();
+    }
+  );
+}
+
+// RENDER
+function render(){
+  grid.innerHTML="";
+  let g=0,o=0,r=0;
+
+  cards.forEach(c=>{
+    const st=getState(c.id);
+    if(st==='green')g++; else if(st==='orange')o++; else r++;
+
+    const div=document.createElement('div');
+    div.className='card '+st;
+    div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
+    div.onclick=()=>{cycle(c.id)};
+    grid.appendChild(div);
+  });
+
+  countT.textContent=cards.length;
+  countG.textContent=g;
+  countO.textContent=o;
+  countR.textContent=r;
 }
 
 function cycle(id){
   const s=getState(id);
   state[id]=s==='red'?'green':s==='green'?'orange':'red';
-  save();
-  render();
+  save();render();
 }
-
-function openExport(){document.getElementById('exportModal').classList.add('open')}
-function closeExport(){document.getElementById('exportModal').classList.remove('open')}
-
-function exportMissing(){
-  alert(cards.filter(c=>getState(c.id)==='red').map(c=>c.id).join(", "));
-  closeExport();
-}
-
-function exportRepeats(){
-  alert(cards.filter(c=>getState(c.id)==='orange').map(c=>c.id).join(", "));
-  closeExport();
-}
-
-function render(){
-
-  const grid=document.getElementById('grid');
-  grid.innerHTML="";
-
-  let g=0,o=0,r=0;
-
-  const search=document.getElementById('search').value.toLowerCase();
-  const filter=document.getElementById('filter').value;
-  const type=document.getElementById('typeFilter').value;
-
-  const nums=search.split(/[\/]/).map(n=>n.trim()).filter(Boolean);
-
-  cards.forEach(c=>{
-    const st=getState(c.id);
-
-    if(st==='green')g++;
-    else if(st==='orange')o++;
-    else r++;
-
-    if(mode==="market"){
-      if(!nums.length)return;
-      if(!nums.includes(c.id))return;
-    }
-
-    if(mode==="album" && filter!=='all' && st!==filter)return;
-    if(type!=='all' && getType(c)!==type)return;
-
-    if(mode==="album" && search && !c.name.toLowerCase().includes(search) && !c.id.includes(search))return;
-
-    const div=document.createElement('div');
-    div.className='card '+st;
-
-    if(mode==="market" && st==="red")div.style.opacity=0.5;
-
-    div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
-    div.onclick=()=>cycle(c.id);
-
-    grid.appendChild(div);
-  });
-
-  document.getElementById('countT').textContent=cards.length;
-  document.getElementById('countG').textContent=g;
-  document.getElementById('countO').textContent=o;
-  document.getElementById('countR').textContent=r;
-}
-
-document.getElementById('search').addEventListener('input',render);
-document.getElementById('filter').addEventListener('change',render);
-document.getElementById('typeFilter').addEventListener('change',render);
 
 setMode('album');
 
