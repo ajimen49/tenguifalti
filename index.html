@@ -23,13 +23,36 @@ header{
   padding:10px;
   z-index:10;
 }
-
+  
+.header-block{
+  height:56px;            /* 🔥 totes iguals */
+  display:flex;
+  align-items:center;
+}
+  
 .header-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
+.header-top{
+  padding:5px 0;          /* aire del logo */
+}
+
+.market-bar,
+.search-wrapper,
+.controls{
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.search-wrapper input,
+.controls select{
+  height:36px;
+}
+  
 /* LOGO */
 .logo img{
   height:30px;
