@@ -6,18 +6,13 @@
 
 <title>ADRENALYN XL 2025-2026</title>
 
-<!-- ROBOTO -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-<script src="https://unpkg.com/html5-qrcode"></script>
-
 <style>
-
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:'Roboto', sans-serif;
+  font-family:'Roboto',sans-serif;
   background:#111;
   color:#fff;
 }
@@ -36,7 +31,6 @@ header{
   display:flex;
   align-items:center;
   padding:0 10px;
-  background:#222;
 }
 
 /* LOGO */
@@ -46,7 +40,6 @@ header{
   align-items:center;
   padding:4px 0;
 }
-
 .logo img{
   height:100%;
   max-height:48px;
@@ -63,22 +56,35 @@ header{
 /* STATS */
 .stats{
   display:flex;
-  gap:18px;
+  align-items:center;
+  gap:8px;
   font-weight:bold;
+  font-size:14px;
 }
+
 .stat{
   display:flex;
   align-items:center;
   gap:6px;
+  min-width:48px;
   cursor:pointer;
 }
+
 .stat i{
   width:12px;height:12px;border-radius:3px;
 }
+
+.t{color:#ecf0f1}
+.g{color:#27ae60}
+.o{color:#d07a18}
+.r{color:#c0392b}
+
 .t i{background:#ecf0f1}
 .g i{background:#27ae60}
 .o i{background:#d07a18}
 .r i{background:#c0392b}
+
+.sep{opacity:.5}
 
 /* MODES */
 .market-bar{
@@ -94,10 +100,6 @@ header{
   background:#444;
   color:white;
   font-weight:bold;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
 }
 .market-bar button.active{
   outline:2px solid white;
@@ -109,6 +111,7 @@ header{
   display:flex;
   gap:6px;
 }
+
 .controls select{
   flex:1;
   height:40px;
@@ -116,6 +119,15 @@ header{
   border-radius:6px;
   background:#333;
   color:white;
+  font-size:16px;
+  padding:0 40px 0 10px;
+
+  appearance:none;
+  -webkit-appearance:none;
+
+  background-image:url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 12px center;
 }
 
 /* SEARCH */
@@ -123,7 +135,8 @@ header{
   width:100%;
   position:relative;
 }
-.search-wrapper input{
+
+#search{
   width:100%;
   height:40px;
   padding:0 35px 0 10px;
@@ -131,8 +144,11 @@ header{
   border-radius:6px;
   background:#333;
   color:white;
+  font-size:16px;
 }
+
 .clear-btn{
+  display:none;
   position:absolute;
   right:10px;
   top:50%;
@@ -140,6 +156,7 @@ header{
   background:none;
   border:none;
   color:#aaa;
+  font-size:18px;
 }
 
 /* GRID */
@@ -150,7 +167,6 @@ header{
   padding:8px;
 }
 
-/* CARD */
 .card{
   aspect-ratio:1;
   border-radius:8px;
@@ -163,13 +179,8 @@ header{
   user-select:none;
 }
 
-.card b{
-  font-size:14px;
-}
-
-.card small{
-  font-size:10px;
-}
+.card b{font-size:14px}
+.card small{font-size:10px}
 
 .red{background:#c0392b}
 .orange{background:#d07a18}
@@ -185,12 +196,14 @@ header{
   justify-content:center;
 }
 .modal.open{display:flex}
+
 .modal-box{
   background:#222;
   padding:20px;
   border-radius:10px;
   width:85%;
 }
+
 .modal-box button{
   width:100%;
   margin-top:10px;
@@ -202,7 +215,12 @@ header{
 
 .btn-export{background:#f9e79f;color:#000}
 .btn-import{background:#f5b041;color:#000}
-.btn-cancel{background:#666}
+.btn-cancel{
+  background:#555;
+  color:#fff;
+  appearance:none;
+  -webkit-appearance:none;
+}
 
 </style>
 </head>
@@ -211,7 +229,6 @@ header{
 
 <header>
 
-<!-- LOGO + STATS -->
 <div class="header-block">
   <div class="header-row">
     <div class="logo">
@@ -219,15 +236,17 @@ header{
     </div>
 
     <div class="stats">
-      <span class="stat t"><i></i><span id="countT">0</span></span>
-      <span class="stat g"><i></i><span id="countG">0</span></span>
-      <span class="stat o"><i></i><span id="countO">0</span></span>
-      <span class="stat r"><i></i><span id="countR">0</span></span>
+      <span class="stat t" onclick="quickFilter('all')"><i></i><span id="countT">0</span></span>
+      <span class="sep">|</span>
+      <span class="stat g" onclick="quickFilter('green')"><i></i><span id="countG">0</span></span>
+      <span class="sep">|</span>
+      <span class="stat o" onclick="quickFilter('orange')"><i></i><span id="countO">0</span></span>
+      <span class="sep">|</span>
+      <span class="stat r" onclick="quickFilter('red')"><i></i><span id="countR">0</span></span>
     </div>
   </div>
 </div>
 
-<!-- MODES -->
 <div class="header-block">
   <div class="market-bar">
     <button id="btnAlbum" onclick="setMode('album')">📘 ÀLBUM</button>
@@ -236,17 +255,16 @@ header{
   </div>
 </div>
 
-<!-- FILTERS -->
 <div class="header-block">
   <div class="controls">
-    <select id="filter">
-      <option value="all">Estat</option>
+    <select id="filter" onchange="render()">
+      <option value="all">Totes</option>
       <option value="green">Tinc</option>
       <option value="orange">Repetides</option>
       <option value="red">Falten</option>
     </select>
 
-    <select id="typeFilter">
+    <select id="typeFilter" onchange="render()">
       <option value="all">Tipus</option>
       <option value="base">Base</option>
       <option value="vamos">Vamos</option>
@@ -268,10 +286,9 @@ header{
   </div>
 </div>
 
-<!-- SEARCH -->
 <div class="header-block">
   <div class="search-wrapper">
-    <input id="search" oninput="render()">
+    <input id="search" oninput="render();toggleClearBtn()">
     <button class="clear-btn" onclick="clearSearch()">✕</button>
   </div>
 </div>
@@ -280,65 +297,58 @@ header{
 
 <div class="grid" id="grid"></div>
 
-<!-- MODAL -->
-<div class="modal" id="dataModal">
-  <div class="modal-box">
-    <button class="btn-export" onclick="exportQR()">Exporta QR</button>
-    <button class="btn-export" onclick="exportText()">Exporta text</button>
-    <button class="btn-import" onclick="importQR()">Importa QR</button>
-    <button class="btn-import" onclick="importText()">Importa text</button>
-    <button class="btn-cancel" onclick="closeData()">Cancel·la</button>
-  </div>
-</div>
-
 <script>
 
 let mode="album";
-
-const state = JSON.parse(localStorage.getItem("cards")||"{}");
+const state=JSON.parse(localStorage.getItem("cards")||"{}");
 
 function getState(id){return state[id]||"red"}
 function save(){localStorage.setItem("cards",JSON.stringify(state))}
 
 function setMode(m){
   mode=m;
-
   btnAlbum.classList.toggle('active',m==='album');
   btnMarket.classList.toggle('active',m==='market');
-
   search.value="";
   render();
 }
 
-function clearSearch(){search.value='';render();}
+function quickFilter(f){
+  mode="album";
+  filter.value=f;
+  search.value="";
+  render();
+}
 
-function openData(){dataModal.classList.add('open')}
-function closeData(){dataModal.classList.remove('open')}
+function clearSearch(){
+  search.value="";
+  filter.value="all";
+  typeFilter.value="all";
+  mode="album";
+  toggleClearBtn();
+  render();
+}
+
+function toggleClearBtn(){
+  document.querySelector('.clear-btn').style.display =
+    search.value.trim() ? "block":"none";
+}
 
 function render(){
 
   grid.innerHTML="";
-
-  let list = cards;
-  const txt = search.value.toLowerCase();
+  let list=cards;
+  const txt=search.value.toLowerCase();
 
   if(mode==="market"){
-    const ids = txt.split(/[\/,\s]+/).filter(Boolean);
-    list = cards.filter(c => ids.includes(c.id));
+    const ids=txt.split(/[\/,\s]+/).filter(Boolean);
+    list=cards.filter(c=>ids.includes(c.id));
   }else{
     if(txt){
-      list = list.filter(c =>
-        c.id.includes(txt) ||
-        c.name.toLowerCase().includes(txt)
-      );
+      list=list.filter(c=>c.id.includes(txt)||c.name.toLowerCase().includes(txt));
     }
-
     if(filter.value!=="all"){
-      list = list.filter(c => getState(c.id)===filter.value);
-    }
-
-    if(typeFilter.value!=="all"){
-      list = list.filter(c => getType(c)===typeFilter.value);
+      list=list.filter(c=>getState(c.id)===filter.value);
     }
   }
 
@@ -346,7 +356,6 @@ function render(){
 
   list.forEach(c=>{
     const st=getState(c.id);
-
     if(st==='green')g++;
     else if(st==='orange')o++;
     else r++;
@@ -355,7 +364,6 @@ function render(){
     div.className='card '+st;
     div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
     div.onclick=()=>cycle(c.id);
-
     grid.appendChild(div);
   });
 
@@ -368,10 +376,10 @@ function render(){
 function cycle(id){
   const s=getState(id);
   state[id]=s==='red'?'green':s==='green'?'orange':'red';
-  save();
-  render();
+  save();render();
 }
 
+toggleClearBtn();
 render();
 
 </script>
