@@ -3,13 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MANAGER ADRENALYN XL 2026</title>
+<title>ADRENALYN XL</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial;background:#111;color:#fff}
 
-header{position:sticky;top:0;background:#222;padding:10px;z-index:10}
+html, body {
+  font-family:Arial;
+  background:#111;
+  color:#fff;
+  touch-action:manipulation; /* 🔥 evita zoom */
+}
+
+header{
+  position:sticky;
+  top:0;
+  background:#222;
+  padding:10px;
+  z-index:10;
+}
+
 h1{font-size:18px;margin-bottom:6px}
 
 /* SEARCH */
@@ -21,7 +34,7 @@ h1{font-size:18px;margin-bottom:6px}
   border:none;
   background:#333;
   color:white;
-  font-size:16px; /* evita zoom iOS */
+  font-size:16px;
 }
 .clear-btn{
   position:absolute;
@@ -63,6 +76,7 @@ h1{font-size:18px;margin-bottom:6px}
   border-radius:6px;
   background:#444;
   color:white;
+  touch-action:manipulation;
 }
 
 /* GRID */
@@ -71,6 +85,7 @@ h1{font-size:18px;margin-bottom:6px}
   grid-template-columns:repeat(auto-fill,minmax(70px,1fr));
   gap:6px;
   padding:8px;
+  padding-bottom:120px; /* espai keypad */
 }
 
 .card{
@@ -78,34 +93,55 @@ h1{font-size:18px;margin-bottom:6px}
   border-radius:8px;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:flex-start; /* 🔥 alineat a dalt */
   align-items:center;
   font-size:12px;
   text-align:center;
   cursor:pointer;
-  padding:4px;
+  padding-top:6px;
 }
 
 .red{background:#c0392b}
 .orange{background:#d07a18}
 .green{background:#27ae60}
 
-.card small{font-size:8px;opacity:.8}
+.card b{
+  font-size:13px;
+  margin-bottom:2px;
+}
+
+.card small{
+  font-size:8px;
+  line-height:1.1;
+  opacity:.8;
+}
 
 /* KEYPAD */
+#keypad{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#111;
+  padding:6px;
+  border-top:1px solid #333;
+}
+
 .kp-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:6px;
-  margin-top:8px;
 }
+
 .kp-grid button{
-  padding:14px;
-  font-size:18px;
+  padding:10px;
+  font-size:16px;
   border:none;
   border-radius:8px;
   background:#444;
   color:white;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 
 /* MODAL */
@@ -140,11 +176,11 @@ h1{font-size:18px;margin-bottom:6px}
 
 <header>
 
-<h1>MANAGER ADRENALYN XL 2026</h1>
+<h1>🃏 Adrenalyn XL</h1>
 
 <div class="market-bar">
 <button onclick="setMode('album')">📘 Àlbum</button>
-<button onclick="setMode('market')">🤝 Intercanvi</button>
+<button onclick="setMode('market')">🤝 Mercat</button>
 <button onclick="openExport()">📤 Exportar</button>
 </div>
 
@@ -175,7 +211,10 @@ h1{font-size:18px;margin-bottom:6px}
 </select>
 </div>
 
-<!-- KEYPAD -->
+</header>
+
+<div class="grid" id="grid"></div>
+
 <div id="keypad" style="display:none;">
   <div class="kp-grid">
     <button onclick="kp('1')">1</button>
@@ -200,22 +239,18 @@ h1{font-size:18px;margin-bottom:6px}
   </div>
 </div>
 
-</header>
-
-<div class="grid" id="grid"></div>
-
-<!-- MODAL EXPORT -->
+<!-- MODAL -->
 <div class="modal" id="exportModal">
   <div class="modal-box">
-    <button onclick="exportMissing()">FALTEN</button>
-    <button onclick="exportRepeats()">REPETIDES</button>
+    <button onclick="exportMissing()">LES QUE FALTEN</button>
+    <button onclick="exportRepeats()">LES REPETIDES</button>
     <button onclick="closeExport()">CANCEL·LA</button>
   </div>
 </div>
 
 <script>
 
-// 👉 enganxa aquí les cartes
+// 👉 enganxa aquí
 // const cards = []
 
 const state = JSON.parse(localStorage.getItem("cards")||"{}");
@@ -223,15 +258,12 @@ const state = JSON.parse(localStorage.getItem("cards")||"{}");
 function getState(id){return state[id]||"red"}
 function save(){localStorage.setItem("cards",JSON.stringify(state))}
 
-// MODE
 let mode="album";
 
 function setMode(m){
   mode=m;
-
-  const input=document.getElementById('search');
-  input.value='';
-  input.blur();
+  document.getElementById('search').value='';
+  document.getElementById('search').blur();
 
   document.getElementById('keypad').style.display =
     m==="market" ? "block" : "none";
@@ -244,15 +276,11 @@ document.getElementById('search').addEventListener('focus', ()=>{
   if(mode==="market") document.getElementById('search').blur();
 });
 
-// CERCA
 function clearSearch(){
-  const i=document.getElementById('search');
-  i.value='';
-  i.blur();
+  document.getElementById('search').value='';
   render();
 }
 
-// KEYPAD
 function kp(v){
   const i=document.getElementById('search');
   i.value+=v;
@@ -264,7 +292,6 @@ function kpBack(){
   render();
 }
 
-// TIPUS
 function getType(c){
   const n=parseInt(c.id);
   if(!isNaN(n)){
@@ -279,33 +306,26 @@ function getType(c){
   return'base';
 }
 
-// CICLE
 function cycle(id){
   const s=getState(id);
   state[id]=s==='red'?'green':s==='green'?'orange':'red';
   save();
-
-  if(document.getElementById('search').value){
-    clearSearch();
-  }
-
   render();
 }
 
 // EXPORT
-function openExport(){
-  document.getElementById('exportModal').classList.add('open');
-}
-function closeExport(){
-  document.getElementById('exportModal').classList.remove('open');
-}
+function openExport(){document.getElementById('exportModal').classList.add('open')}
+function closeExport(){document.getElementById('exportModal').classList.remove('open')}
+
 function share(t){
   navigator.share?navigator.share({text:t}):alert(t);
 }
+
 function exportMissing(){
   share("Falten:\n"+cards.filter(c=>getState(c.id)==='red').map(c=>c.id).join(", "));
   closeExport();
 }
+
 function exportRepeats(){
   share("Repetides:\n"+cards.filter(c=>getState(c.id)==='orange').map(c=>c.id).join(", "));
   closeExport();
@@ -326,13 +346,11 @@ function render(){
   cards.forEach(c=>{
     const st=getState(c.id);
 
-    // MODE MERCAT → només si hi ha números
     if(mode==="market"){
       if(!nums.length) return;
       if(!nums.includes(c.id)) return;
     }
 
-    // MODE ÀLBUM
     if(mode==="album" && filter!=='all' && st!==filter) return;
     if(type!=='all' && getType(c)!==type) return;
 
@@ -341,11 +359,38 @@ function render(){
     const div=document.createElement('div');
     div.className='card '+st;
 
-    // 🔥 visual subtil
     if(mode==="market" && st==="red") div.style.opacity=0.5;
 
     div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
-    div.onclick=()=>cycle(c.id);
+
+    // 👉 tap vs scroll + long press
+    let startX=0,startY=0,moved=false,pressTimer=null;
+
+    div.addEventListener("touchstart",(e)=>{
+      const t=e.touches[0];
+      startX=t.clientX;
+      startY=t.clientY;
+      moved=false;
+
+      pressTimer=setTimeout(()=>{ /* openSheet(c) */ },500);
+    });
+
+    div.addEventListener("touchmove",(e)=>{
+      const t=e.touches[0];
+      if(Math.abs(t.clientX-startX)>10 || Math.abs(t.clientY-startY)>10){
+        moved=true;
+        if(pressTimer){clearTimeout(pressTimer);pressTimer=null;}
+      }
+    });
+
+    div.addEventListener("touchend",()=>{
+      if(pressTimer){
+        clearTimeout(pressTimer);
+        if(!moved) cycle(c.id);
+      }
+    });
+
+    div.addEventListener("click",()=>cycle(c.id));
 
     grid.appendChild(div);
   });
