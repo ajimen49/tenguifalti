@@ -3,40 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TENGUI / REPE / FALTI XL 2026</title>
+<title>MANAGER ADRENALYN XL 2026</title>
 
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:Arial; background:#111; color:white; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#111;color:#fff}
 
-header { position:sticky; top:0; background:#222; padding:10px; z-index:10; }
-h1 { font-size:18px; margin-bottom:6px; }
+header{position:sticky;top:0;background:#222;padding:10px;z-index:10}
+h1{font-size:18px;margin-bottom:6px}
 
-/* 🔥 evita zoom iOS */
-input, select {
+/* SEARCH */
+.search-wrapper{position:relative}
+.search-wrapper input{
+  width:100%;
+  padding:10px 35px 10px 10px;
+  border-radius:6px;
+  border:none;
+  background:#333;
+  color:white;
+  font-size:16px; /* evita zoom iOS */
+}
+.clear-btn{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  background:none;
+  border:none;
+  color:#aaa;
   font-size:16px;
+}
+
+/* CONTROLS */
+.controls{
+  display:flex;
+  gap:6px;
+  margin-top:6px;
+}
+.controls select{
+  flex:1;
   padding:8px;
   border-radius:6px;
   border:none;
   background:#333;
   color:white;
+  font-size:16px;
 }
 
-.market-bar { display:flex; gap:6px; margin-bottom:6px; }
-.market-bar button {
-  flex:1; padding:6px; border:none; border-radius:6px;
-  background:#444; color:white; font-size:12px;
+/* BOTONS */
+.market-bar{
+  display:flex;
+  gap:6px;
+  margin-bottom:6px;
+}
+.market-bar button{
+  flex:1;
+  padding:6px;
+  border:none;
+  border-radius:6px;
+  background:#444;
+  color:white;
 }
 
-.controls { display:flex; gap:6px; flex-wrap:wrap; }
-
-.grid {
+/* GRID */
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(70px,1fr));
-  gap:6px; padding:8px;
+  gap:6px;
+  padding:8px;
 }
 
-.card {
+.card{
   aspect-ratio:1;
   border-radius:8px;
   display:flex;
@@ -44,37 +81,81 @@ input, select {
   justify-content:center;
   align-items:center;
   font-size:12px;
-  cursor:pointer;
   text-align:center;
+  cursor:pointer;
   padding:4px;
 }
 
-.red { background:#c0392b; }
-.orange { background:#d07a18; }
-.green { background:#27ae60; }
+.red{background:#c0392b}
+.orange{background:#d07a18}
+.green{background:#27ae60}
 
-.card small { font-size:8px; opacity:.8; }
+.card small{font-size:8px;opacity:.8}
 
+/* KEYPAD */
+.kp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin-top:8px;
+}
+.kp-grid button{
+  padding:14px;
+  font-size:18px;
+  border:none;
+  border-radius:8px;
+  background:#444;
+  color:white;
+}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+.modal.open{display:flex}
+.modal-box{
+  background:#222;
+  padding:20px;
+  border-radius:10px;
+  width:80%;
+}
+.modal-box button{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:6px;
+  background:#444;
+  color:white;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>🃏 TENGUI / REPE / FALTI XL 2026</h1>
+
+<h1>MANAGER ADRENALYN XL 2026</h1>
 
 <div class="market-bar">
-<button onclick="setUIMode('album')">📘 Àlbum</button>
-<button onclick="setUIMode('market')">🤝 Mercat</button>
-<button onclick="openExportDialog()">📤 Exportar</button>
+<button onclick="setMode('album')">📘 Àlbum</button>
+<button onclick="setMode('market')">🤝 Intercanvi</button>
+<button onclick="openExport()">📤 Exportar</button>
+</div>
+
+<div class="search-wrapper">
+<input id="search" placeholder="Cerca...">
+<button class="clear-btn" onclick="clearSearch()">✕</button>
 </div>
 
 <div class="controls">
-<input id="search" placeholder="🔍 Cerca..." autocomplete="off">
-<button onclick="clearSearch()">❌</button>
-
 <select id="filter">
-<option value="all">Totes</option>
+<option value="all">Estat</option>
 <option value="green">Tinc</option>
 <option value="orange">Repetides</option>
 <option value="red">Falten</option>
@@ -84,54 +165,86 @@ input, select {
 <option value="all">Tipus</option>
 <option value="base">Base</option>
 <option value="vamos">Vamos</option>
-<option value="guantes">Guantes</option>
-<option value="kryptonita">Kryptonita</option>
-<option value="diamantes">Diamantes</option>
 <option value="influencers">Influencers</option>
 <option value="protas">Protas</option>
 <option value="supercrack">Supercrack</option>
-<option value="champions">Champions</option>
-<option value="balonoro">Balón Oro</option>
-<option value="limitada">Limitada</option>
-<option value="autografo">Autógrafos</option>
+<option value="diamantes">Diamantes</option>
+<option value="kryptonita">Kryptonita</option>
 <option value="momentum">Momentum</option>
+<option value="limitada">Limitada</option>
 </select>
 </div>
 
-<input id="quickInput" placeholder="101,205,333" style="width:100%;margin-top:6px;padding:6px;">
+<!-- KEYPAD -->
+<div id="keypad" style="display:none;">
+  <div class="kp-grid">
+    <button onclick="kp('1')">1</button>
+    <button onclick="kp('2')">2</button>
+    <button onclick="kp('3')">3</button>
+
+    <button onclick="kp('4')">4</button>
+    <button onclick="kp('5')">5</button>
+    <button onclick="kp('6')">6</button>
+
+    <button onclick="kp('7')">7</button>
+    <button onclick="kp('8')">8</button>
+    <button onclick="kp('9')">9</button>
+
+    <button onclick="kp(' / ')">/</button>
+    <button onclick="kp('0')">0</button>
+    <button onclick="kp(' - ')">-</button>
+
+    <button onclick="kp(', ')">,</button>
+    <button onclick="kpBack()">⌫</button>
+    <button onclick="clearSearch()">CLR</button>
+  </div>
+</div>
 
 </header>
 
 <div class="grid" id="grid"></div>
 
+<!-- MODAL EXPORT -->
+<div class="modal" id="exportModal">
+  <div class="modal-box">
+    <button onclick="exportMissing()">FALTEN</button>
+    <button onclick="exportRepeats()">REPETIDES</button>
+    <button onclick="closeExport()">CANCEL·LA</button>
+  </div>
+</div>
+
 <script>
 
-const cards = [{"id":"1","name":"Escudo D. Alavés"},{"id":"1 Bis","name":"Stadium Card - Mendizorroza"},{"id":"2","name":"Sivera (Capitán)"},{"id":"3","name":"Raúl Fernández"},{"id":"4","name":"Jonny"},{"id":"5","name":"Tenaglia"},{"id":"6","name":"Pacheco"},{"id":"7","name":"Parada"},{"id":"7 Bis","name":"Garcés (Ampliación)"},{"id":"8","name":"Moussa Diarra"},{"id":"9","name":"Blanco"},{"id":"10","name":"Guevara"},{"id":"11","name":"Guridi"},{"id":"12","name":"Aleñá"},{"id":"13","name":"Pablo Ibáñez"},{"id":"14","name":"Denis Suárez"},{"id":"15","name":"Carlos Vicente"},{"id":"15 Bis","name":"Ángel Pérez (Nuevo Fichaje)"},{"id":"16","name":"Toni Martínez"},{"id":"16 Bis","name":"Calebe (Ampliación)"},{"id":"17","name":"Boyé"},{"id":"18","name":"Mariano"},{"id":"18 Bis","name":"Abde (Ampliación)"},{"id":"19","name":"Escudo Athletic Club"},{"id":"19 Bis","name":"Stadium Card - San Mamés"},{"id":"20","name":"Unai Simón"},{"id":"21","name":"Padilla"},{"id":"22","name":"Areso"},{"id":"22 Bis","name":"Gorosabel (Ampliación)"},{"id":"23","name":"Vivian"},{"id":"24","name":"Paredes"},{"id":"25","name":"Laporte"},{"id":"26","name":"Yuri"},{"id":"27","name":"Ruiz de Galarreta"},{"id":"28","name":"Jauregizar"},{"id":"29","name":"Vesga"},{"id":"30","name":"Unai Gómez"},{"id":"30 Bis","name":"Rego (Ampliación)"},{"id":"31","name":"Sancet"},{"id":"32","name":"Berenguer"},{"id":"32 Bis","name":"Robert Navarro (Ampliación)"},{"id":"33","name":"Williams (Capitán)"},{"id":"34","name":"Maroan"},{"id":"35","name":"Guruzeta"},{"id":"36","name":"Nico Williams"},{"id":"37","name":"Escudo Atlético de Madrid"},{"id":"37 Bis","name":"Stadium Card - Riyadh Air Metropolitano"},{"id":"38","name":"Oblak"},{"id":"39","name":"Musso"},{"id":"40","name":"Marcos Llorente"},{"id":"41","name":"Le Normand"},{"id":"41 Bis","name":"Pubill (Ampliación)"},{"id":"42","name":"Lenglet"},{"id":"42 Bis","name":"Giménez (Ampliación)"},{"id":"43","name":"Hancko"},{"id":"44","name":"Ruggeri"},{"id":"44 Bis","name":"Galán (Ampliación)"},{"id":"45","name":"Koke (Capitán)"},{"id":"46","name":"Barrios"},{"id":"46 Bis","name":"Obed Vargas (Nuevo Fichaje)"},{"id":"47","name":"Gallagher"},{"id":"47 Bis","name":"Johnny Cardoso (Ampliación)"},{"id":"48","name":"Álex Baena"},{"id":"48 Bis","name":"Rodri Mendoza (Nuevo Fichaje)"},{"id":"49","name":"Almada"},{"id":"50","name":"Nico González"},{"id":"51","name":"Giuliano"},{"id":"51 Bis","name":"Raspadori (Ampliación)"},{"id":"52","name":"Julián Álvarez"},{"id":"53","name":"Sørloth"},{"id":"54","name":"Griezmann"},{"id":"54 Bis","name":"Lookman (Nuevo Fichaje)"},{"id":"55","name":"Escudo FC Barcelona"},{"id":"55 Bis","name":"Stadium Card - Spotify Nou Camp"},{"id":"56","name":"Joan García"},{"id":"57","name":"Szczęsny"},{"id":"58","name":"Koundé"},{"id":"58 Bis","name":"Joao Cancelo (Nuevo Fichaje)"},{"id":"59","name":"Cubarsí"},{"id":"60","name":"Eric García"},{"id":"60 Bis","name":"Gerard Martín (Ampliación)"},{"id":"61","name":"Araújo (Capitán)"},{"id":"62","name":"Balde"},{"id":"63","name":"De Jong"},{"id":"64","name":"Gavi"},{"id":"64 Bis","name":"Cásado (Ampliación)"},{"id":"65","name":"Pedri"},{"id":"66","name":"Fermín"},{"id":"67","name":"Dani Olmo"},{"id":"68","name":"Raphinha"},{"id":"69","name":"Lamine Yamal"},{"id":"70","name":"Ferran Torres"},{"id":"70 Bis","name":"Bardghji (Ampliación)"},{"id":"71","name":"Lewandowski"},{"id":"72","name":"Rashford"},{"id":"73","name":"Escudo Real Betis"},{"id":"73 Bis","name":"Stadium Card - La Cartuja"},{"id":"74","name":"Pau López"},{"id":"75","name":"Valles"},{"id":"76","name":"Bellerín"},{"id":"76 Bis","name":"Aitor Ruibal (Ampliación)"},{"id":"77","name":"Bartra"},{"id":"78","name":"Diego Llorente"},{"id":"79","name":"Natan"},{"id":"80","name":"Valentín Gómez"},{"id":"81","name":"Junior"},{"id":"82","name":"Altimira"},{"id":"82 Bis","name":"Deossa (Ampliación)"},{"id":"83","name":"Amrabat"},{"id":"84","name":"Pablo Fornals"},{"id":"84 Bis","name":"Fidalgo (Nuevo Fichaje)"},{"id":"85","name":"Lo Celso"},{"id":"85 Bis","name":"Marc Roca (Ampliación)"},{"id":"86","name":"Isco (Capitán)"},{"id":"87","name":"Antony"},{"id":"88","name":"Cucho Hernández"},{"id":"89","name":"Riquelme"},{"id":"89 Bis","name":"Pablo García (Ampliación)"},{"id":"90","name":"Abde"},{"id":"91","name":"Escudo RC Celta"},{"id":"91 Bis","name":"Stadium Card - Abanca Balaídos"},{"id":"92","name":"Radu"},{"id":"93","name":"Iván Villar"},{"id":"94","name":"Javi Rueda"},{"id":"94 Bis","name":"Álvaro Núñez (Nuevo Fichaje)"},{"id":"95","name":"Javi Rodríguez"},{"id":"96","name":"Starfelt"},{"id":"96 Bis","name":"Yoel Lago (Ampliación)"},{"id":"97","name":"Marcos Alonso"},{"id":"98","name":"Mingueza"},{"id":"99","name":"Carreira"},{"id":"100","name":"Ilaix Moriba"},{"id":"101","name":"Fran Beltrán"},{"id":"101 Bis","name":"Miguel Román (Ampliación)"},{"id":"102","name":"Sotelo"},{"id":"102 Bis","name":"Vecino (Nuevo Fichaje)"},{"id":"103","name":"Hugo Álvarez"},{"id":"104","name":"Swedberg"},{"id":"104 Bis","name":"Fer López (Nuevo Fichaje)"},{"id":"105","name":"Bryan Zaragoza"},{"id":"106","name":"Iago Aspas (Capitán)"},{"id":"107","name":"Borja iglesias"},{"id":"108","name":"Jutglà"},{"id":"108 Bis","name":"Pablo Durán (Ampliación)"},{"id":"109","name":"Escudo Elche CF"},{"id":"109 Bis","name":"Stadium Card - Martínez Valero"},{"id":"110","name":"Iñaki Peña"},{"id":"111","name":"Dituro"},{"id":"112","name":"Álvaro Núñez"},{"id":"112 Bis","name":"Héctor Fort (Ampliación)"},{"id":"113","name":"Chust"},{"id":"114","name":"Bigas (Capitán)"},{"id":"115","name":"Affengruber"},{"id":"116","name":"Pedrosa"},{"id":"117","name":"Fede Redondo"},{"id":"117 Bis","name":"Gonzalo Villar (Nuevo Fichaje)"},{"id":"118","name":"Germán Valera"},{"id":"119","name":"Martim Neto"},{"id":"120","name":"Febas"},{"id":"121","name":"Marc Aguado"},{"id":"122","name":"Rodri Mendoza"},{"id":"122 Bis","name":"Morente (Nuevo Fichaje)"},{"id":"123","name":"Josan"},{"id":"123 Bis","name":"Cepeda (Nuevo Fichaje)"},{"id":"124","name":"Álvaro Rodríguez"},{"id":"125","name":"André Silva"},{"id":"126","name":"Rafa Mir"},{"id":"127","name":"Escudo RCD Espanyol"},{"id":"127 Bis","name":"Stadium Card - RCDE Stadium"},{"id":"128","name":"Dmitrovic"},{"id":"129","name":"Fortuño"},{"id":"130","name":"El Hilali"},{"id":"131","name":"Calero"},{"id":"132","name":"Riedel"},{"id":"133","name":"Cabrera"},{"id":"134","name":"Carlos Romero"},{"id":"135","name":"Pol Lozano"},{"id":"136","name":"Urko"},{"id":"137","name":"Edu Expósito"},{"id":"138","name":"Terrats"},{"id":"138 Bis","name":"Pickel (Ampliación)"},{"id":"139","name":"Antoniu Roca"},{"id":"139 Bis","name":"Jofre (Ampliación)"},{"id":"140","name":"Dolan"},{"id":"141","name":"Roberto Fernández"},{"id":"142","name":"Kike García"},{"id":"143","name":"Puado (Capitán)"},{"id":"143 Bis","name":"Ngonge (Nuevo Fichaje)"},{"id":"144","name":"Pere Milla"},{"id":"144 Bis","name":"Koleosho (Ampliación)"},{"id":"145","name":"Escudo Getafe CF"},{"id":"145 Bis","name":"Stadium Card - Coliseum"},{"id":"146","name":"David Soria"},{"id":"147","name":"Letáček"},{"id":"148","name":"Iglesias"},{"id":"149","name":"Kiko Femenía"},{"id":"150","name":"Djené (Capitán)"},{"id":"151","name":"Domingos Duarte"},{"id":"152","name":"Abqar"},{"id":"152 Bis","name":"Zaid Romero (Nuevo Fichaje)"},{"id":"153","name":"Diego Rico"},{"id":"153 Bis","name":"Boselli (Nuevo Fichaje)"},{"id":"154","name":"Davinchi"},{"id":"155","name":"Mario Martín"},{"id":"156","name":"Arambarri"},{"id":"157","name":"Milla"},{"id":"158","name":"Neyou"},{"id":"159","name":"Javi Muñoz"},{"id":"160","name":"Borja Mayoral"},{"id":"160 Bis","name":"Luis Vázquez (Nuevo Fichaje)"},{"id":"161","name":"Liso"},{"id":"161 Bis","name":"Satriano (Nuevo Fichaje)"},{"id":"162","name":"Coba"},{"id":"162 Bis","name":"Álex Sancris (Ampliación)"},{"id":"163","name":"Escudo Girona FC"},{"id":"163 Bis","name":"Stadium Card - Montilivi"},{"id":"164","name":"Gazzaniga"},{"id":"165","name":"Livakovic"},{"id":"165 Bis","name":"Ter Stegen (Nuevo Fichaje)"},{"id":"166","name":"Arnau"},{"id":"167","name":"Hugo Rincón"},{"id":"168","name":"Vitor Reis"},{"id":"169","name":"Blind"},{"id":"170","name":"Francés"},{"id":"171","name":"Álex Moreno"},{"id":"172","name":"Witsel"},{"id":"172 Bis","name":"Fran Beltrán (Nuevo Fichaje)"},{"id":"173","name":"Ounahi"},{"id":"174","name":"Iván Martín"},{"id":"174 Bis","name":"Echeverri (Nuevo Fichaje)"},{"id":"175","name":"Yáser Asprilla"},{"id":"175 Bis","name":"Lemar (Ampliación)"},{"id":"176","name":"Joel Roca"},{"id":"176 Bis","name":"Portu (Ampliación)"},{"id":"177","name":"Tsygankov"},{"id":"178","name":"Vanat"},{"id":"179","name":"Stuani (Capitán)"},{"id":"180","name":"Bryan Gil"},{"id":"181","name":"Escudo Levante UD"},{"id":"181 Bis","name":"Stadium Card - Ciutat de València"},{"id":"182","name":"Ryan"},{"id":"183","name":"Pablo Campos"},{"id":"184","name":"Toljan"},{"id":"185","name":"Dela"},{"id":"186","name":"Elgezabal"},{"id":"187","name":"Matías Moreno"},{"id":"188","name":"Manu Sánchez"},{"id":"189","name":"Pampín"},{"id":"190","name":"Oriol Rey"},{"id":"190 Bis","name":"Raghouber (Nuevo Fichaje)"},{"id":"191","name":"Pablo Martínez (Capitán)"},{"id":"192","name":"Olasagasti"},{"id":"193","name":"Vencedor"},{"id":"193 Bis","name":"Arriaga (Ampliación)"},{"id":"194","name":"Carlos Álvarez"},{"id":"195","name":"Morales"},{"id":"195 Bis","name":"Paco Cortés (Nuevo Fichaje)"},{"id":"196","name":"Brugué"},{"id":"196 Bis","name":"Kovalipou (Ampliación)"},{"id":"197","name":"Iván Romero"},{"id":"198","name":"Etta Eyong"},{"id":"199","name":"Escudo Real Madrid CF"},{"id":"199 Bis","name":"Stadium Card - Santiago Bernabéu"},{"id":"200","name":"Courtois"},{"id":"201","name":"Lunin"},{"id":"202","name":"Carvajal (Capitán)"},{"id":"203","name":"Trent"},{"id":"204","name":"Militao"},{"id":"205","name":"Huijsen"},{"id":"206","name":"Rüdiger"},{"id":"206 Bis","name":"Asencio (Ampliación)"},{"id":"207","name":"Carreras"},{"id":"207 Bis","name":"Fran García (Ampliación)"},{"id":"208","name":"Tchouaméni"},{"id":"208 Bis","name":"Camavinga (Ampliación)"},{"id":"209","name":"Fede Valverde"},{"id":"210","name":"Bellingham"},{"id":"211","name":"Güler"},{"id":"212","name":"Mastantuono"},{"id":"213","name":"Rodrygo"},{"id":"214","name":"Mbappé"},{"id":"215","name":"Gonzalo"},{"id":"215 Bis","name":"Brahim Díaz (Ampliación)"},{"id":"216","name":"Vinícius"},{"id":"217","name":"Escudo RCD Mallorca"},{"id":"217 Bis","name":"Stadium Card - Mallorca Son Moix"},{"id":"218","name":"Leo Román"},{"id":"219","name":"Bergström"},{"id":"220","name":"Morey"},{"id":"221","name":"Maffeo"},{"id":"222","name":"Valjent"},{"id":"223","name":"Raíllo (Capitán)"},{"id":"224","name":"Kumbulla"},{"id":"225","name":"Mojica"},{"id":"225 Bis","name":"Lato (Ampliación)"},{"id":"226","name":"Samú Costa"},{"id":"227","name":"Antonio Sánchez"},{"id":"227 Bis","name":"Mascarell (Ampliación)"},{"id":"228","name":"Darder"},{"id":"229","name":"Morlanes"},{"id":"230","name":"Pablo Torre"},{"id":"231","name":"Asano"},{"id":"232","name":"Muriqi"},{"id":"233","name":"Mateo Joseph"},{"id":"233 Bis","name":"Luvumbo (Nuevo Fichaje)"},{"id":"234","name":"Jan Virgili"},{"id":"234 Bis","name":"Abdón (Ampliación)"},{"id":"235","name":"Escudo CA Osasuna"},{"id":"235 Bis","name":"Stadium Card - El Sadar"},{"id":"236","name":"Sergio Herrera (Capitán)"},{"id":"237","name":"Aitor Fernández"},{"id":"238","name":"Rosier"},{"id":"239","name":"Boyomo"},{"id":"240","name":"Catena"},{"id":"241","name":"Herrando"},{"id":"242","name":"Juan Cruz"},{"id":"243","name":"Abel Bretones"},{"id":"243 Bis","name":"Galán (Nuevo Fichaje)"},{"id":"244","name":"Torró"},{"id":"245","name":"Moncayola"},{"id":"246","name":"Moi Gómez"},{"id":"247","name":"Rubén García"},{"id":"247 Bis","name":"Iker Benito (Ampliación)"},{"id":"248","name":"Aimar Oroz"},{"id":"249","name":"Víctor Muñoz"},{"id":"250","name":"Raúl García"},{"id":"251","name":"Budimir"},{"id":"252","name":"Becker"},{"id":"252 Bis","name":"Raúl Moro (Nuevo Fichaje)"},{"id":"253","name":"Escudo Real Oviedo"},{"id":"253 Bis","name":"Stadium Card - Carlos Tartiere"},{"id":"254","name":"Aarón Escandell"},{"id":"255","name":"Moldovan"},{"id":"256","name":"Nacho Vidal"},{"id":"257","name":"Eric Bailly"},{"id":"258","name":"David Carmo"},{"id":"259","name":"Dani Calvo"},{"id":"259 Bis","name":"David Costas (Ampliación)"},{"id":"260","name":"Rahim Alhassane"},{"id":"261","name":"Colombatto"},{"id":"261 Bis","name":"Ejaria (Ampliación)"},{"id":"262","name":"Reina"},{"id":"263","name":"Dendoncker"},{"id":"263 Bis","name":"Sibo (Ampliación)"},{"id":"264","name":"Cazorla (Capitán)"},{"id":"265","name":"Ilic"},{"id":"265 Bis","name":"Nico Fonseca (Nuevo Fichaje)"},{"id":"266","name":"Hassan"},{"id":"267","name":"Brekalo"},{"id":"267 Bis","name":"Thiago Fernández (Nuevo Fichaje)"},{"id":"268","name":"Ilyas Chaira"},{"id":"269","name":"Fede Viñas"},{"id":"270","name":"Rondón"},{"id":"271","name":"Escudo Rayo Vallecano"},{"id":"271 Bis","name":"Stadium Card - Vallecas"},{"id":"272","name":"Batalla"},{"id":"273","name":"Cárdenas"},{"id":"274","name":"Ratiu"},{"id":"275","name":"Balliu"},{"id":"276","name":"Lejeune"},{"id":"277","name":"Luiz Felipe"},{"id":"277 Bis","name":"Nobel Mendy (Ampliación)"},{"id":"278","name":"Pep Chavarría"},{"id":"279","name":"Pathé Ciss"},{"id":"280","name":"Unai López"},{"id":"281","name":"Óscar Valentín (Capitán)"},{"id":"282","name":"Isi"},{"id":"283","name":"Pedro Díaz"},{"id":"283 Bis","name":"Gumbau (Ampliación)"},{"id":"284","name":"Álvaro García"},{"id":"285","name":"Fran Pérez"},{"id":"285 Bis","name":"Carlos Martín (Nuevo Fichaje)"},{"id":"286","name":"Camello"},{"id":"287","name":"De Frutos"},{"id":"288","name":"Alemão"},{"id":"288 Bis","name":"Ilias (Nuevo Fichaje)"},{"id":"289","name":"Escudo Real Sociedad"},{"id":"289 Bis","name":"Stadium Card - Reale Arena (Anoeta)"},{"id":"290","name":"Remiro"},{"id":"291","name":"Marrero"},{"id":"292","name":"Aramburu"},{"id":"293","name":"Aritz Elustondo"},{"id":"293 Bis","name":"Jon Martín (Ampliación)"},{"id":"294","name":"Zubeldia"},{"id":"295","name":"Caleta-Car"},{"id":"296","name":"Sergio Gómez"},{"id":"297","name":"Gorrotxategi"},{"id":"298","name":"Turrientes"},{"id":"299","name":"Pablo Marín"},{"id":"299 Bis","name":"Yangel Herrera (Ampliación)"},{"id":"300","name":"Carlos Soler"},{"id":"301","name":"Brais Méndez"},{"id":"302","name":"Kubo"},{"id":"303","name":"Barrenetxea"},{"id":"304","name":"Oyarzabal (Capitán)"},{"id":"305","name":"Óskarsson"},{"id":"305 Bis","name":"Wesley (Nuevo Fichaje)"},{"id":"306","name":"Guedes"},{"id":"307","name":"Escudo Sevilla FC"},{"id":"307 Bis","name":"Stadium Card - Ramón Sánchez Pizjuán"},{"id":"308","name":"Vlachodimos"},{"id":"309","name":"Nyland"},{"id":"310","name":"Carmona"},{"id":"311","name":"Juanlu"},{"id":"312","name":"Azpilicueta"},{"id":"313","name":"Kike Salas"},{"id":"314","name":"Marcao"},{"id":"314 Bis","name":"Oso (Ampliación)"},{"id":"315","name":"Suazo"},{"id":"316","name":"Gudelj (Capitán)"},{"id":"317","name":"Agoumé"},{"id":"318","name":"Sow"},{"id":"319","name":"Batista Mendy"},{"id":"320","name":"Vargas"},{"id":"321","name":"Ejuke"},{"id":"321 Bis","name":"Alfon (Ampliación)"},{"id":"322","name":"Isaac Romero"},{"id":"323","name":"Akor Adams"},{"id":"324","name":"Alexis Sánchez"},{"id":"324 Bis","name":"Maupay (Nuevo Fichaje)"},{"id":"325","name":"Escudo Valencia CF"},{"id":"325 Bis","name":"Stadium Card - Mestalla"},{"id":"326","name":"Agirrezabala"},{"id":"327","name":"Dimitrievski"},{"id":"328","name":"Foulquier"},{"id":"329","name":"Correia"},{"id":"330","name":"Tárrega"},{"id":"331","name":"Copete"},{"id":"332","name":"Diakhaby"},{"id":"332 Bis","name":"Nuñez (Nuevo Fichaje)"},{"id":"333","name":"Gayà (Capitán)"},{"id":"334","name":"Pepelu"},{"id":"334 Bis","name":"Guido Rodríguez (Nuevo Fichaje)"},{"id":"335","name":"Santamaría"},{"id":"336","name":"Javi Guerra"},{"id":"336 Bis","name":"Ugrinic (Ampliación)"},{"id":"337","name":"André Almeida"},{"id":"338","name":"Luis Rioja"},{"id":"339","name":"Diego López"},{"id":"340","name":"Ramazani"},{"id":"340 Bis","name":"Raba (Ampliación)"},{"id":"341","name":"Danjuma"},{"id":"341 Bis","name":"Sadiq (Nuevo Fichaje)"},{"id":"342","name":"Hugo Duro"},{"id":"342 Bis","name":"Lucas Beltrán (Ampliación)"},{"id":"343","name":"Escudo Villarreal CF"},{"id":"343 Bis","name":"Stadium Card - Estadio de la Cerámica"},{"id":"344","name":"Luiz Júnior"},{"id":"345","name":"Arnau Tenas"},{"id":"346","name":"Mouriño"},{"id":"346 Bis","name":"Freeman (Nuevo Fichaje)"},{"id":"347","name":"Foyth"},{"id":"348","name":"Rafa Marín"},{"id":"349","name":"Renato Veiga"},{"id":"350","name":"Sergi Cardona"},{"id":"350 Bis","name":"Pedraza (Ampliación)"},{"id":"351","name":"Santi Comesaña"},{"id":"352","name":"Pape Gueye"},{"id":"353","name":"Parejo (Capitán)"},{"id":"354","name":"Thomas"},{"id":"355","name":"Moleiro"},{"id":"355 Bis","name":"Alfon (Nuevo Fichaje)"},{"id":"356","name":"Buchanan"},{"id":"356 Bis","name":"Solomon (Ampliación)"},{"id":"357","name":"Mikautadze"},{"id":"358","name":"Pépé"},{"id":"358 Bis","name":"Ilias (Ampliación)"},{"id":"359","name":"Oluwaseyi"},{"id":"360","name":"Ayoze"},{"id":"360 Bis","name":"Gerard Moreno (Ampliación)"},{"id":"361","name":"¡Vamos! D. Alavés"},{"id":"362","name":"¡Vamos! Athletic Club"},{"id":"363","name":"¡Vamos! Atlético de Madrid"},{"id":"364","name":"¡Vamos! FC Barcelona"},{"id":"365","name":"¡Vamos! Real Betis"},{"id":"366","name":"¡Vamos! RC Celta"},{"id":"367","name":"¡Vamos! Elche CF"},{"id":"368","name":"¡Vamos! RCD Espanyol"},{"id":"369","name":"¡Vamos! Getafe CF"},{"id":"370","name":"¡Vamos! Girona FC"},{"id":"371","name":"¡Vamos! Levante UD"},{"id":"372","name":"¡Vamos! Real Madrid"},{"id":"373","name":"¡Vamos! RCD Mallorca"},{"id":"374","name":"¡Vamos! CA Osasuna"},{"id":"375","name":"¡Vamos! Real Oviedo"},{"id":"376","name":"¡Vamos! Rayo Vallecano"},{"id":"377","name":"¡Vamos! Real Sociedad"},{"id":"378","name":"¡Vamos! Sevilla FC"},{"id":"379","name":"¡Vamos! Valencia CF"},{"id":"380","name":"¡Vamos! Villarreal CF"},{"id":"381","name":"Guantes de Oro - Sivera"},{"id":"382","name":"Guantes de Oro - Joan García"},{"id":"383","name":"Guantes de Oro - David Soria"},{"id":"384","name":"Guantes de Oro - Sergio Herrera"},{"id":"385","name":"Guantes de Oro - Batalla"},{"id":"386","name":"Guantes de Oro - Remiro"},{"id":"387","name":"Guantes de Oro - Agirrezabala"},{"id":"388","name":"Kryptonita - Laporte"},{"id":"389","name":"Kryptonita - Vivian"},{"id":"390","name":"Kryptonita - Le Normand"},{"id":"391","name":"Kryptonita - Affengruber"},{"id":"392","name":"Kryptonita - Cabrera"},{"id":"393","name":"Kryptonita - Militao"},{"id":"394","name":"Kryptonita - Lejeune"},{"id":"395","name":"Kryptonita - Tárrega"},{"id":"396","name":"Kryptonita - Mouriño"},{"id":"397","name":"Diamante - Rego"},{"id":"398","name":"Diamante - Dro"},{"id":"399","name":"Diamante - Valentín Gómez"},{"id":"400","name":"Diamante - Pablo García"},{"id":"401","name":"Diamante - Rodri Mendoza"},{"id":"402","name":"Diamante - Riedel"},{"id":"403","name":"Diamante - Davinchi"},{"id":"404","name":"Diamante - Liso"},{"id":"405","name":"Diamante - Vitor Reis"},{"id":"406","name":"Diamante - Joel Roca"},{"id":"407","name":"Diamante - Carlos Álvarez"},{"id":"408","name":"Diamante - Etta Eyong"},{"id":"409","name":"Diamante - Fran González"},{"id":"410","name":"Diamante - Gonzalo"},{"id":"411","name":"Diamante - Jan Virgili"},{"id":"412","name":"Diamante - Mateo Joseph"},{"id":"413","name":"Diamante - Víctor Muñoz"},{"id":"414","name":"Diamante - Renato Veiga"},{"id":"415","name":"Influencer - Barrios"},{"id":"415 Bis","name":"Influencer Bis - Ruiz de Galarreta"},{"id":"416","name":"Influencer - Sotelo"},{"id":"416 Bis","name":"Influencer Bis - Pablo Fornals"},{"id":"417","name":"Influencer - Febas"},{"id":"417 Bis","name":"Influencer Bis - Pablo Torre"},{"id":"418","name":"Influencer - Edu Expósito"},{"id":"418 Bis","name":"Influencer Bis - Pape Gueye"},{"id":"419","name":"Influencer - Milla"},{"id":"420","name":"Influencer - Darder"},{"id":"421","name":"Influencer - Aimar Oroz"},{"id":"422","name":"Influencer - Cazorla"},{"id":"423","name":"Influencer - Unai López"},{"id":"424","name":"Prota - Tenaglia"},{"id":"425","name":"Prota - Carlos Vicente"},{"id":"426","name":"Prota - Eric García"},{"id":"427","name":"Prota - Cucho Hernández"},{"id":"428","name":"Prota - Borja Iglesias"},{"id":"429","name":"Prota - Dolan"},{"id":"430","name":"Prota - Vanat"},{"id":"431","name":"Prota - Manu Sánchez"},{"id":"432","name":"Prota - Tchouaméni"},{"id":"433","name":"Prota - Leo Román"},{"id":"434","name":"Prota - Aarón Escandell"},{"id":"435","name":"Prota - Hassan"},{"id":"436","name":"Prota - Carlos Soler"},{"id":"437","name":"Prota - Gorrotxategi"},{"id":"438","name":"Prota - Batista Mendy"},{"id":"439","name":"Prota - Alexis Sánchez"},{"id":"440","name":"Prota - Danjuma"},{"id":"441","name":"Prota - Buchanan"},{"id":"442","name":"Supercrack - Unai Simón"},{"id":"443","name":"Supercrack - Jauregizar"},{"id":"444","name":"Supercrack - Oblak"},{"id":"445","name":"Supercrack - Marcos Llorente"},{"id":"446","name":"Supercrack - Álex Baena"},{"id":"447","name":"Supercrack - Almada"},{"id":"448","name":"Supercrack - Griezmann"},{"id":"449","name":"Supercrack - Koundé"},{"id":"450","name":"Supercrack - Balde"},{"id":"451","name":"Supercrack - Raphinha"},{"id":"452","name":"Supercrack - Lewandowski"},{"id":"453","name":"Supercrack - Rashford"},{"id":"454","name":"Supercrack - Isco"},{"id":"455","name":"Supercrack - Lo Celso"},{"id":"456","name":"Supercrack - Antony"},{"id":"457","name":"Supercrack - Courtois"},{"id":"458","name":"Supercrack - Carreras"},{"id":"459","name":"Supercrack - Fede Valverde"},{"id":"460","name":"Supercrack - Mastantuono"},{"id":"461","name":"Supercrack - Budimir"},{"id":"462","name":"Supercrack - Isi"},{"id":"463","name":"Supercrack - Kubo"},{"id":"464","name":"Supercrack - Vargas"},{"id":"465","name":"Supercrack - Javi Guerra"},{"id":"466","name":"Supercrack - Moleiro"},{"id":"467","name":"Supercrack - Pépé"},{"id":"468","name":"Champions - FC Barcelona"},{"id":"469","name":"Balón de Oro - Nico Williams"},{"id":"470","name":"Balón de Oro - Julián Álvarez"},{"id":"471","name":"Balón de Oro - Pedri"},{"id":"472","name":"Balón de Oro - Lamine Yamal"},{"id":"473","name":"Balón de Oro - Vinicius"},{"id":"474","name":"Balón de Oro - Mbappé"},{"id":"475","name":"Balón de Oro Excellence - Carvajal"},{"id":"476","name":"Card Atómica"},{"id":"477","name":"Card Invencible"},{"id":"478","name":"Campeon Card"},{"id":"478 Bis","name":"Campeon Card Premium Oro"},{"id":"479","name":"Entrenador - Eduardo Coudet"},{"id":"480","name":"Entrenador - Ernesto Valverde"},{"id":"481","name":"Entrenador - Diego Pablo Simeone"},{"id":"482","name":"Entrenador - Hansi Flick"},{"id":"483","name":"Entrenador - Manuel Pellegrini"},{"id":"484","name":"Entrenador - Claudio Giráldez"},{"id":"485","name":"Entrenador - Eder Sarabia"},{"id":"486","name":"Entrenador - Manolo González"},{"id":"487","name":"Entrenador - José Bordalás"},{"id":"488","name":"Entrenador - Míchel"},{"id":"489","name":"Entrenador - Luís Castro"},{"id":"490","name":"Entrenador - Álvaro Arbeloa"},{"id":"491","name":"Entrenador - Jagoba Arrasate"},{"id":"492","name":"Entrenador - Alessio Lisci"},{"id":"493","name":"Entrenador - Guillermo Almada"},{"id":"494","name":"Entrenador - Íñigo Pérez"},{"id":"495","name":"Entrenador - Pellegrino Matarazzo"},{"id":"496","name":"Entrenador - Matías Almeyda"},{"id":"497","name":"Entrenador - Carlos Corberán"},{"id":"498","name":"Entrenador - Marcelino García"},{"id":"499","name":"Nuevo Guantes de Oro - Dmitrovic"},{"id":"500","name":"Nuevo Guantes de Oro - Ter Stegen"},{"id":"501","name":"Nuevo Kryptonita - Pubill"},{"id":"502","name":"Nuevo Kryptonita - Gerard Martín"},{"id":"503","name":"Nuevo Kryptonita - Asencio"},{"id":"504","name":"Nuevo Diamante - Selton"},{"id":"505","name":"Nuevo Diamante - El-Abdellaoui"},{"id":"506","name":"Nuevo Diamante - Echeverri"},{"id":"507","name":"Nuevo Diamante - Nobel Mendy"},{"id":"508","name":"Nuevo Diamante - Oso"},{"id":"509","name":"Nuevo Prota - Rodri Mendoza"},{"id":"510","name":"Nuevo Prota - Aitor Ruibal"},{"id":"511","name":"Nuevo Prota - Miguel Román"},{"id":"512","name":"Nuevo Prota - Carlos Romero"},{"id":"513","name":"Nuevo Prota - Maupay"},{"id":"514","name":"Nuevo Supercrack - Giuliano"},{"id":"515","name":"Nuevo Supercrack - Joao Cancelo"},{"id":"516","name":"Nuevo Supercrack - Rodrygo"},{"id":"517","name":"Nuevo Supercrack - Guedes"},{"id":"518","name":"Master Míster - Hansi Flick"},{"id":"519","name":"Master Míster - Marcelino García"},{"id":"520","name":"Card Fantástica"},{"id":"521","name":"Nuevo Balón de Oro - Courtois"},{"id":"522","name":"Nuevo Balón de Oro Autógrafo - Pedri"},{"id":"601","name":"Ed. Limitada - Nico González"},{"id":"602","name":"Ed. Limitada - De Jong"},{"id":"603","name":"Ed. Limitada - Huijsen"},{"id":"604","name":"Ed. Limitada - Sancet"},{"id":"605","name":"Ed. Limitada - Koke"},{"id":"606","name":"Ed. Limitada - Güler"},{"id":"607","name":"Ed. Limitada - Mikautadze"},{"id":"608","name":"Ed. Limitada - Williams"},{"id":"609","name":"Ed. Limitada - Ferran Torres"},{"id":"610","name":"Ed. Limitada - Oyarzabal"},{"id":"611","name":"Ed. Limitada - Ayoze"},{"id":"612","name":"Ed. Limitada - Hancko"},{"id":"613","name":"Ed. Limitada - Bellingham"},{"id":"614","name":"Ed. Limitada - De Frutos"},{"id":"615","name":"Ed. Limitada - Cazorla Platinum"},{"id":"616","name":"Ed. Limitada - Fermín"},{"id":"617","name":"Ed. Limitada - Iago Aspas"},{"id":"618","name":"Ed. Limitada - Muriqi"},{"id":"619","name":"Ed. Limitada - Cubarsí"},{"id":"620","name":"Ed. Limitada - Sørloth"},{"id":"621","name":"Ed. Limitada - Ounahi"},{"id":"623","name":"Nueva Ed. Limitada - Barrios"},{"id":"624","name":"Nueva Ed. Limitada - Dani Olmo"},{"id":"625","name":"Nueva Ed. Limitada - Raúl Moro"},{"id":"626","name":"Ed. Limitada Prem. Oro - Pedri"},{"id":"627","name":"Ed. Limitada Prem. Oro - Lamine Yamal"},{"id":"628","name":"Ed. Limitada Prem. Oro - Isco"},{"id":"629","name":"Ed. Limitada Prem. Oro - Joan García"},{"id":"630","name":"Ed. Limitada Firmada - Williams"},{"id":"631","name":"Ed. Limitada Firmada - Ferran Torres"},{"id":"632","name":"Ed. Limitada Firmada - Oyarzabal"},{"id":"633","name":"Ed. Limitada Firmada - Ayoze"},{"id":"651","name":"Momentum - Koke"},{"id":"652","name":"Momentum - Pedri"},{"id":"653","name":"Momentum - Iago Aspas"},{"id":"654","name":"Momentum - Etta Eyong"},{"id":"655","name":"Momentum - Álvaro García"},{"id":"656","name":"Momentum On-Line"},{"id":"657","name":"MaxiMomentum - El Clásico"},{"id":"658","name":"Míticos Invencibles - Oro Puro"},{"id":"659","name":"Míticos Invencibles - Atleti"},{"id":"660","name":"Panini Extra Gold - Lamine Yamal"},{"id":"661","name":"Panini Extra Gold - Mbappé"},{"id":"662","name":"Nuevo Momentum - Joan García"},{"id":"663","name":"Nuevo Momentum - Gonzalo"},{"id":"ND S/N-1","name":"Nuevo Diamante S/N - Bardghji"},{"id":"ND S/N-2","name":"Nuevo Diamante S/N - Héctor Fort"},{"id":"ND S/N-3","name":"Nuevo Diamante S/N - Maciá"},{"id":"NBO S/N","name":"Nuevo Balón de Oro S/N - Raphinha"},{"id":"TK/1","name":"Total Kings - Casillas"},{"id":"TK/2","name":"Total Kings - Cristiano Ronaldo"},{"id":"TK/3","name":"Total Kings - Iniesta"},{"id":"TK/4","name":"Total Kings - Messi"},{"id":"TK/5","name":"Total Kings - Koke"},{"id":"TK/6","name":"Total Kings - Lamine Yamal"},{"id":"TK/7","name":"Total Kings - Oyarzabal"},{"id":"TK/8","name":"Total Kings - Joaquín"},{"id":"TK/9","name":"Total Kings - Nico Williams"},{"id":"TK/10","name":"Total Kings - Oblak"},{"id":"TK/11","name":"Total Kings - Messi BO"},{"id":"TK/12","name":"Total Kings - CR7 BO"},{"id":"TK/13","name":"Total Kings - Modric BO"},{"id":"TK/14","name":"Total Kings - Benzema BO"},{"id":"TK/15","name":"Total Kings - Messi Bota"},{"id":"TK/16","name":"Total Kings - CR7 Bota"},{"id":"TK/17","name":"Total Kings - Mbappé Bota"},{"id":"CU/1","name":"Card Única - Sergio Busquets"},{"id":"CU/2","name":"Card Única - De Marcos"},{"id":"NM/1","name":"New Master - Vlachodimos"},{"id":"NM/2","name":"New Master - Radu"},{"id":"NM/3","name":"New Master - Trent"},{"id":"NM/4","name":"New Master - Caleta-Car"},{"id":"NM/5","name":"New Master - Hancko"},{"id":"NM/6","name":"New Master - Suazo"},{"id":"NM/7","name":"New Master - Nico González"},{"id":"NM/8","name":"New Master - Santamaría"},{"id":"NM/9","name":"New Master - Amrabat"},{"id":"NM/10","name":"New Master - Mastantuono"},{"id":"NM/11","name":"New Master - Almada"},{"id":"NM/12","name":"New Master - Dolan"},{"id":"NM/13","name":"New Master - Mikautadze"},{"id":"NM/14","name":"New Master - Rashford"},{"id":"NM/15","name":"New Master - Oluwaseyi"},{"id":"AO200/1","name":"Autógrafo AO200 - Ruiz de Galarreta"},{"id":"AO200/2","name":"Autógrafo AO200 - Javi Galán"},{"id":"AO200/3","name":"Autógrafo AO200 - Gerard Martín"},{"id":"AO200/4","name":"Autógrafo AO200 - Bellerín"},{"id":"AO200/5","name":"Autógrafo AO200 - Sotelo"},{"id":"AO200/6","name":"Autógrafo AO200 - Javi Rodríguez"},{"id":"AO200/7","name":"Autógrafo AO200 - Rafa Mir"},{"id":"AO200/8","name":"Autógrafo AO200 - Héctor Fort"},{"id":"AO200/9","name":"Autógrafo AO200 - Pol Lozano"},{"id":"AO200/10","name":"Autógrafo AO200 - Borja Mayoral"},{"id":"AO200/11","name":"Autógrafo AO200 - Mario Martín"},{"id":"AO200/12","name":"Autógrafo AO200 - Francés"},{"id":"AO200/13","name":"Autógrafo AO200 - Asensio"},{"id":"AO200/14","name":"Autógrafo AO200 - Fran González"},{"id":"AO200/15","name":"Autógrafo AO200 - Darder"},{"id":"AO200/16","name":"Autógrafo AO200 - Juan Cruz"},{"id":"AO200/17","name":"Autógrafo AO200 - Sergio Herrera"},{"id":"AO200/18","name":"Autógrafo AO200 - Fran Pérez"},{"id":"AO200/19","name":"Autógrafo AO200 - Sergio Gómez"},{"id":"AO200/20","name":"Autógrafo AO200 - Gayà"},{"id":"NAO200/21","name":"N. Autógrafo AO200 - Guruceta"},{"id":"NAO200/22","name":"N. Autógrafo AO200 - Carmona"},{"id":"NAO200/23","name":"N. Autógrafo AO200 - Íñaki Peña"},{"id":"NAO200/24","name":"N. Autógrafo AO200 - Radu"},{"id":"NAO200/25","name":"N. Autógrafo AO200 - Carlos Vicente"},{"id":"NAO200/26","name":"N. Autógrafo AO200 - Nico González"},{"id":"NAO200/27","name":"N. Autógrafo AO200 - Milla"},{"id":"NAO200/28","name":"N. Autógrafo AO200 - Cazorla"},{"id":"AO100/1","name":"Autógrafo AO100 - Vivian"},{"id":"AO100/2","name":"Autógrafo AO100 - Robert Navarro"},{"id":"AO100/3","name":"Autógrafo AO100 - Hancko"},{"id":"AO100/4","name":"Autógrafo AO100 - Eric García"},{"id":"AO100/5","name":"Autógrafo AO100 - Bryan Zaragoza"},{"id":"AO100/6","name":"Autógrafo AO100 - Puado"},{"id":"AO100/7","name":"Autógrafo AO100 - El Hilali"},{"id":"AO100/8","name":"Autógrafo AO100 - Edu Expósito"},{"id":"AO100/9","name":"Autógrafo AO100 - Bryan Gil"},{"id":"AO100/10","name":"Autógrafo AO100 - Pablo Torres"},{"id":"AO100/11","name":"Autógrafo AO100 - Isi"},{"id":"AO100/12","name":"Autógrafo AO100 - De Frutos"},{"id":"AO100/13","name":"Autógrafo AO100 - Zubeldia"},{"id":"AO100/14","name":"Autógrafo AO100 - Isaac Romero"},{"id":"NAO100/15","name":"N. Autógrafo AO100 - Aramburu"},{"id":"NAO100/16","name":"N. Autógrafo AO100 - Unai López"},{"id":"AO50/1","name":"Autógrafo AO50 - Nico Williams"},{"id":"AO50/2","name":"Autógrafo AO50 - Álex Baena"},{"id":"AO50/3","name":"Autógrafo AO50 - Almada"},{"id":"AO50/4","name":"Autógrafo AO50 - Julián Álvarez"},{"id":"AO50/5","name":"Autógrafo AO50 - Lamine Yamal"},{"id":"AO50/6","name":"Autógrafo AO50 - Raphinha"},{"id":"AO50/7","name":"Autógrafo AO50 - Joan García"},{"id":"AO50/8","name":"Autógrafo AO50 - Borja Iglesias"},{"id":"AO50/9","name":"Autógrafo AO50 - Güler"},{"id":"AO50/10","name":"Autógrafo AO50 - Moleiro"},{"id":"NAO50/11","name":"N. Autógrafo AO50 - Fermín"},{"id":"NAO50/12","name":"N. Autógrafo AO50 - Gerard Moreno"},{"id":"NAO50/13","name":"N. Autógrafo AO50 - Araújo"},{"id":"NAO50/14","name":"N. Autógrafo AO50 - Iago Aspas"},{"id":"DAO50/1","name":"Doble Autógrafo - Isco/Lo Celso"},{"id":"DAO50/2","name":"Doble Autógrafo - Militao/Carreras"},{"id":"AOP100/1","name":"Autógrafo Prestige - Savinho"},{"id":"AOP100/2","name":"Autógrafo Prestige - Gabri Veiga"},{"id":"AOP100/3","name":"Autógrafo Prestige - Samu Lino"},{"id":"AOP100/4","name":"Autógrafo Prestige - Jesús Rodríguez"},{"id":"AOP50/1","name":"Autógrafo Prestige 50 - David Silva"},{"id":"AOP50/2","name":"Autógrafo Prestige 50 - Fekir"},{"id":"PPA","name":"Premio-Premium A"},{"id":"PPB","name":"Premio-Premium B"},{"id":"PPC","name":"Premio-Premium C"},{"id":"Índ01","name":"Índice Adrenalyn Plus"},{"id":"Índ02","name":"Índice Dream Box"}];
-  
-// 🔴 ENGANXA AQUÍ LES TEVES CARTES
-// const cards = [...]
+// 👉 enganxa aquí les cartes
+// const cards = []
 
-// --- ESTAT ---
 const state = JSON.parse(localStorage.getItem("cards")||"{}");
 
-function save(){
-  localStorage.setItem("cards",JSON.stringify(state));
-}
+function getState(id){return state[id]||"red"}
+function save(){localStorage.setItem("cards",JSON.stringify(state))}
 
-function getState(id){
-  return state[id] || "red";
-}
+// MODE
+let mode="album";
 
-// --- MODE UI ---
-let uiMode = 'album';
+function setMode(m){
+  mode=m;
 
-function setUIMode(m){
-  uiMode = m;
-  clearSearch();
+  const input=document.getElementById('search');
+  input.value='';
+  input.blur();
+
+  document.getElementById('keypad').style.display =
+    m==="market" ? "block" : "none";
+
   render();
 }
 
-// --- CERCA ---
+// evitar teclat natiu
+document.getElementById('search').addEventListener('focus', ()=>{
+  if(mode==="market") document.getElementById('search').blur();
+});
+
+// CERCA
 function clearSearch(){
   const i=document.getElementById('search');
   i.value='';
@@ -139,89 +252,66 @@ function clearSearch(){
   render();
 }
 
-function exitSearchMode(){
+// KEYPAD
+function kp(v){
   const i=document.getElementById('search');
-  i.value='';
-  i.blur();
+  i.value+=v;
+  render();
+}
+function kpBack(){
+  const i=document.getElementById('search');
+  i.value=i.value.slice(0,-1);
+  render();
 }
 
-// --- TIPUS (correcte Panini) ---
+// TIPUS
 function getType(c){
-
-  const n = parseInt(c.id);
-  const name = c.name.toLowerCase();
-
+  const n=parseInt(c.id);
   if(!isNaN(n)){
-    if(n <= 360) return 'base';
-    if(n <= 380) return 'vamos';
-    if(n <= 387) return 'guantes';
-    if(n <= 396) return 'kryptonita';
-    if(n <= 414) return 'diamantes';
-    if(n <= 423) return 'influencers';
-    if(n <= 441) return 'protas';
-    if(n <= 467) return 'supercrack';
-    if(n === 468) return 'champions';
-    if(n <= 474) return 'balonoro';
+    if(n<=360)return'base';
+    if(n<=380)return'vamos';
+    if(n<=423)return'influencers';
+    if(n<=441)return'protas';
+    if(n<=467)return'supercrack';
   }
-
-  if(name.includes('autógrafo')) return 'autografo';
-  if(name.includes('momentum')) return 'momentum';
-  if(name.includes('ed. limitada')) return 'limitada';
-
-  return 'altres';
+  if(c.name.includes("Momentum"))return'momentum';
+  if(c.name.includes("Limitada"))return'limitada';
+  return'base';
 }
 
-// --- VARIANT (nuevo / ampliació / bis) ---
-function getVariant(c){
-  const name = c.name.toLowerCase();
-
-  if(name.includes('nuevo')) return 'nuevo';
-  if(name.includes('ampliación')) return 'ampliacion';
-  if(c.id.includes('Bis')) return 'bis';
-
-  return 'normal';
-}
-
-// --- CICLE ---
+// CICLE
 function cycle(id){
   const s=getState(id);
-  state[id]= s==='red'?'green':s==='green'?'orange':'red';
-
+  state[id]=s==='red'?'green':s==='green'?'orange':'red';
   save();
 
   if(document.getElementById('search').value){
-    exitSearchMode();
+    clearSearch();
   }
-
-  navigator.vibrate?.(30);
 
   render();
 }
 
-// --- EXPORT ---
-function openExportDialog(){
-  const choice = prompt("1 → Falten\n2 → Repetides");
-
-  if(choice==="1") exportMissing();
-  if(choice==="2") exportRepeats();
+// EXPORT
+function openExport(){
+  document.getElementById('exportModal').classList.add('open');
 }
-
+function closeExport(){
+  document.getElementById('exportModal').classList.remove('open');
+}
+function share(t){
+  navigator.share?navigator.share({text:t}):alert(t);
+}
 function exportMissing(){
-  const list=cards.filter(c=>getState(c.id)==='red').map(c=>c.id);
-  share("Falten:\n"+list.join(", "));
+  share("Falten:\n"+cards.filter(c=>getState(c.id)==='red').map(c=>c.id).join(", "));
+  closeExport();
 }
-
 function exportRepeats(){
-  const list=cards.filter(c=>getState(c.id)==='orange').map(c=>c.id);
-  share("Repetides:\n"+list.join(", "));
+  share("Repetides:\n"+cards.filter(c=>getState(c.id)==='orange').map(c=>c.id).join(", "));
+  closeExport();
 }
 
-function share(text){
-  if(navigator.share) navigator.share({text});
-  else { navigator.clipboard.writeText(text); alert("Copiat"); }
-}
-
-// --- RENDER ---
+// RENDER
 function render(){
 
   const grid=document.getElementById('grid');
@@ -231,57 +321,36 @@ function render(){
   const filter=document.getElementById('filter').value;
   const type=document.getElementById('typeFilter').value;
 
-  const quick = document.getElementById('quickInput').value
-    .split(',')
-    .map(n=>n.trim())
-    .filter(Boolean);
+  const nums=search.split(/[,\-\/]/).map(n=>n.trim()).filter(Boolean);
 
   cards.forEach(c=>{
     const st=getState(c.id);
 
-    // 🔥 MODE MERCAT amb números
-    if(uiMode==='market' && quick.length){
-      if(!quick.includes(c.id)) return;
+    // MODE MERCAT → només si hi ha números
+    if(mode==="market"){
+      if(!nums.length) return;
+      if(!nums.includes(c.id)) return;
     }
 
-    // mode mercat sense números → només repetides
-    if(uiMode==='market' && !quick.length && st!=='orange') return;
-
-    if(uiMode==='album' && filter!=='all' && st!==filter) return;
-
+    // MODE ÀLBUM
+    if(mode==="album" && filter!=='all' && st!==filter) return;
     if(type!=='all' && getType(c)!==type) return;
 
-    if(search && !c.name.toLowerCase().includes(search) && !c.id.includes(search)) return;
+    if(mode==="album" && search && !c.name.toLowerCase().includes(search) && !c.id.includes(search)) return;
 
     const div=document.createElement('div');
     div.className='card '+st;
-    div.dataset.id=c.id;
+
+    // 🔥 visual subtil
+    if(mode==="market" && st==="red") div.style.opacity=0.5;
 
     div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
-
-    let t=null;
-
-    div.addEventListener("touchstart",()=>t=setTimeout(()=>{},500));
-    div.addEventListener("touchend",()=>{
-      if(t){clearTimeout(t);cycle(c.id);}
-    });
-
     div.onclick=()=>cycle(c.id);
 
     grid.appendChild(div);
   });
 }
 
-// --- HIGHLIGHT ---
-document.getElementById('quickInput').addEventListener('input',()=>{
-  const nums=document.getElementById('quickInput').value.split(',').map(n=>n.trim());
-
-  document.querySelectorAll('.card').forEach(el=>{
-    el.style.outline=nums.includes(el.dataset.id)?'3px solid yellow':'none';
-  });
-});
-
-// --- EVENTS ---
 document.getElementById('search').addEventListener('input',render);
 document.getElementById('filter').addEventListener('change',render);
 document.getElementById('typeFilter').addEventListener('change',render);
