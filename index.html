@@ -23,6 +23,21 @@ header{
   z-index:10;
 }
 
+.header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.stats span{
+  margin-left:8px;
+  font-weight:bold;
+}
+
+.stats .g{ color:#2ecc71; }
+.stats .o{ color:#f39c12; }
+.stats .r{ color:#e74c3c; }
+  
 h1{font-size:18px;margin-bottom:6px}
 
 /* SEARCH */
@@ -182,8 +197,16 @@ h1{font-size:18px;margin-bottom:6px}
   background:#d07a18;
 }
 
+.card, 
 .card * {
   text-decoration: none !important;
+  -webkit-text-decoration: none !important;
+  border-bottom: none !important;
+  text-decoration-line: none !important;
+}
+
+.card small {
+  display:block;
 }
   
 </style>
@@ -193,7 +216,14 @@ h1{font-size:18px;margin-bottom:6px}
 
 <header>
 
-<h1>CONTROL ADRENALYN XL</h1>
+<div class="header-row">
+  <h1>CONTROL ADRENALYN XL</h1>
+  <div class="stats">
+    <span class="g" id="countG">0</span>
+    <span class="o" id="countO">0</span>
+    <span class="r" id="countR">0</span>
+  </div>
+</div>
 
 <div class="market-bar">
 <button onclick="setMode('album')">📘 ÀLBUM</button>
@@ -357,9 +387,15 @@ function render(){
 
   const nums=search.split(/[,\-\/]/).map(n=>n.trim()).filter(Boolean);
 
+  let g=0, o=0, r=0;
+  
   cards.forEach(c=>{
     const st=getState(c.id);
 
+    if(st==='green') g++;
+    else if(st==='orange') o++;
+    else r++;
+    
     if(mode==="market"){
       if(!nums.length) return;
       if(!nums.includes(c.id)) return;
@@ -414,6 +450,9 @@ document.getElementById('search').addEventListener('input',render);
 document.getElementById('filter').addEventListener('change',render);
 document.getElementById('typeFilter').addEventListener('change',render);
 
+document.getElementById('countG').textContent = g;
+document.getElementById('countO').textContent = o;
+document.getElementById('countR').textContent = r;
 render();
 
 </script>
