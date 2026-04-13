@@ -33,37 +33,41 @@ header{
   display:flex;
   align-items:center;
   padding:0 8px;
+  width:100%;
 }
 
 /* LOGO */
 .logo{
-  width:25%;   /* una mica més espai */
+  width:28%;
 }
 
 .stats{
-  width:75%;
+  width:72%;
 }
+  
 .logo img{/*width:100%;*/max-height:40px}
 
 /* STATS */
 .stats{
   flex:1;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:6px;
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
 }
 
 .stat{
   display:flex;
-  justify-content:center;
   align-items:center;
-  gap:6px;
+  gap:4px;
   font-weight:bold;
-  cursor:pointer;
-  background:rgba(255,255,255,0.05);
-  border-radius:6px;
+  font-size:13px;
 }
-
+  
+.stat{
+  background:none !important;
+  padding:0;
+}
+  
 .stat i{width:10px;height:10px;border-radius:2px}
 .t{color:#ecf0f1}.t i{background:#ecf0f1}
 .g{color:#27ae60}.g i{background:#27ae60}
@@ -105,6 +109,11 @@ header{
   padding:6px 35px 6px 32px; /* espai per lupa */
 }
 
+.search-wrapper{
+  width:100%;
+  flex:1;
+}
+  
 /* lupa */
 .search-wrapper::before{
   content:"🔍";
@@ -349,26 +358,24 @@ function render(){
   let list=cards;
   const txt=search.value.toLowerCase();
 
-  if(mode==="market"){
-    const ids=txt.split(/\s*\/\s*/).filter(Boolean);
-    list=cards.filter(c=>ids.includes(c.id));
-  }else{
-    if(txt){
-      list=list.filter(c=>c.id.includes(txt)||c.name.toLowerCase().includes(txt));
-    }
-    if(filter.value!=="all"){
-      list=list.filter(c=>getState(c.id)===filter.value);
-    }
-  }
+if(mode==="market"){
+  const ids=txt.split(/\s*\/\s*/).filter(Boolean);
 
+  if(ids.length){
+    list=cards.filter(c=>ids.includes(c.id));
+  } else {
+    list=[]; // o cards si vols veure totes
+  }
+}
   let g=0,o=0,r=0;
 
-  list.forEach(c=>{
-    const st=getState(c.id);
-    if(st==='green')g++;
-    else if(st==='orange')o++;
-    else r++;
+cards.forEach(c=>{
+  const st=getState(c.id);
 
+  if(st==='green')g++;
+  else if(st==='orange')o++;
+  else r++;
+});
     const div=document.createElement('div');
     div.className='card '+st;
     div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
