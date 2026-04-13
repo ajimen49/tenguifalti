@@ -91,8 +91,26 @@ header{
 }
 
 /* SEARCH */
-.search-wrapper{position:relative;width:100%}
+.search-wrapper{
+  position:relative;
+}
 
+#search{
+  padding:6px 35px 6px 32px; /* espai per lupa */
+}
+
+/* lupa */
+.search-wrapper::before{
+  content:"🔍";
+  position:absolute;
+  left:10px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:14px;
+  opacity:0.6;
+  pointer-events:none;
+}
+  
 #search{
   width:100%;
   min-height:36px;
