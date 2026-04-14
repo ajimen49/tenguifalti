@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 
 <title>ADRENALYN XL 2025-2026</title>
 
@@ -23,9 +24,24 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-tap-highlight-color:transparent}
+
+a[x-apple-data-detectors]{
+  color:inherit !important;
+  text-decoration:none !important;
+}
+
+html,body,button,input,select,textarea{
+  font-family:'Roboto',sans-serif;
+}
+
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
 
 body{
-  font-family:'Roboto',sans-serif;
   background:radial-gradient(circle at top,#1a2233 0%,var(--bg) 45%);
   color:var(--text);
   min-height:100vh;
@@ -80,7 +96,7 @@ header{
 .stats{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:4px;
   font-weight:bold;
   font-size:14px;
 }
@@ -88,10 +104,10 @@ header{
 .stat{
   display:flex;
   align-items:center;
-  gap:6px;
-  min-width:48px;
+  gap:4px;
+  min-width:40px;
   cursor:pointer;
-  padding:4px 6px;
+  padding:4px 4px;
   border-radius:8px;
   transition:background .2s ease;
 }
@@ -110,8 +126,6 @@ header{
 .g i{background:#27ae60}
 .o i{background:#d07a18}
 .r i{background:#c0392b}
-
-.sep{opacity:.5}
 
 /* MODES */
 .market-bar{
@@ -173,13 +187,17 @@ header{
 
 #search{
   width:100%;
-  height:40px;
-  padding:0 35px 0 10px;
+  min-height:40px;
+  max-height:120px;
+  padding:10px 35px 10px 10px;
   border:1px solid #3a455c;
   border-radius:8px;
   background:var(--surface-soft);
   color:var(--text);
   font-size:15px;
+  resize:none;
+  overflow-y:auto;
+  line-height:1.25;
 }
 
 #search::placeholder{
@@ -209,7 +227,21 @@ header{
 
 #keypad{
   display:none;
-  padding:4px;
+  padding:8px;
+  background:rgba(14,17,23,.95);
+  border-top:1px solid #2a3242;
+}
+
+body.market-mode #keypad{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:20;
+}
+
+body.market-mode .grid{
+  padding-bottom:180px;
 }
 
 .kp-grid{
@@ -259,11 +291,16 @@ header{
 /* MODAL */
 .modal{
   position:fixed;
-  inset:0;
+  left:0;
+  right:0;
+  top:var(--modal-top,0px);
+  bottom:0;
   background:rgba(0,0,0,.6);
   display:none;
   align-items:center;
   justify-content:center;
+  padding:10px 10px max(10px, env(safe-area-inset-bottom));
+  z-index:30;
 }
 .modal.open{display:flex}
 
@@ -271,7 +308,9 @@ header{
   background:var(--surface);
   padding:20px;
   border-radius:12px;
-  width:85%;
+  width:min(520px,92vw);
+  max-height:calc(100dvh - var(--modal-top,0px) - 20px - env(safe-area-inset-bottom));
+  overflow-y:auto;
   border:1px solid #2a3242;
 }
 
@@ -285,10 +324,8 @@ header{
   cursor:pointer;
 }
 
-.btn-export{background:#f9e79f;color:#000}
-.btn-import{background:#f5b041;color:#000}
-.btn-text{background:#9ad2ff;color:#001427}
-.btn-qr{background:#92f7b6;color:#08361b}
+.btn-export{background:#9ad2ff;color:#001427}
+.btn-import{background:#92f7b6;color:#08361b}
 .btn-cancel{
   background:#555;
   color:#fff;
@@ -301,6 +338,13 @@ header{
   display:flex;
   justify-content:center;
   min-height:130px;
+  overflow:auto;
+}
+
+#qrOut img,
+#qrOut canvas{
+  max-width:min(70vw,220px);
+  height:auto;
 }
 
 #qrReader{
@@ -323,11 +367,8 @@ header{
 
     <div class="stats">
       <span class="stat t" onclick="quickFilter('all')"><i></i><span id="countT">0</span></span>
-      <span class="sep">|</span>
       <span class="stat g" onclick="quickFilter('green')"><i></i><span id="countG">0</span></span>
-      <span class="sep">|</span>
       <span class="stat o" onclick="quickFilter('orange')"><i></i><span id="countO">0</span></span>
-      <span class="sep">|</span>
       <span class="stat r" onclick="quickFilter('red')"><i></i><span id="countR">0</span></span>
     </div>
   </div>
@@ -374,7 +415,7 @@ header{
 
 <div class="header-block">
   <div class="search-wrapper">
-    <input id="search" placeholder="Cerca per número o nom..." oninput="render();toggleClearBtn()">
+    <textarea id="search" rows="1" placeholder="Cerca per número o nom..." oninput="autoGrowSearch();render();toggleClearBtn()"></textarea>
     <button class="clear-btn" onclick="clearSearch()">✕</button>
   </div>
 </div>
@@ -402,14 +443,10 @@ header{
 
 <div class="modal" id="dataModal">
   <div class="modal-box">
-    <button class="btn-export btn-qr" onclick="exportQR('orange')">Exporta QR repetides</button>
-    <button class="btn-export btn-qr" onclick="exportQR('red')">Exporta QR falten</button>
-    <button class="btn-export btn-text" onclick="exportText('orange')">Exporta text repetides</button>
-    <button class="btn-export btn-text" onclick="exportText('red')">Exporta text falten</button>
-    <button class="btn-import btn-qr" onclick="importQR('orange')">Importa QR repetides</button>
-    <button class="btn-import btn-qr" onclick="importQR('red')">Importa QR falten</button>
-    <button class="btn-import btn-text" onclick="importText('orange')">Importa text repetides</button>
-    <button class="btn-import btn-text" onclick="importText('red')">Importa text falten</button>
+    <button class="btn-export btn-text" onclick="exportText()">Exporta text (tot)</button>
+    <button class="btn-export btn-qr" onclick="exportQR()">Exporta QR (tot)</button>
+    <button class="btn-import btn-text" onclick="importText()">Importa text (tot)</button>
+    <button class="btn-import btn-qr" onclick="importQR()">Importa QR (tot)</button>
     <button class="btn-cancel" onclick="closeData()">CANCEL·LA</button>
     <div id="qrOut"></div>
     <div id="qrReader"></div>
@@ -423,16 +460,41 @@ const cards = [{"id": "1", "name": "Escudo D. Alavés"}, {"id": "1 Bis", "name":
  
 let mode="album";
 const state=JSON.parse(localStorage.getItem("cards")||"{}");
+let saveTimer=null;
+let totalsState={green:0,orange:0,red:0};
 
 function getState(id){return state[id]||"red"}
 function save(){localStorage.setItem("cards",JSON.stringify(state))}
+function queueSave(){
+  if(saveTimer) clearTimeout(saveTimer);
+  saveTimer=setTimeout(save,120);
+}
+function autoGrowSearch(){
+  search.style.height="auto";
+  search.style.height=Math.min(search.scrollHeight,120)+"px";
+}
+function recomputeTotals(){
+  totalsState=cards.reduce((acc,c)=>{
+    const st=getState(c.id);
+    acc[st]=(acc[st]||0)+1;
+    return acc;
+  },{green:0,orange:0,red:0});
+}
+function updateTotals(){
+  countT.textContent=cards.length;
+  countG.textContent=totalsState.green;
+  countO.textContent=totalsState.orange;
+  countR.textContent=totalsState.red;
+}
 
 function setMode(m){
   mode=m;
   btnAlbum.classList.toggle('active',m==='album');
   btnMarket.classList.toggle('active',m==='market');
   keypad.style.display=m==='market' ? "block" : "none";
+  document.body.classList.toggle("market-mode",m==="market");
   search.value="";
+  autoGrowSearch();
   toggleClearBtn();
   render();
 }
@@ -446,6 +508,7 @@ function quickFilter(f){
 
 function clearSearch(){
   search.value="";
+  autoGrowSearch();
   filter.value="all";
   typeFilter.value="all";
   setMode("album");
@@ -503,52 +566,61 @@ function render(){
     }
   }
 
-  let g=0,o=0,r=0;
-
   list.forEach(c=>{
     const st=getState(c.id);
-    if(st==='green')g++;
-    else if(st==='orange')o++;
-    else r++;
 
     const div=document.createElement('div');
     div.className='card '+st;
+    div.dataset.id=c.id;
     div.innerHTML=`<b>${c.id}</b><small>${c.name}</small>`;
     div.onclick=()=>cycle(c.id);
     grid.appendChild(div);
   });
-
-  const totals=cards.reduce((acc,c)=>{
-    const st=getState(c.id);
-    acc[st]=(acc[st]||0)+1;
-    return acc;
-  },{green:0,orange:0,red:0});
-
-  countT.textContent=cards.length;
-  countG.textContent=totals.green;
-  countO.textContent=totals.orange;
-  countR.textContent=totals.red;
+  recomputeTotals();
+  updateTotals();
 }
 
 function cycle(id){
   const s=getState(id);
-  state[id]=s==='red'?'green':s==='green'?'orange':'red';
-  save();render();
+  const next=s==='red'?'green':s==='green'?'orange':'red';
+  state[id]=next;
+  queueSave();
+
+  const cardNode=grid.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
+  const requiresRender = mode==="album" && filter.value!=="all" && filter.value!==next;
+  if(requiresRender || !cardNode){
+    render();
+    return;
+  }
+  totalsState[s] = Math.max(0,(totalsState[s]||0)-1);
+  totalsState[next] = (totalsState[next]||0)+1;
+  cardNode.classList.remove("red","orange","green");
+  cardNode.classList.add(next);
+  updateTotals();
 }
 
 function kp(v){
   search.value += v;
+  autoGrowSearch();
   toggleClearBtn();
   render();
 }
 
 function kpBack(){
   search.value = search.value.slice(0,-1);
+  autoGrowSearch();
   toggleClearBtn();
   render();
 }
 
+function updateModalOffset(){
+  const headerEl=document.querySelector("header");
+  const topOffset=headerEl ? Math.ceil(headerEl.getBoundingClientRect().height) : 0;
+  document.documentElement.style.setProperty("--modal-top",`${topOffset}px`);
+}
+
 function openData(){
+  updateModalOffset();
   document.getElementById("dataModal").classList.add("open");
   clearQrUi();
 }
@@ -564,25 +636,24 @@ function clearQrUi(){
   qrReader.innerHTML="";
 }
 
-function exportText(status){
-  const ids=idsByStatus(status);
-  const payload=ids.join(" / ");
-  if(!payload){
-    alert("No hi ha dades per exportar.");
-    return;
-  }
-  navigator.clipboard?.writeText(payload);
-  alert(`Text copiat (${ids.length} IDs).`);
+function getInventoryPayload(){
+  return {
+    version:1,
+    total:cards.map(c=>c.id),
+    repeated:idsByStatus("orange"),
+    missing:idsByStatus("red")
+  };
 }
 
-function exportQR(status){
-  const ids=idsByStatus(status);
-  if(!ids.length){
-    alert("No hi ha dades per exportar.");
-    return;
-  }
+function exportText(){
+  const payload=JSON.stringify(getInventoryPayload());
+  navigator.clipboard?.writeText(payload);
+  alert("Inventari complet copiat en text.");
+}
+
+function exportQR(){
   clearQrUi();
-  const payload=JSON.stringify({status,ids});
+  const payload=JSON.stringify(getInventoryPayload());
   if(typeof QRCode==="undefined"){
     qrOut.textContent=payload;
     return;
@@ -600,15 +671,47 @@ function applyImportedIds(status, ids){
   render();
 }
 
-function importText(status){
-  const input=prompt("Enganxa IDs separats per /, comes o espais:");
+function normalizeImport(raw){
+  const parsed=JSON.parse(raw);
+  if(Array.isArray(parsed?.ids) && parsed?.status){
+    return {legacy:true,status:parsed.status,ids:parsed.ids};
+  }
+  return {
+    total:Array.isArray(parsed?.total)?parsed.total:cards.map(c=>c.id),
+    repeated:Array.isArray(parsed?.repeated)?parsed.repeated:[],
+    missing:Array.isArray(parsed?.missing)?parsed.missing:[]
+  };
+}
+
+function applyImportedPayload(payload){
+  if(payload.legacy){
+    applyImportedIds(payload.status,payload.ids);
+    return;
+  }
+  const totalSet=new Set(payload.total);
+  const repSet=new Set(payload.repeated);
+  const missSet=new Set(payload.missing);
+  cards.forEach(c=>{
+    if(missSet.has(c.id)) state[c.id]="red";
+    else if(repSet.has(c.id)) state[c.id]="orange";
+    else if(totalSet.has(c.id)) state[c.id]="green";
+  });
+  save();
+  render();
+}
+
+function importText(){
+  const input=prompt("Enganxa el JSON exportat (text o QR):");
   if(!input) return;
-  const ids=input.split(/[\/,\s]+/).map(s=>s.trim()).filter(Boolean);
-  applyImportedIds(status, ids);
+  try{
+    applyImportedPayload(normalizeImport(input));
+  }catch{
+    alert("Format no vàlid. Cal enganxar el JSON exportat.");
+  }
 }
 
 let qrScanner=null;
-async function importQR(status){
+async function importQR(){
   clearQrUi();
   if(typeof Html5Qrcode==="undefined"){
     alert("Lector QR no disponible.");
@@ -621,12 +724,9 @@ async function importQR(status){
       {fps:10,qrbox:220},
       (decodedText)=>{
         try{
-          const parsed=JSON.parse(decodedText);
-          const ids=Array.isArray(parsed.ids)?parsed.ids:[];
-          applyImportedIds(status, ids);
+          applyImportedPayload(normalizeImport(decodedText));
         }catch{
-          const ids=decodedText.split(/[\/,\s]+/).filter(Boolean);
-          applyImportedIds(status, ids);
+          alert("QR no vàlid. Cal un JSON d'exportació.");
         }
         closeData();
       }
@@ -645,6 +745,9 @@ async function stopQrReader(){
 
 setMode("album");
 toggleClearBtn();
+autoGrowSearch();
+updateModalOffset();
+window.addEventListener("resize",updateModalOffset);
 render();
 
 </script>
