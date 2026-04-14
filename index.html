@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 
 <title>ADRENALYN XL 2025-2026</title>
 
@@ -23,6 +24,12 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-tap-highlight-color:transparent}
+
+a[x-apple-data-detectors]{
+  color:inherit !important;
+  text-decoration:none !important;
+}
 
 html,body{
   width:100%;
@@ -289,7 +296,7 @@ body.market-mode .grid{
   display:none;
   align-items:center;
   justify-content:center;
-  padding:10px;
+  padding:10px 10px max(10px, env(safe-area-inset-bottom));
   z-index:30;
 }
 .modal.open{display:flex}
@@ -299,7 +306,7 @@ body.market-mode .grid{
   padding:20px;
   border-radius:12px;
   width:min(520px,92vw);
-  max-height:90vh;
+  max-height:calc(100dvh - var(--modal-top,0px) - 20px - env(safe-area-inset-bottom));
   overflow-y:auto;
   border:1px solid #2a3242;
 }
@@ -328,6 +335,13 @@ body.market-mode .grid{
   display:flex;
   justify-content:center;
   min-height:130px;
+  overflow:auto;
+}
+
+#qrOut img,
+#qrOut canvas{
+  max-width:min(70vw,220px);
+  height:auto;
 }
 
 #qrReader{
@@ -444,6 +458,7 @@ const cards = [{"id": "1", "name": "Escudo D. Alavés"}, {"id": "1 Bis", "name":
 let mode="album";
 const state=JSON.parse(localStorage.getItem("cards")||"{}");
 let saveTimer=null;
+let totalsState={green:0,orange:0,red:0};
 
 function getState(id){return state[id]||"red"}
 function save(){localStorage.setItem("cards",JSON.stringify(state))}
@@ -455,16 +470,18 @@ function autoGrowSearch(){
   search.style.height="auto";
   search.style.height=Math.min(search.scrollHeight,120)+"px";
 }
-function updateTotals(){
-  const totals=cards.reduce((acc,c)=>{
+function recomputeTotals(){
+  totalsState=cards.reduce((acc,c)=>{
     const st=getState(c.id);
     acc[st]=(acc[st]||0)+1;
     return acc;
   },{green:0,orange:0,red:0});
+}
+function updateTotals(){
   countT.textContent=cards.length;
-  countG.textContent=totals.green;
-  countO.textContent=totals.orange;
-  countR.textContent=totals.red;
+  countG.textContent=totalsState.green;
+  countO.textContent=totalsState.orange;
+  countR.textContent=totalsState.red;
 }
 
 function setMode(m){
@@ -556,6 +573,7 @@ function render(){
     div.onclick=()=>cycle(c.id);
     grid.appendChild(div);
   });
+  recomputeTotals();
   updateTotals();
 }
 
@@ -571,6 +589,8 @@ function cycle(id){
     render();
     return;
   }
+  totalsState[s] = Math.max(0,(totalsState[s]||0)-1);
+  totalsState[next] = (totalsState[next]||0)+1;
   cardNode.classList.remove("red","orange","green");
   cardNode.classList.add(next);
   updateTotals();
