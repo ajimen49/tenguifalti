@@ -9,28 +9,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#0e1117;
+  --surface:#151a24;
+  --surface-soft:#1c2331;
+  --surface-strong:#252f42;
+  --text:#f8fafc;
+  --muted:#98a2b3;
+  --accent:#6ea8fe;
+  --radius:10px;
+}
+
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
   font-family:'Roboto',sans-serif;
-  background:#111;
-  color:#fff;
+  background:radial-gradient(circle at top,#1a2233 0%,var(--bg) 45%);
+  color:var(--text);
+  min-height:100vh;
 }
 
 /* HEADER */
 header{
+  position:sticky;
+  top:0;
+  z-index:10;
   display:flex;
   flex-direction:column;
-  gap:2px;
-  padding:4px;
-  background:#222;
+  gap:6px;
+  padding:8px;
+  background:rgba(14,17,23,.9);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid #2a3242;
 }
 
 .header-block{
-  height:56px;
+  min-height:56px;
   display:flex;
   align-items:center;
-  padding:0 10px;
+  padding:6px 10px;
+  background:var(--surface);
+  border:1px solid #2a3242;
+  border-radius:var(--radius);
 }
 
 /* LOGO */
@@ -57,7 +77,7 @@ header{
 .stats{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   font-weight:bold;
   font-size:14px;
 }
@@ -68,7 +88,11 @@ header{
   gap:6px;
   min-width:48px;
   cursor:pointer;
+  padding:4px 6px;
+  border-radius:8px;
+  transition:background .2s ease;
 }
+.stat:hover{background:#222a3a}
 
 .stat i{
   width:12px;height:12px;border-radius:3px;
@@ -95,14 +119,22 @@ header{
 .market-bar button{
   flex:1;
   height:40px;
-  border:none;
-  border-radius:6px;
-  background:#444;
-  color:white;
+  border:1px solid #3a455c;
+  border-radius:8px;
+  background:var(--surface-strong);
+  color:var(--text);
   font-weight:bold;
+  letter-spacing:.2px;
+  cursor:pointer;
+  transition:all .2s ease;
 }
 .market-bar button.active{
-  outline:2px solid white;
+  border-color:var(--accent);
+  box-shadow:0 0 0 2px rgba(110,168,254,.25);
+}
+.market-bar button:hover{
+  transform:translateY(-1px);
+  background:#2f3c54;
 }
 
 /* FILTERS */
@@ -115,11 +147,11 @@ header{
 .controls select{
   flex:1;
   height:40px;
-  border:none;
-  border-radius:6px;
-  background:#333;
-  color:white;
-  font-size:16px;
+  border:1px solid #3a455c;
+  border-radius:8px;
+  background:var(--surface-soft);
+  color:var(--text);
+  font-size:15px;
   padding:0 40px 0 10px;
 
   appearance:none;
@@ -140,11 +172,15 @@ header{
   width:100%;
   height:40px;
   padding:0 35px 0 10px;
-  border:none;
-  border-radius:6px;
-  background:#333;
-  color:white;
-  font-size:16px;
+  border:1px solid #3a455c;
+  border-radius:8px;
+  background:var(--surface-soft);
+  color:var(--text);
+  font-size:15px;
+}
+
+#search::placeholder{
+  color:var(--muted);
 }
 
 .clear-btn{
@@ -162,14 +198,14 @@ header{
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(70px,1fr));
-  gap:6px;
-  padding:8px;
+  grid-template-columns:repeat(auto-fill,minmax(78px,1fr));
+  gap:8px;
+  padding:10px;
 }
 
 .card{
   aspect-ratio:1;
-  border-radius:8px;
+  border-radius:10px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -177,10 +213,18 @@ header{
   padding-top:6px;
   text-align:center;
   user-select:none;
+  border:1px solid rgba(255,255,255,.15);
+  box-shadow:0 6px 14px rgba(0,0,0,.25);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+
+.card:hover{
+  transform:translateY(-1px);
+  box-shadow:0 10px 18px rgba(0,0,0,.35);
 }
 
 .card b{font-size:14px}
-.card small{font-size:10px}
+.card small{font-size:10px;padding:0 4px;line-height:1.2}
 
 .red{background:#c0392b}
 .orange{background:#d07a18}
@@ -198,10 +242,11 @@ header{
 .modal.open{display:flex}
 
 .modal-box{
-  background:#222;
+  background:var(--surface);
   padding:20px;
-  border-radius:10px;
+  border-radius:12px;
   width:85%;
+  border:1px solid #2a3242;
 }
 
 .modal-box button{
@@ -288,7 +333,7 @@ header{
 
 <div class="header-block">
   <div class="search-wrapper">
-    <input id="search" oninput="render();toggleClearBtn()">
+    <input id="search" placeholder="Cerca per número o nom..." oninput="render();toggleClearBtn()">
     <button class="clear-btn" onclick="clearSearch()">✕</button>
   </div>
 </div>
