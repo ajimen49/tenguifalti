@@ -283,12 +283,16 @@ body.market-mode .grid{
 /* MODAL */
 .modal{
   position:fixed;
-  inset:0;
+  left:0;
+  right:0;
+  top:var(--modal-top,0px);
+  bottom:0;
   background:rgba(0,0,0,.6);
   display:none;
   align-items:flex-start;
   justify-content:center;
-  padding:16px 10px;
+  padding:10px;
+  z-index:30;
 }
 .modal.open{display:flex}
 
@@ -312,10 +316,8 @@ body.market-mode .grid{
   cursor:pointer;
 }
 
-.btn-export{background:#f9e79f;color:#000}
-.btn-import{background:#f5b041;color:#000}
-.btn-text{background:#9ad2ff;color:#001427}
-.btn-qr{background:#92f7b6;color:#08361b}
+.btn-export{background:#9ad2ff;color:#001427}
+.btn-import{background:#92f7b6;color:#08361b}
 .btn-cancel{
   background:#555;
   color:#fff;
@@ -593,7 +595,14 @@ function kpBack(){
   render();
 }
 
+function updateModalOffset(){
+  const headerEl=document.querySelector("header");
+  const topOffset=headerEl ? Math.ceil(headerEl.getBoundingClientRect().height) : 0;
+  document.documentElement.style.setProperty("--modal-top",`${topOffset}px`);
+}
+
 function openData(){
+  updateModalOffset();
   document.getElementById("dataModal").classList.add("open");
   clearQrUi();
 }
@@ -719,6 +728,8 @@ async function stopQrReader(){
 setMode("album");
 toggleClearBtn();
 autoGrowSearch();
+updateModalOffset();
+window.addEventListener("resize",updateModalOffset);
 render();
 
 </script>
