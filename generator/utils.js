@@ -1,6 +1,12 @@
-function normalizeId(id) {
+function normalizeId(id, name) {
+  id = id.trim();
+
+  // Cas especial S/N → fer-los únics
+  if (id.includes("S/N")) {
+    return id.replace(/\s+/g, "") + "-" + name.split(" ")[0];
+  }
+
   return id
-    .trim()
     .replace(" Bis", "B")
     .replace(/\s+/g, "")
     .replace("AO200", "AO200-")
