@@ -264,9 +264,9 @@
 195 - Morales
 195 Bis - Paco Cortés (Nuevo Fichaje)
 196 - Brugué
+196 Bis - Kovalipou (Ampliación -- Box Serie Oro)
 197 - Iván Romero
 198 - Etta Eyong
-198 Bis - Kovalipou (Ampliación -- Box Serie Oro)
 199 - Escudo Real Madrid CF
 199 Bis - Stadium Card - Santiago Bernabéu
 200 - Courtois
@@ -496,7 +496,7 @@
 374 - CA Osasuna -- (Boyomo • Moncayola • Budimir)
 375 - Real Oviedo -- (Aarón Escandell • Cazorla • Rondón)
 376 - Rayo Vallecano -- (Batalla • Isi • De Frutos)
-377 - Real Sociedad -- ( Remiro • Gorrotxategi • Oyarzabal )
+377 - Real Sociedad -- (Remiro • Gorrotxategi • Oyarzabal )
 378 - Sevilla FC -- (Carmona • Vargas • Alexis Sánchez)
 379 - Valencia CF -- (Tárrega • Javi Guerra • Danjuma)
 380 - Villarreal CF -- (Renato Veiga • Pape Gueye • Mikautadze )
@@ -600,8 +600,8 @@
 474 - Mbappé (Real Madrid)
 475 - Carvajal (Real Madrid)
 476 - Fermín • Jauregizar • Llorente • Valverde (Múltiple)
-477 - Unai Simón•Huijsen•Pedri•Lamine Yamal•Mbappé•Julián Álvarez (Múltiple)
-478 - Campeon Card
+477 - Unai Simón•Huijsen•Pedri... (Múltiple)
+478 - Campeón Card
 478 Bis - Premium Oro - 1.000.000 de Toques -- (Sobre Premium Oro)
 479 - Eduardo Coudet (D. Alavés)
 480 - Ernesto Valverde (Athletic Club)
@@ -633,9 +633,6 @@
 506 - Echeverri (Girona FC)
 507 - Nobel Mendy (Rayo Vallecano)
 508 - Oso (Sevilla FC)
-ND S/N 1 - Bardghji (FC Barcelona) -- (Dream Box)
-ND S/N 2 - Héctor Fort (Elche CF) -- (Dream Box)
-ND S/N 3 - Maciá (Villarreal CF) -- (Dream Box)
 509 - Rodri Mendoza (Atlético de Madrid)
 510 - Aitor Ruibal (Real Betis
 511 - Miguel Román (RC Celta)
@@ -649,8 +646,11 @@ ND S/N 3 - Maciá (Villarreal CF) -- (Dream Box)
 519 - Marcelino García (Villarreal CF)
 520 - Card Fantástica (Múltiple)
 521 - Courtois (Real Madrid)
-NBO S/N - Raphinha (FC Barcelona) -- (Dream Box)
 522 - Pedri (FC Barcelona)
+ND S/N 1 - Bardghji (FC Barcelona) -- (Dream Box)
+ND S/N 2 - Héctor Fort (Elche CF) -- (Dream Box)
+ND S/N 3 - Maciá (Villarreal CF) -- (Dream Box)
+NBO S/N - Raphinha (FC Barcelona) -- (Dream Box)
 TK/1 - Casillas -- Copa LaLiga 2011-12 (Real Madrid) -- (Dream Box)
 TK/2 - Cristiano Ronaldo -- Copa LaLiga 2016-17 (Real Madrid) -- (Dream Box)
 TK/3 - Iniesta -- Copa LaLiga 2017-18 (FC Barcelona) -- (Dream Box)
@@ -710,7 +710,7 @@ CU/2 - De Marcos (Athletic Club) -- (Dream Box)
 655 - Álvaro García (Rayo Vallecano)
 656 - Momentum On-Line (Jugadores Portada) (Múltiple)
 657 - El Clásico (Yamal vs Vinícius) (FC Barcelona/Real Madrid)
-658 - Oro Puro (CR7, Messi, Modric, Ronaldinho, Benzema) (FC Barcelona/Real Madrid)
+658 - Oro Puro (CR7, Messi, Modric, Ronaldinho, Benzema) (FCB/RM)
 659 - ¡Atleti, Atleti! (Simeone, Oblak, Giménez, Suárez, Koke) (Atlético de Madrid)
 660 - Lamine Yamal (FC Barcelona) (Panini Extra Gold)
 661 - Bmappé (Real Madrid) (Panini Extra Gold)
