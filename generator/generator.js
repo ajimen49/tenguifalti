@@ -1,123 +1,143 @@
 const fs = require("fs");
 const path = require("path");
 
-const config = require("./config");
-const { normalizeId, detectType, detectTags } = require("./utils");
+// 📥 INPUT
+const INPUT_FILE = path.join(__dirname, "input/laliga-2026.txt");
 
-// 📥 input
-const inputPath = path.join(__dirname, "input", `${config.collectionId}.txt`);
-const raw = fs.readFileSync(inputPath, "utf8");
+// 📤 OUTPUT
+const OUTPUT_FILE = path.join(__dirname, "../data/laliga-2026.js");
 
-const lines = raw.split("\n");
+// 📊 CONTROL
+let totalLines = 0;
+let generated = 0;
+let ignored = 0;
 
-const cards = [];
 const ids = new Set();
-const errors = [];
+const duplicates = [];
+const notGenerated = [];
 
-// --------------------
-// PARSER
-// --------------------
+// 🔍 Detectar tipus de carta
+function detectType(text) {
+  text = text.toLowerCase();
 
-lines.forEach((line, i) => {
-  line = line.trim();
-  if (!line) return;
+  if (text.includes("momentum oro")) return "Momentum Oro";
+  if (text.includes("momentum")) return "Momentum";
+  if (text.includes("dream box")) return "Dream Box";
+  if (text.includes("premium oro")) return "Premium Oro";
+  if (text.includes("premium")) return "Premium";
+  if (text.includes("box serie oro")) return "Box Serie Oro";
+  if (text.includes("platinum")) return "Platinum";
+  if (text.includes("nuevo fichaje")) return "Nuevo Fichaje";
+  if (text.includes("ampliación")) return "Ampliación";
 
-  const match = line.match(/^(.+?)\s*-\s*(.+)$/);
-  if (!match) {
-  if (line.match(/\d/)) {
-    console.log("⚠️ Línia ignorada:", line);
-  }
-  return;
+  return "Base";
 }
 
-  let idRaw = match[1].trim();
-  let name = match[2].trim();
+// 🧠 Parser principal
+function parseLine(line, index) {
+  totalLines++;
 
-  // ❌ descartar línies que NO són cartes
-  if (
-    !idRaw.match(/\d/) &&
-    !idRaw.match(/^(BI|AO|NAO|DAO|NM|CU|TK|ND|PPA|PPB|PPC|Índ)/)
-  ) {
+  line = line.trim();
+  if (!line) return null;
+
+  // Format: ID - text
+  const match = line.match(/^(.+?)\s*-\s*(.+)$/);
+
+  if (!match) {
+    console.log(`⚠️ Línia ignorada: ${line}`);
+    ignored++;
+    return null;
+  }
+
+  let idRaw = match[1].trim();
+  let content = match[2].trim();
+
+  // 🔧 NORMALITZACIÓ IMPORTANT (manté "1 Bis")
+  idRaw = idRaw
+    .replace(/\s+/g, " ")
+    .replace(/\s?Bis$/i, " Bis");
+
+  // ❌ evitar coses rares sense números ni codis
+  if (!idRaw.match(/[0-9]/) && !idRaw.match(/[A-Z]{2,}/)) {
+    ignored++;
+    return null;
+  }
+
+  // 🚫 duplicats
+  if (ids.has(idRaw)) {
+    duplicates.push(`Duplicat ID: ${idRaw} (línia ${index + 1}) -> ${line}`);
+    return null;
+  }
+
+  ids.add(idRaw);
+
+  // 🎯 extreure equip (si hi és)
+  let team = "";
+  const teamMatch = content.match(/\((.*?)\)/);
+  if (teamMatch) {
+    team = teamMatch[1];
+  }
+
+  // 🧩 tipus de carta
+  const type = detectType(content);
+
+  generated++;
+
+  return {
+    id: idRaw,
+    name: content,
+    team,
+    type,
+    owned: false
+  };
+}
+
+// 🚀 EXECUCIÓ
+function run() {
+  if (!fs.existsSync(INPUT_FILE)) {
+    console.error("❌ No existeix cards.txt");
     return;
   }
 
-  // ✅ normalitzar ID (IMPORTANT: amb name per S/N)
-  let id = normalizeId(idRaw, name);
+  const raw = fs.readFileSync(INPUT_FILE, "utf-8");
+  const lines = raw.split("\n");
 
-  // ❗ detectar duplicats
-  if (ids.has(id)) {
-    errors.push(`Duplicat ID: ${id} (línia ${i}) -> ${name}`);
-    return; // ignorem duplicat
+  const cards = [];
+
+  lines.forEach((line, index) => {
+    const card = parseLine(line, index);
+    if (card) {
+      cards.push(card);
+    } else {
+      if (line.trim()) {
+        notGenerated.push(`${line.trim()} (línia ${index + 1})`);
+      }
+    }
+  });
+
+  // 📄 generar fitxer
+  const output = `export const cards = ${JSON.stringify(cards, null, 2)};`;
+
+  fs.writeFileSync(OUTPUT_FILE, output, "utf-8");
+
+  // 📊 LOG FINAL
+  console.log("\n==============================");
+  console.log(`Total línies: ${totalLines}`);
+  console.log(`Cartes generades: ${generated}`);
+  console.log(`Ignorades: ${ignored}`);
+
+  if (duplicates.length) {
+    console.log("\n⚠️ DUPLICATS:");
+    duplicates.forEach(d => console.log(d));
+  } else {
+    console.log("\n✅ Sense duplicats");
   }
 
-  ids.add(id);
+  console.log("\n---- CARTES NO GENERADES ----");
+  notGenerated.slice(0, 50).forEach(l => console.log(l));
 
-  const type = detectType(name);
-  const tags = detectTags(name, config.tagMap);
-
-  cards.push({
-    id,
-    name,
-    type: tags.length ? { ...type, tags } : type
-  });
-});
-
-// --------------------
-// SORT (molt útil)
-// --------------------
-
-cards.sort((a, b) =>
-  a.id.localeCompare(b.id, undefined, { numeric: true })
-);
-
-// --------------------
-// OUTPUT
-// --------------------
-
-const output = `// ${config.collectionId}
-const cards = ${JSON.stringify(cards, null, 2)};
-
-window.cards = cards;
-`;
-
-const outputPath = path.join(__dirname, config.outputFile);
-const dir = path.dirname(outputPath);
-
-// crear carpeta si no existeix
-if (!fs.existsSync(dir)) {
-  fs.mkdirSync(dir, { recursive: true });
+  console.log("\n==============================");
 }
 
-fs.writeFileSync(outputPath, output);
-
-// --------------------
-// LOG
-// --------------------
-
-console.log("Total línies:", lines.length);
-console.log("Cartes generades:", cards.length);
-
-if (errors.length) {
-  console.log("⚠️ DUPLICATS DETECTATS:");
-  errors.forEach(e => console.log(e));
-} else {
-  console.log("✅ Sense duplicats");
-}
-
-// DEBUG: buscar cartes sospitoses
-const missingCandidates = lines.filter(line => {
-  const match = line.match(/^(.+?)\s*-\s*(.+)$/);
-  if (!match) return false;
-
-  let idRaw = match[1].trim();
-
-  // línies que semblen cartes però han estat descartades
-  const looksLikeCard =
-    idRaw.match(/\d/) ||
-    idRaw.match(/^(BI|AO|NAO|DAO|NM|CU|TK|ND|PPA|PPB|PPC|Índ)/);
-
-  return looksLikeCard && !cards.find(c => line.includes(c.name));
-});
-
-console.log("---- POSSIBLES CARTES PERDUDES ----");
-missingCandidates.slice(0, 20).forEach(l => console.log(l));
+// ▶️ RUN
+run();
