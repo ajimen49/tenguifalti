@@ -709,6 +709,43 @@ function normalizeImport(raw){
   };
 }
 
+function parseFormattedTextImport(raw){
+  const lines=String(raw).split(/\r?\n/);
+  const repeated=[];
+  const missing=[];
+  let section=null;
+
+  lines.forEach(line=>{
+    const trimmed=line.trim();
+    if(!trimmed) return;
+
+    if(trimmed.startsWith("🟠")){
+      section="repeated";
+      return;
+    }
+    if(trimmed.startsWith("🔴")){
+      section="missing";
+      return;
+    }
+    if(trimmed==="—") return;
+    if(!section) return;
+
+    const separator=trimmed.includes(" – ")?" – ":(trimmed.includes(" - ")?" - ":null);
+    if(!separator) return;
+
+    const id=trimmed.split(separator)[0].trim();
+    if(!id) return;
+    if(section==="repeated") repeated.push(id);
+    if(section==="missing") missing.push(id);
+  });
+
+  if(!repeated.length && !missing.length){
+    throw new Error("Invalid formatted import text");
+  }
+
+  return {repeated,missing};
+}
+
 function applyImportedPayload(payload){
   if(payload.legacy){
     applyImportedIds(payload.status,payload.ids);
@@ -726,12 +763,18 @@ function applyImportedPayload(payload){
 }
 
 function importText(){
-  const input=prompt("Enganxa el JSON exportat (text o QR):");
+  const input=prompt("Enganxa el text exportat o el JSON exportat (text o QR):");
   if(!input) return;
   try{
-    applyImportedPayload(normalizeImport(input));
+    let payload;
+    try{
+      payload=normalizeImport(input);
+    }catch{
+      payload=parseFormattedTextImport(input);
+    }
+    applyImportedPayload(payload);
   }catch{
-    alert("Format no vàlid. Cal enganxar el JSON exportat.");
+    alert("Format no vàlid. Cal enganxar el text o JSON exportat.");
   }
 }
 
