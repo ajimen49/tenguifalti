@@ -461,9 +461,11 @@ body.market-mode .grid{
   </div>
 </div>
 
-<script>
+<script type="module">
+import { cards } from "./data/laliga-2026.js";
 
 let mode="album";
+  
 // Approximate byte limit that keeps QR payloads reliably scannable on mobile.
 const MAX_QR_PAYLOAD_SIZE=2000;
 const textEncoder=new TextEncoder();
