@@ -81,6 +81,17 @@ const cards = [
     }
   },
   {
+    "id": "8B",
+    "name": "Yusi (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "9",
     "name": "Blanco",
     "type": {
@@ -153,6 +164,14 @@ const cards = [
     }
   },
   {
+    "id": "16B",
+    "name": "Calebe (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "17",
     "name": "Boyé",
     "type": {
@@ -166,6 +185,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "18B",
+    "name": "Abde (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -273,11 +303,33 @@ const cards = [
     }
   },
   {
+    "id": "29B",
+    "name": "Selton (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "30",
     "name": "Unai Gómez",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "30B",
+    "name": "Rego (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -294,6 +346,18 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "32B",
+    "name": "Robert Navarro (Ampliación -- Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -369,6 +433,17 @@ const cards = [
     }
   },
   {
+    "id": "40B",
+    "name": "Nahuel Molina (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "41",
     "name": "Le Normand",
     "type": {
@@ -393,6 +468,18 @@ const cards = [
     }
   },
   {
+    "id": "42B",
+    "name": "Giménez (Ampliación -- Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "43",
     "name": "Hancko",
     "type": {
@@ -406,6 +493,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "44B",
+    "name": "Galán (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -438,6 +536,14 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "47B",
+    "name": "Johnny Cardoso (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
     }
   },
   {
@@ -478,6 +584,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "51B",
+    "name": "Raspadori (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -577,6 +694,14 @@ const cards = [
     }
   },
   {
+    "id": "60B",
+    "name": "Gerard Martín (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "61",
     "name": "Araújo (Capitán)",
     "type": {
@@ -601,11 +726,33 @@ const cards = [
     }
   },
   {
+    "id": "63B",
+    "name": "Marc Bernal (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "64",
     "name": "Gavi",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "64B",
+    "name": "Cásado (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -654,6 +801,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "70B",
+    "name": "Bardghji (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -769,6 +927,14 @@ const cards = [
     }
   },
   {
+    "id": "82B",
+    "name": "Deossa (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "83",
     "name": "Amrabat",
     "type": {
@@ -798,6 +964,18 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "85B",
+    "name": "Marc Roca (Ampliación -- Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -833,11 +1011,33 @@ const cards = [
     }
   },
   {
+    "id": "89B",
+    "name": "Pablo García (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "90",
     "name": "Abde",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "90B",
+    "name": "Chimy Ávila (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
     }
   },
   {
@@ -902,6 +1102,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "96B",
+    "name": "Yoel Lago (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -1001,6 +1212,17 @@ const cards = [
     }
   },
   {
+    "id": "105B",
+    "name": "El-Abdellaoui (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "106",
     "name": "Iago Aspas (Capitán)",
     "type": {
@@ -1022,6 +1244,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "108B",
+    "name": "Pablo Durán (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -1062,6 +1295,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "112B",
+    "name": "Héctor Fort (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -1305,6 +1549,14 @@ const cards = [
     }
   },
   {
+    "id": "138B",
+    "name": "Pickel (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "139",
     "name": "Antoniu Roca",
     "type": {
@@ -1366,6 +1618,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "144B",
+    "name": "Koleosho (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -1553,6 +1816,17 @@ const cards = [
     }
   },
   {
+    "id": "162B",
+    "name": "Álex Sancris (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "163",
     "name": "Escudo Girona FC",
     "type": {
@@ -1689,11 +1963,30 @@ const cards = [
     }
   },
   {
+    "id": "175B",
+    "name": "Lemar (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "176",
     "name": "Joel Roca",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "176B",
+    "name": "Portu (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -1841,6 +2134,17 @@ const cards = [
     }
   },
   {
+    "id": "192B",
+    "name": "Iker Losada (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "193",
     "name": "Vencedor",
     "type": {
@@ -1849,11 +2153,33 @@ const cards = [
     }
   },
   {
+    "id": "193B",
+    "name": "Arriaga (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "194",
     "name": "Carlos Álvarez",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "194B",
+    "name": "Tunde (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
     }
   },
   {
@@ -1894,6 +2220,14 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "198B",
+    "name": "Kovalipou (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
     }
   },
   {
@@ -1969,6 +2303,14 @@ const cards = [
     }
   },
   {
+    "id": "206B",
+    "name": "Asencio (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "207",
     "name": "Carreras",
     "type": {
@@ -1993,6 +2335,18 @@ const cards = [
     }
   },
   {
+    "id": "208B",
+    "name": "Camavinga (Ampliación -- Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "209",
     "name": "Fede Valverde",
     "type": {
@@ -2014,6 +2368,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "211B",
+    "name": "Dani Ceballos (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
     }
   },
   {
@@ -2046,6 +2411,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "215B",
+    "name": "Brahim Díaz (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -2137,6 +2513,17 @@ const cards = [
     }
   },
   {
+    "id": "225B",
+    "name": "Lato (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "226",
     "name": "Samú Costa",
     "type": {
@@ -2150,6 +2537,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "227B",
+    "name": "Mascarell (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -2217,6 +2615,18 @@ const cards = [
     }
   },
   {
+    "id": "234B",
+    "name": "Abdón (Ampliación -- Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "235",
     "name": "Escudo CA Osasuna",
     "type": {
@@ -2281,6 +2691,17 @@ const cards = [
     }
   },
   {
+    "id": "241B",
+    "name": "Arguibide (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "242",
     "name": "Juan Cruz",
     "type": {
@@ -2334,6 +2755,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "247B",
+    "name": "Iker Benito (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -2449,6 +2881,17 @@ const cards = [
     }
   },
   {
+    "id": "259B",
+    "name": "David Costas (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "260",
     "name": "Rahim Alhassane",
     "type": {
@@ -2462,6 +2905,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "261B",
+    "name": "Ejaria (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -2641,6 +3095,17 @@ const cards = [
     }
   },
   {
+    "id": "278B",
+    "name": "Espino (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
+    }
+  },
+  {
     "id": "279",
     "name": "Pathé Ciss",
     "type": {
@@ -2678,6 +3143,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "283B",
+    "name": "Gumbau (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -2838,6 +3314,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "299B",
+    "name": "Yangel Herrera (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -3041,6 +3528,17 @@ const cards = [
     }
   },
   {
+    "id": "321B",
+    "name": "Alfon (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "322",
     "name": "Isaac Romero",
     "type": {
@@ -3193,6 +3691,17 @@ const cards = [
     }
   },
   {
+    "id": "336B",
+    "name": "Ugrinic (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "337",
     "name": "André Almeida",
     "type": {
@@ -3225,6 +3734,14 @@ const cards = [
     }
   },
   {
+    "id": "340B",
+    "name": "Raba (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "341",
     "name": "Danjuma",
     "type": {
@@ -3246,6 +3763,18 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "342B",
+    "name": "Lucas Beltrán (Ampliación -- Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -3302,6 +3831,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "347B",
+    "name": "Pau Navarro (Ampliación -- Sobre Momentum Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "momentum_oro"
+      ]
     }
   },
   {
@@ -3393,6 +3933,14 @@ const cards = [
     }
   },
   {
+    "id": "356B",
+    "name": "Solomon (Ampliación -- Box Serie Oro)",
+    "type": {
+      "category": "base",
+      "sub": "bis"
+    }
+  },
+  {
     "id": "357",
     "name": "Mikautadze",
     "type": {
@@ -3409,6 +3957,17 @@ const cards = [
     }
   },
   {
+    "id": "358B",
+    "name": "Ilias (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
+    }
+  },
+  {
     "id": "359",
     "name": "Oluwaseyi",
     "type": {
@@ -3422,6 +3981,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "360B",
+    "name": "Gerard Moreno (Ampliación -- Pocket Box Platinum)",
+    "type": {
+      "category": "base",
+      "sub": "bis",
+      "tags": [
+        "pocket_box"
+      ]
     }
   },
   {
@@ -3865,11 +4435,33 @@ const cards = [
     }
   },
   {
+    "id": "415B",
+    "name": "Ruiz de Galarreta (Athletic Club) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "416",
     "name": "Sotelo (RC Celta)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "416B",
+    "name": "Pablo Fornals (Real Betis) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
     }
   },
   {
@@ -3881,11 +4473,33 @@ const cards = [
     }
   },
   {
+    "id": "417B",
+    "name": "Pablo Torre (RCD Mallorca) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "418",
     "name": "Edu Expósito (RCD Espanyol)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "418B",
+    "name": "Pape Gueye (Villarreal CF) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
     }
   },
   {
@@ -4366,6 +4980,18 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "478B",
+    "name": "Premium Oro - 1.000.000 de Toques -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -5209,11 +5835,46 @@ const cards = [
     }
   },
   {
+    "id": "AO50-1",
+    "name": "Nico Williams (Athletic Club) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "AO50-2",
     "name": "Álex Baena (Atlético de Madrid)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO50-3",
+    "name": "Almada (Atlético de Madrid) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
+    "id": "AO50-4",
+    "name": "Julián Álvarez (Atlético de Madrid) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -5230,6 +5891,17 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO50-7",
+    "name": "Joan García (FC Barcelona) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
     }
   },
   {
@@ -5257,11 +5929,44 @@ const cards = [
     }
   },
   {
+    "id": "AO50-11",
+    "name": "Fermín (FC Barcelona) -- (Adrenalyn Plus)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
+    "id": "AO50-12",
+    "name": "Gerard Moreno (Villarreal CF) -- (Adrenalyn Plus)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
     "id": "AO100-1",
     "name": "Vivian (Athletic Club)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO100-2",
+    "name": "Robert Navarro (Athletic Club) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
     }
   },
   {
@@ -5281,11 +5986,46 @@ const cards = [
     }
   },
   {
+    "id": "AO100-5",
+    "name": "Bryan Zaragoza (RC Celta) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "AO100-6",
     "name": "Puado (RCD Espanyol)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO100-7",
+    "name": "El Hilali (RCD Espanyol) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
+    "id": "AO100-8",
+    "name": "Edu Expósito (RCD Espanyol) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -5297,11 +6037,34 @@ const cards = [
     }
   },
   {
+    "id": "AO100-10",
+    "name": "Pablo Torres (RCD Mallorca) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "AO100-11",
     "name": "Isi (Rayo Vallecano)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO100-12",
+    "name": "De Frutos (Rayo Vallecano) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
     }
   },
   {
@@ -5361,11 +6124,34 @@ const cards = [
     }
   },
   {
+    "id": "AO200-6",
+    "name": "Javi Rodríguez (RC Celta) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "AO200-7",
     "name": "Rafa Mir (Elche CF)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO200-8",
+    "name": "Héctor Fort (Elche CF) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -5385,6 +6171,17 @@ const cards = [
     }
   },
   {
+    "id": "AO200-11",
+    "name": "Mario Martín (Getafe CF) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "AO200-12",
     "name": "Francés (Girona FC)",
     "type": {
@@ -5398,6 +6195,18 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO200-14",
+    "name": "Fran González (Real Madrid) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -5417,11 +6226,34 @@ const cards = [
     }
   },
   {
+    "id": "AO200-17",
+    "name": "Sergio Herrera (CA Osasuna) -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
     "id": "AO200-18",
     "name": "Fran Pérez (Rayo Vallecano)",
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "AO200-19",
+    "name": "Sergio Gómez (Real Sociedad) -- (Sobre Premium Oro)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium_oro",
+        "premium"
+      ]
     }
   },
   {
@@ -5585,6 +6417,193 @@ const cards = [
     }
   },
   {
+    "id": "Índ01",
+    "name": "Índice Adrenalyn Plus (Formato díptico de papel)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
+    "id": "Índ02",
+    "name": "Índice de Contenido Dream Box",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NAO50--13",
+    "name": "Araujo (FC Barcelona) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NAO50--14",
+    "name": "Iago Aspas (RC Celta) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NAO100--15",
+    "name": "Aramburu (Real Sociedad) -- (Adrenalyn Plus)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
+    "id": "NAO100--16",
+    "name": "Unai López (Rayo Vallecano) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--21",
+    "name": "Guruceta (Athletic Club) -- (Adrenalyn Plus)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--22",
+    "name": "Carmona (Sevilla FC) -- (Adrenalyn Plus)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--23",
+    "name": "Íñaki Peña (Elche CF) -- (Adrenalyn Plus)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--24",
+    "name": "Radu (RC Celta) -- (Adrenalyn Plus)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "adrenalyn_plus"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--25",
+    "name": "Carlos Vicente (D. Alavés) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--26",
+    "name": "Nico González (Atlético de Madrid) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--27",
+    "name": "Milla (Getafe CF) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NAO200--28",
+    "name": "Cazorla (Real Oviedo) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NDS/N-Bardghji",
+    "name": "Bardghji (FC Barcelona) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NDS/N-Héctor",
+    "name": "Héctor Fort (Elche CF) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
+    "id": "NDS/N-Maciá",
+    "name": "Maciá (Villarreal CF) -- (Dream Box)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "dream_box"
+      ]
+    }
+  },
+  {
     "id": "NM/1",
     "name": "Vlachodimos (Sevilla FC)",
     "type": {
@@ -5702,6 +6721,39 @@ const cards = [
     "type": {
       "category": "base",
       "sub": "jugador"
+    }
+  },
+  {
+    "id": "PPA",
+    "name": "Premio-Premium A COLECCIÓN -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
+    "id": "PPB",
+    "name": "Premio-Premium B COLECCIÓN -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
+    }
+  },
+  {
+    "id": "PPC",
+    "name": "Premio-Premium C COLECCIÓN -- (Sobre Premium)",
+    "type": {
+      "category": "base",
+      "sub": "jugador",
+      "tags": [
+        "premium"
+      ]
     }
   },
   {
