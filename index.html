@@ -2,7 +2,7 @@
 <html lang="ca">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 
 <title>ADRENALYN XL 2025-2026</title>
@@ -26,10 +26,14 @@
 *{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-tap-highlight-color:transparent}
 
-html,body{
+html, body {
   width:100%;
   max-width:100%;
   overflow-x:hidden;
+}
+
+* {
+  max-width:100%;
 }
 
 body{
@@ -37,6 +41,7 @@ body{
   background:radial-gradient(circle at top,#1a2233 0%,var(--bg) 45%);
   color:var(--text);
   min-height:100vh;
+  overscroll-behavior:none;
 }
 
 /* HEADER */
@@ -186,7 +191,9 @@ header{
   border-radius:8px;
   background:var(--surface-soft);
   color:var(--text);
-  font-size:15px;
+
+  font-size:16px; /* 🔥 CLAU (abans 15px) */
+
   resize:none;
   overflow-y:auto;
   line-height:1.25;
@@ -215,6 +222,7 @@ header{
   grid-template-columns:repeat(auto-fill,minmax(78px,1fr));
   gap:8px;
   padding:10px;
+  width:100%;
 }
 
 #keypad{
