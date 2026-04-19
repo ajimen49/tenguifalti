@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 
 <title>ADRENALYN XL 2025-2026</title>
 
@@ -23,6 +24,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+*{-webkit-tap-highlight-color:transparent}
 
 html,body{
   width:100%;
@@ -32,6 +34,15 @@ html,body{
 
 body{
   font-family:'Roboto',sans-serif;
+}
+
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+
+body{
   background:radial-gradient(circle at top,#1a2233 0%,var(--bg) 45%);
   color:var(--text);
   min-height:100vh;
@@ -86,7 +97,7 @@ header{
 .stats{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:4px;
   font-weight:bold;
   font-size:14px;
 }
@@ -94,10 +105,10 @@ header{
 .stat{
   display:flex;
   align-items:center;
-  gap:6px;
-  min-width:48px;
+  gap:4px;
+  min-width:40px;
   cursor:pointer;
-  padding:4px 6px;
+  padding:4px 4px;
   border-radius:8px;
   transition:background .2s ease;
 }
@@ -116,8 +127,6 @@ header{
 .g i{background:#27ae60}
 .o i{background:#d07a18}
 .r i{background:#c0392b}
-
-.sep{opacity:.5}
 
 /* MODES */
 .market-bar{
@@ -330,6 +339,13 @@ body.market-mode .grid{
   display:flex;
   justify-content:center;
   min-height:130px;
+  overflow:auto;
+}
+
+#qrOut img,
+#qrOut canvas{
+  max-width:min(70vw,220px);
+  height:auto;
 }
 
 #qrReader{
@@ -352,11 +368,8 @@ body.market-mode .grid{
 
     <div class="stats">
       <span class="stat t" onclick="quickFilter('all')"><i></i><span id="countT">0</span></span>
-      <span class="sep">|</span>
       <span class="stat g" onclick="quickFilter('green')"><i></i><span id="countG">0</span></span>
-      <span class="sep">|</span>
       <span class="stat o" onclick="quickFilter('orange')"><i></i><span id="countO">0</span></span>
-      <span class="sep">|</span>
       <span class="stat r" onclick="quickFilter('red')"><i></i><span id="countR">0</span></span>
     </div>
   </div>
