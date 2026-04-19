@@ -661,15 +661,13 @@ function exportText(){
     `🔴 FALTEN (${missingLines.length}):`,
     ...(missingLines.length?missingLines:["—"])
   ].join("\n");
-  const pre=document.createElement("pre");
-  pre.textContent=text;
-  qrOut.appendChild(pre);
-  navigator.clipboard?.writeText(text).catch(()=>{
-    const msg=document.createElement("div");
-    msg.setAttribute("role","alert");
-    msg.textContent="No s'ha pogut copiar automàticament. Copia el text manualment.";
-    qrOut.prepend(msg);
-  });
+  navigator.clipboard?.writeText(text).catch(()=>{});
+  const msg=document.createElement("p");
+  msg.textContent="Dades copiades al portapapers";
+  msg.style.color="#92f7b6";
+  msg.style.textAlign="center";
+  msg.style.fontSize="14px";
+  qrOut.appendChild(msg);
 }
 
 function exportQR(){
