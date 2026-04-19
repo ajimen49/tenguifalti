@@ -23,7 +23,12 @@ lines.forEach((line, i) => {
   if (!line) return;
 
   const match = line.match(/^(.+?)\s*-\s*(.+)$/);
-  if (!match) return;
+  if (!match) {
+  if (line.match(/\d/)) {
+    console.log("⚠️ Línia ignorada:", line);
+  }
+  return;
+}
 
   let idRaw = match[1].trim();
   let name = match[2].trim();
