@@ -53,7 +53,7 @@ body{
 header{
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:40; /* 🔥 per sobre del modal */
   display:flex;
   flex-direction:column;
   gap:4px;
@@ -571,20 +571,39 @@ function render(){
   let list=cards;
   const txt=search.value.toLowerCase();
 
-  if(mode==="market"){
-    const ids=txt.split(/[\/,\s]+/).filter(Boolean);
-    list=cards.filter(c=>ids.includes(c.id));
-  }else{
-    if(txt){
-      list=list.filter(c=>c.id.includes(txt)||c.name.toLowerCase().includes(txt));
-    }
-    if(filter.value!=="all"){
-      list=list.filter(c=>getState(c.id)===filter.value);
-    }
-    if(typeFilter.value!=="all"){
-      list=list.filter(c=>getType(c)===typeFilter.value);
-    }
+let list = cards;
+const txt = search.value.toLowerCase().trim();
+
+if(mode==="market"){
+
+  const ids = txt.split(/[\/,\s]+/).filter(Boolean);
+
+  list = cards.filter(c =>
+    ids.includes(c.id) ||
+    c.name.toLowerCase().includes(txt)
+  );
+
+}else{
+
+  // 🔎 CERCA
+  if(txt){
+    list = list.filter(c =>
+      c.id.toLowerCase().includes(txt) ||
+      c.name.toLowerCase().includes(txt)
+    );
   }
+
+  // 🎯 FILTRE ESTAT
+  if(filter.value !== "all"){
+    list = list.filter(c => getState(c.id) === filter.value);
+  }
+
+  // 🧩 FILTRE TIPUS
+  if(typeFilter.value !== "all"){
+    list = list.filter(c => getType(c) === typeFilter.value);
+  }
+
+}
 
   list.forEach(c=>{
     const st=getState(c.id);
@@ -668,13 +687,18 @@ function exportText(){
   const missSet=new Set(payload.missing||[]);
   const repeatedLines=cards.filter(c=>repSet.has(c.id)).map(c=>`${c.id} – ${c.name}`);
   const missingLines=cards.filter(c=>missSet.has(c.id)).map(c=>`${c.id} – ${c.name}`);
-  const text=[
-    `🟠 REPETIDES (${repeatedLines.length}):`,
-    ...(repeatedLines.length?repeatedLines:["—"]),
-    "",
-    `🔴 FALTEN (${missingLines.length}):`,
-    ...(missingLines.length?missingLines:["—"])
-  ].join("\n");
+const payload = getInventoryPayload();
+
+const text = [
+  "FORMAT: TENGUIFALTI_V2",
+  JSON.stringify(payload),
+  "",
+  `🟠 REPETIDES (${payload.repeated.length}):`,
+  ...(payload.repeated.length ? payload.repeated : ["—"]),
+  "",
+  `🔴 FALTEN (${payload.missing.length}):`,
+  ...(payload.missing.length ? payload.missing : ["—"])
+].join("\n");
   navigator.clipboard?.writeText(text).catch(()=>{});
   const msg=document.createElement("p");
   msg.textContent="Dades copiades al portapapers";
@@ -744,7 +768,11 @@ function parseFormattedTextImport(raw){
     if(trimmed==="—") return;
     if(!section) return;
 
-    const separator=trimmed.includes(" – ")?" – ":(trimmed.includes(" - ")?" - ":null);
+    const separatorMatch = trimmed.match(/\s[–-]\s/);
+    if (!separatorMatch) return;
+
+    const separator = separatorMatch[0];
+    
     if(!separator) return;
 
     const id=trimmed.split(separator)[0].trim();
@@ -781,15 +809,18 @@ function importText(){
   if(!input) return;
   try{
     let payload;
-    try{
-      payload=normalizeImport(input);
-    }catch{
-      payload=parseFormattedTextImport(input);
-    }
-    applyImportedPayload(payload);
-  }catch{
-    alert("Format no vàlid. Cal enganxar el text o JSON exportat.");
+
+try {
+  // 🔥 intenta detectar JSON dins text exportat
+  const jsonLine = input.split("\n").find(l => l.startsWith("{"));
+  if(jsonLine){
+    payload = normalizeImport(jsonLine);
+  }else{
+    payload = normalizeImport(input);
   }
+} catch {
+  payload = parseFormattedTextImport(input);
+}
 }
 
 let qrScanner=null;
