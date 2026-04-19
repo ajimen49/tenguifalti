@@ -98,3 +98,21 @@ if (errors.length) {
 } else {
   console.log("✅ Sense duplicats");
 }
+
+// DEBUG: buscar cartes sospitoses
+const missingCandidates = lines.filter(line => {
+  const match = line.match(/^(.+?)\s*-\s*(.+)$/);
+  if (!match) return false;
+
+  let idRaw = match[1].trim();
+
+  // línies que semblen cartes però han estat descartades
+  const looksLikeCard =
+    idRaw.match(/\d/) ||
+    idRaw.match(/^(BI|AO|NAO|DAO|NM|CU|TK|ND|PPA|PPB|PPC|Índ)/);
+
+  return looksLikeCard && !cards.find(c => line.includes(c.name));
+});
+
+console.log("---- POSSIBLES CARTES PERDUDES ----");
+missingCandidates.slice(0, 20).forEach(l => console.log(l));
