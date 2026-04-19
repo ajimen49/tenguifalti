@@ -17,8 +17,21 @@ lines.forEach((line, i) => {
   line = line.trim();
   if (!line) return;
 
-  const match = line.match(/^(.+?)\s*-\s*(.+)$/);
-  if (!match) return;
+// Ignorar línies que no són cartes reals
+if (
+  line.startsWith("Listado") ||
+  line.includes(" -- ") && !line.match(/^\S+\s*-\s*\S+/) ||
+  line.match(/^[A-Za-z\s]+$/) // noms d'equip sols
+) {
+  return;
+}
+  
+  const match = line.match(/^([A-Za-z0-9\/\-\s]+?)\s*-\s*(.+)$/);
+
+// validar que ID comença per número o prefix vàlid
+if (!match || !match[1].match(/^\d|^(BI|AO|NAO|DAO|NM|CU|TK|ND)/)) {
+  return;
+}
 
   let id = normalizeId(match[1]);
   let name = match[2];
