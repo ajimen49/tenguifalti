@@ -8,6 +8,7 @@
 <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
 
 <title>ADRENALYN XL 2025-2026</title>
 
@@ -831,6 +832,19 @@ updateModalOffset();
 window.addEventListener("resize",updateModalOffset);
 render();
 
+// 🔥 EXPOSE GLOBAL FUNCTIONS (FIX onclick)
+window.setMode = setMode;
+window.openData = openData;
+window.closeData = closeData;
+window.quickFilter = quickFilter;
+window.clearSearch = clearSearch;
+window.kp = kp;
+window.kpBack = kpBack;
+window.exportText = exportText;
+window.exportQR = exportQR;
+window.importText = importText;
+window.importQR = importQR;
+  
 </script>
    
 </body>
