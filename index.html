@@ -26,12 +26,13 @@
 *{box-sizing:border-box;margin:0;padding:0}
 *{-webkit-tap-highlight-color:transparent}
 
-a[x-apple-data-detectors]{
-  color:inherit !important;
-  text-decoration:none !important;
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
 }
 
-html,body,button,input,select,textarea{
+body{
   font-family:'Roboto',sans-serif;
 }
 
@@ -297,9 +298,9 @@ body.market-mode .grid{
   bottom:0;
   background:rgba(0,0,0,.6);
   display:none;
-  align-items:center;
+  align-items:flex-start;
   justify-content:center;
-  padding:10px 10px max(10px, env(safe-area-inset-bottom));
+  padding:10px;
   z-index:30;
 }
 .modal.open{display:flex}
@@ -309,7 +310,7 @@ body.market-mode .grid{
   padding:20px;
   border-radius:12px;
   width:min(520px,92vw);
-  max-height:calc(100dvh - var(--modal-top,0px) - 20px - env(safe-area-inset-bottom));
+  max-height:90vh;
   overflow-y:auto;
   border:1px solid #2a3242;
 }
@@ -461,7 +462,6 @@ const cards = [{"id": "1", "name": "Escudo D. Alavés"}, {"id": "1 Bis", "name":
 let mode="album";
 const state=JSON.parse(localStorage.getItem("cards")||"{}");
 let saveTimer=null;
-let totalsState={green:0,orange:0,red:0};
 
 function getState(id){return state[id]||"red"}
 function save(){localStorage.setItem("cards",JSON.stringify(state))}
@@ -473,18 +473,16 @@ function autoGrowSearch(){
   search.style.height="auto";
   search.style.height=Math.min(search.scrollHeight,120)+"px";
 }
-function recomputeTotals(){
-  totalsState=cards.reduce((acc,c)=>{
+function updateTotals(){
+  const totals=cards.reduce((acc,c)=>{
     const st=getState(c.id);
     acc[st]=(acc[st]||0)+1;
     return acc;
   },{green:0,orange:0,red:0});
-}
-function updateTotals(){
   countT.textContent=cards.length;
-  countG.textContent=totalsState.green;
-  countO.textContent=totalsState.orange;
-  countR.textContent=totalsState.red;
+  countG.textContent=totals.green;
+  countO.textContent=totals.orange;
+  countR.textContent=totals.red;
 }
 
 function setMode(m){
@@ -576,7 +574,6 @@ function render(){
     div.onclick=()=>cycle(c.id);
     grid.appendChild(div);
   });
-  recomputeTotals();
   updateTotals();
 }
 
@@ -592,8 +589,6 @@ function cycle(id){
     render();
     return;
   }
-  totalsState[s] = Math.max(0,(totalsState[s]||0)-1);
-  totalsState[next] = (totalsState[next]||0)+1;
   cardNode.classList.remove("red","orange","green");
   cardNode.classList.add(next);
   updateTotals();
