@@ -1862,6 +1862,13 @@ export const cards = [
     "owned": false
   },
   {
+    "id": "196 Bis",
+    "name": "Kovalipou (Ampliación -- Box Serie Oro)",
+    "team": "Ampliación -- Box Serie Oro",
+    "type": "Box Serie Oro",
+    "owned": false
+  },
+  {
     "id": "197",
     "name": "Iván Romero",
     "team": "",
@@ -1873,13 +1880,6 @@ export const cards = [
     "name": "Etta Eyong",
     "team": "",
     "type": "Base",
-    "owned": false
-  },
-  {
-    "id": "198 Bis",
-    "name": "Kovalipou (Ampliación -- Box Serie Oro)",
-    "team": "Ampliación -- Box Serie Oro",
-    "type": "Box Serie Oro",
     "owned": false
   },
   {
@@ -3487,8 +3487,8 @@ export const cards = [
   },
   {
     "id": "377",
-    "name": "Real Sociedad -- ( Remiro • Gorrotxategi • Oyarzabal )",
-    "team": " Remiro • Gorrotxategi • Oyarzabal ",
+    "name": "Real Sociedad -- (Remiro • Gorrotxategi • Oyarzabal )",
+    "team": "Remiro • Gorrotxategi • Oyarzabal ",
     "type": "Base",
     "owned": false
   },
@@ -4215,14 +4215,14 @@ export const cards = [
   },
   {
     "id": "477",
-    "name": "Unai Simón•Huijsen•Pedri•Lamine Yamal•Mbappé•Julián Álvarez (Múltiple)",
+    "name": "Unai Simón•Huijsen•Pedri... (Múltiple)",
     "team": "Múltiple",
     "type": "Base",
     "owned": false
   },
   {
     "id": "478",
-    "name": "Campeon Card",
+    "name": "Campeón Card",
     "team": "",
     "type": "Base",
     "owned": false
@@ -4445,27 +4445,6 @@ export const cards = [
     "owned": false
   },
   {
-    "id": "ND S/N 1",
-    "name": "Bardghji (FC Barcelona) -- (Dream Box)",
-    "team": "FC Barcelona",
-    "type": "Dream Box",
-    "owned": false
-  },
-  {
-    "id": "ND S/N 2",
-    "name": "Héctor Fort (Elche CF) -- (Dream Box)",
-    "team": "Elche CF",
-    "type": "Dream Box",
-    "owned": false
-  },
-  {
-    "id": "ND S/N 3",
-    "name": "Maciá (Villarreal CF) -- (Dream Box)",
-    "team": "Villarreal CF",
-    "type": "Dream Box",
-    "owned": false
-  },
-  {
     "id": "509",
     "name": "Rodri Mendoza (Atlético de Madrid)",
     "team": "Atlético de Madrid",
@@ -4557,17 +4536,38 @@ export const cards = [
     "owned": false
   },
   {
-    "id": "NBO S/N",
-    "name": "Raphinha (FC Barcelona) -- (Dream Box)",
+    "id": "522",
+    "name": "Pedri (FC Barcelona)",
+    "team": "FC Barcelona",
+    "type": "Base",
+    "owned": false
+  },
+  {
+    "id": "ND S/N 1",
+    "name": "Bardghji (FC Barcelona) -- (Dream Box)",
     "team": "FC Barcelona",
     "type": "Dream Box",
     "owned": false
   },
   {
-    "id": "522",
-    "name": "Pedri (FC Barcelona)",
+    "id": "ND S/N 2",
+    "name": "Héctor Fort (Elche CF) -- (Dream Box)",
+    "team": "Elche CF",
+    "type": "Dream Box",
+    "owned": false
+  },
+  {
+    "id": "ND S/N 3",
+    "name": "Maciá (Villarreal CF) -- (Dream Box)",
+    "team": "Villarreal CF",
+    "type": "Dream Box",
+    "owned": false
+  },
+  {
+    "id": "NBO S/N",
+    "name": "Raphinha (FC Barcelona) -- (Dream Box)",
     "team": "FC Barcelona",
-    "type": "Base",
+    "type": "Dream Box",
     "owned": false
   },
   {
@@ -4985,7 +4985,7 @@ export const cards = [
   },
   {
     "id": "658",
-    "name": "Oro Puro (CR7, Messi, Modric, Ronaldinho, Benzema) (FC Barcelona/Real Madrid)",
+    "name": "Oro Puro (CR7, Messi, Modric, Ronaldinho, Benzema) (FCB/RM)",
     "team": "CR7, Messi, Modric, Ronaldinho, Benzema",
     "type": "Base",
     "owned": false
