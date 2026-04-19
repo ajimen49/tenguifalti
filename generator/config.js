@@ -1,6 +1,6 @@
 module.exports = {
-  collectionId: "laliga-2025",
-  outputFile: "../data/laliga-2025.js",
+  collectionId: "laliga-2026",
+  outputFile: "../data/laliga-2026.js",
 
   tagMap: [
     { match: "momentum oro", tag: "momentum_oro" },
