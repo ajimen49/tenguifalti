@@ -1,5 +1,3 @@
-Listado Adrenalyn XL LaLiga EA Sport 2025/2026
-D. Alavés
 1 - Escudo D. Alavés
 1 Bis - Stadium Card - Mendizorroza
 2 - Sivera (Capitán)
@@ -24,8 +22,6 @@ D. Alavés
 17 - Boyé
 18 - Mariano
 18 Bis - Abde (Ampliación -- Pocket Box Platinum)
-
-Athletic Club
 19 - Escudo Athletic Club
 19 Bis - Stadium Card - San Mamés
 20 - Unai Simón
@@ -49,8 +45,6 @@ Athletic Club
 34 - Maroan
 35 - Guruzeta
 36 - Nico Williams
-
-Atlético de Madrid
 37 - Escudo Atlético de Madrid
 37 Bis - Stadium Card - Riyadh Air Metropolitano
 38 - Oblak
@@ -79,8 +73,6 @@ Atlético de Madrid
 53 - Sørloth
 54 - Griezmann
 54 Bis - Lookman (Nuevo Fichaje)
-
-FC Barcelona
 55 - Escudo FC Barcelona
 55 Bis - Stadium Card - Spotify Nou Camp
 56 - Joan García
@@ -95,7 +87,7 @@ FC Barcelona
 63 - De Jong
 63 Bis - Marc Bernal (Ampliación -- Sobre Momentum Oro)
 64 - Gavi
-64 Bis - Cásado (Ampliación -- Pocket Box Platinum)
+64 Bis - Casadó (Ampliación -- Pocket Box Platinum)
 65 - Pedri
 66 - Fermín
 67 - Dani Olmo
@@ -105,8 +97,6 @@ FC Barcelona
 70 Bis - Bardghji (Ampliación -- Pocket Box Platinum)
 71 - Lewandowski
 72 - Rashford
-
-Real Betis
 73 - Escudo Real Betis
 73 Bis - Stadium Card - La Cartuja
 74 - Pau López
@@ -132,8 +122,6 @@ Real Betis
 89 Bis - Pablo García (Ampliación -- Pocket Box Platinum)
 90 - Abde
 90 Bis - Chimy Ávila (Ampliación -- Sobre Momentum Oro)
-
-RC Celta
 91 - Escudo RC Celta
 91 Bis - Stadium Card - Abanca Balaídos
 92 - Radu
@@ -160,8 +148,6 @@ RC Celta
 107 - Borja iglesias
 108 - Jutglà
 108 Bis - Pablo Durán (Ampliación -- Pocket Box Platinum)
-
-Elche CF
 109 - Escudo Elche CF
 109 Bis - Stadium Card - Martínez Valero
 110 - Iñaki Peña
@@ -185,8 +171,6 @@ Elche CF
 124 - Álvaro Rodríguez
 125 - André Silva
 126 - Rafa Mir
-
-RCD Espanyol
 127 - Escudo RCD Espanyol
 127 Bis - Stadium Card - RCDE Stadium
 128 - Dmitrovic
@@ -210,8 +194,6 @@ RCD Espanyol
 143 Bis - Ngonge (Nuevo Fichaje)
 144 - Pere Milla
 144 Bis - Koleosho (Ampliación -- Pocket Box Platinum)
-
-Getafe CF
 145 - Escudo Getafe CF
 145 Bis - Stadium Card - Coliseum
 146 - David Soria
@@ -236,8 +218,6 @@ Getafe CF
 161 Bis - Satriano (Nuevo Fichaje)
 162 - Coba
 162 Bis - Álex Sancris (Ampliación -- Pocket Box Platinum)
-
-Girona FC
 163 - Escudo Girona FC
 163 Bis - Stadium Card - Montilivi
 164 - Gazzaniga
@@ -262,8 +242,6 @@ Girona FC
 178 - Vanat
 179 - Stuani (Capitán)
 180 - Bryan Gil
-
-Levante UD
 181 - Escudo Levante UD
 181 Bis - Stadium Card - Ciutat de València
 182 - Ryan
@@ -289,8 +267,6 @@ Levante UD
 197 - Iván Romero
 198 - Etta Eyong
 198 Bis - Kovalipou (Ampliación -- Box Serie Oro)
-
-Real Madrid CF
 199 - Escudo Real Madrid CF
 199 Bis - Stadium Card - Santiago Bernabéu
 200 - Courtois
@@ -315,8 +291,6 @@ Real Madrid CF
 215 - Gonzalo
 215 Bis - Brahim Díaz (Ampliación -- Pocket Box Platinum)
 216 - Vinícius
-
-RCD Mallorca
 217 - Escudo RCD Mallorca
 217 Bis - Stadium Card - Mallorca Son Moix
 218 - Leo Román
@@ -340,8 +314,6 @@ RCD Mallorca
 233 Bis - Luvumbo (Nuevo Fichaje)
 234 - Jan Virgili
 234 Bis - Abdón (Ampliación -- Sobre Premium Oro)
-
-CA Osasuna
 235 - Escudo CA Osasuna
 235 Bis - Stadium Card - El Sadar
 236 - Sergio Herrera (Capitán)
@@ -365,8 +337,6 @@ CA Osasuna
 251 - Budimir
 252 - Becker
 252 Bis - Raúl Moro (Nuevo Fichaje)
-
-Real Oviedo
 253 - Escudo Real Oviedo
 253 Bis - Stadium Card - Carlos Tartiere
 254 - Aarón Escandell
@@ -391,8 +361,6 @@ Real Oviedo
 268 - Ilyas Chaira
 269 - Fede Viñas
 270 - Rondón
-
-Rayo Vallecano
 271 - Escudo Rallo Vallecano
 271 Bis - Stadium Card - Vallecas
 272 - Batalla
@@ -417,8 +385,6 @@ Rayo Vallecano
 287 - De Frutos
 288 - Alemão
 288 Bis - Ilias (Nuevo Fichaje)
-
-Real Sociedad
 289 - Escudo Real Sociedad
 289 Bis - Stadium Card - Reale Arena (Anoeta)
 290 - Remiro
@@ -441,8 +407,6 @@ Real Sociedad
 305 - Óskarsson
 305 Bis - Wesley (Nuevo Fichaje)
 306 - Guedes
-
-Sevilla FC
 307 - Escudo Sevilla FC
 307 Bis - Stadium Card - Ramón Sánchez Piz-juán
 308 - Vlachodimos
@@ -465,8 +429,6 @@ Sevilla FC
 323 - Akor Adams
 324 - Alexis Sánchez
 324 Bis - Maupay (Nuevo Fichaje)
-
-Valencia CF
 325 - Escudo Valencia CF
 325 Bis - Stadium Card - Mestalla
 326 - Agirrezabala
@@ -492,8 +454,6 @@ Valencia CF
 341 Bis - Sadiq (Nuevo Fichaje)
 342 - Hugo Duro
 342 Bis - Lucas Beltrán (Ampliación -- Sobre Premium Oro)
-
-Villarreal CF
 343 - Escudo Villarreal CF
 343 Bis - Stadium Card - Estadio de la Cerámica
 344 - Luiz Júnior
@@ -520,8 +480,6 @@ Villarreal CF
 359 - Oluwaseyi
 360 - Ayoze
 360 Bis - Gerard Moreno (Ampliación -- Pocket Box Platinum)
-
-¡Vamos!
 361 - D. Alavés -- (Tenaglia • Blanco • Carlos Vicente)
 362 - Athletic Club -- (Laporte • Jauregizar • Williams)
 363 - Atlético de Madrid -- (Le Normand • Koke • Julián Álvarez)
@@ -542,8 +500,6 @@ Villarreal CF
 378 - Sevilla FC -- (Carmona • Vargas • Alexis Sánchez)
 379 - Valencia CF -- (Tárrega • Javi Guerra • Danjuma)
 380 - Villarreal CF -- (Renato Veiga • Pape Gueye • Mikautadze )
-
-Guantes de Oro
 381 - Sivera (Deportivo Alavés)
 382 - Joan García (FC Barcelona)
 383 - David Soria (Getafe CF)
@@ -551,8 +507,6 @@ Guantes de Oro
 385 - Batalla (Rayo Vallecano)
 386 - Remiro (Real Sociedad)
 387 - Agirrezabala (Valencia CF)
-
-Kryptonita
 388 - Laporte (Athletic Club)
 389 - Vivian (Athletic Club)
 390 - Le Normand (Atlético de Madrid)
@@ -562,8 +516,6 @@ Kryptonita
 394 - Lejeune (Rayo Vallecano)
 395 - Tárrega (Valencia CF)
 396 - Mouriño (Villarreal CF)
-
-Diamante
 397 - Rego (Athletic Club)
 398 - Dro (FC Barcelona)
 399 - Valentín Gómez (Real Betis)
@@ -582,8 +534,6 @@ Diamante
 412 - Mateo Joseph (RCD Mallorca)
 413 - Víctor Muñoz (CA Osasuna)
 414 - Renato Veiga (Villarreal CF)
-
-Influecers
 415 - Barrios (Atlético de Madrid)
 415 Bis - Ruiz de Galarreta (Athletic Club) -- (Sobre Premium)
 416 - Sotelo (RC Celta)
@@ -597,8 +547,6 @@ Influecers
 421 - Aimar Oroz (CA Osasuna)
 422 - Cazorla (Real Oviedo)
 423 - Unai López (Rayo Vallecano)
-
-Protas
 424 - Tenaglia (Deportivo Alavés)
 425 - Carlos Vicente (Deportivo Alavés)
 426 - Eric García (FC Barcelona)
@@ -617,8 +565,6 @@ Protas
 439 - Alexis Sánchez (Sevilla FC)
 440 - Danjuma (Valencia CF)
 441 - Buchanan (Villarreal CF)
-
-Súpercracks
 442 - Unai Simón (Athletic Club)
 443 - Jauregizar (Athletic Club)
 444 - Oblak (Atlético de Madrid)
@@ -645,36 +591,18 @@ Súpercracks
 465 - Javi Guerra (Valencia CF)
 466 - Moleiro (Villarreal CF)
 467 - Pépé (Villarreal CF)
-
-Champions
 468 - FC Barcelona (FC Barcelona)
-
-Balón de Oro
 469 - Nico Williams (Athletic Club)
 470 - Julián Álvarez (Atlético de Madrid)
 471 - Pedri (FC Barcelona)
 472 - Lamine Yamal (FC Barcelona)
 473 - Vinicius (Real Madrid)
 474 - Mbappé (Real Madrid)
-
-Balón de Oro -- Excellence
 475 - Carvajal (Real Madrid)
-
-Card Atómica
 476 - Fermín • Jauregizar • Llorente • Valverde (Múltiple)
-
-Card Invencible
 477 - Unai Simón•Huijsen•Pedri•Lamine Yamal•Mbappé•Julián Álvarez (Múltiple)
-
-Campeon Card
 478 - Campeon Card
 478 Bis - Premium Oro - 1.000.000 de Toques -- (Sobre Premium Oro)
-
-Índice
-Índ01 - Índice Adrenalyn Plus (Formato díptico de papel) 
-Índ02 - Índice de Contenido Dream Box
-
-Entrenador
 479 - Eduardo Coudet (D. Alavés)
 480 - Ernesto Valverde (Athletic Club)
 481 - Diego Pablo Simeone (Atlético de Madrid)
@@ -695,56 +623,34 @@ Entrenador
 496 - Matías Almeyda (Sevilla FC)
 497 - Carlos Corberán (Valencia CF)
 498 - Marcelino García (Villarreal CF)
-
-Nuevo Guantes de Oro
 499 - Dmitrovic (RCD Espanyol)
 500 - Ter Stegen (Girona FC)
-
-Nuevo Kryptonita
 501 - Pubill (Atlético de Madrid)
 502 - Grerard Martín (FC Barcelona)
 503 - Asencio (Real Madrid)
-
-Nuevo Diamante
 504 - Selton (Athletic Club)
 505 - El-Abdellaoui (RC Celta)
 506 - Echeverri (Girona FC)
 507 - Nobel Mendy (Rayo Vallecano)
 508 - Oso (Sevilla FC)
-
-Nuevo Diamante Sin Numeración
-ND S/N - Bardghji (FC Barcelona) -- (Dream Box)
-ND S/N - Héctor Fort (Elche CF) -- (Dream Box)
-ND S/N - Maciá (Villarreal CF) -- (Dream Box)
-
-Nuevo Protas
+ND S/N 1 - Bardghji (FC Barcelona) -- (Dream Box)
+ND S/N 2 - Héctor Fort (Elche CF) -- (Dream Box)
+ND S/N 3 - Maciá (Villarreal CF) -- (Dream Box)
 509 - Rodri Mendoza (Atlético de Madrid)
 510 - Aitor Ruibal (Real Betis
 511 - Miguel Román (RC Celta)
 512 - Carlos Romero (RCD Espanyol)
 513 - Maupay (Sevilla FC)
-
-Nuevo Supercracks
 514 - Giuliano (Atlético de Madrid)
 515 - Joao Cancelo (FC Barcelona)
 516 - Rodrygo (Real Madrid)
 517 - Guedes (Real Sociedad)
-
-Master Míster
 518 - Hansi Flick (FC Barcelona)
 519 - Marcelino García (Villarreal CF)
-
-Card Fantástica
 520 - Card Fantástica (Múltiple)
-
-Nuevo Balón de Oro
 521 - Courtois (Real Madrid)
 NBO S/N - Raphinha (FC Barcelona) -- (Dream Box)
-
-Nuevo Balón de Oro (Especial Autógrafo)
-522 - Pedri (FC Barceloan)
-
-Total Kings - Edición Única
+522 - Pedri (FC Barcelona)
 TK/1 - Casillas -- Copa LaLiga 2011-12 (Real Madrid) -- (Dream Box)
 TK/2 - Cristiano Ronaldo -- Copa LaLiga 2016-17 (Real Madrid) -- (Dream Box)
 TK/3 - Iniesta -- Copa LaLiga 2017-18 (FC Barcelona) -- (Dream Box)
@@ -762,12 +668,8 @@ TK/14 - Benzema -- Balón de Oro 2022 (Real Madrid) -- (Dream Box)
 TK/15 - Messi -- Bota de Oro 2009-10 (FC Barcelona) -- (Dream Box)
 TK/16 - Cristiano Ronaldo -- Bota de Oro 2014-15 (Real Madrid) -- (Dream Box)
 TK/17 - Mbappé -- Bota Oro 2024-25 (Real Madrid) -- (Dream Box)
-
-Card Única
 CU/1 - Sergio Busquets (FC Barcelona) -- (Dream Box)
 CU/2 - De Marcos (Athletic Club) -- (Dream Box)
-
-Edición Limitada
 601 - Nico González (Atlético de Madrid) -- (Megapack de Lanzamiento)
 602 - De Jong (FC Barcelona) -- (Megapack de Lanzamiento)
 603 - Huijsen (Real Madrid) -- (Megapack de Lanzamiento)
@@ -789,57 +691,32 @@ Edición Limitada
 619 - Cubarsí (FC Barcelona) -- (Revista Jugón 226)
 620 - Sorloth (Atlético de Madrid) -- (Revista Jugón 227)
 621 - Ounahi (Girona FC) -- (Revista Jugón 228)
-
-Nuevo Edición Limitada
 622 - Lookman (Atlético de Madrid) -- (Sobre Momentum Oro)
 623 - Barrios (Atlético de Madrid) -- (Dream Box)
 624 - Dani Olmo (FC Barcelona -- (Dream Box)
 625 - Raúl Moro (Osasuna) -- (Dream Box)
-
-Edición Limitada Premium Oro
 626 - Pedri (FC Barcelona) -- (Sobre Premium Oro)
 627 - Lamine Yamal (FC Barcelona) -- (Sobre Premium Oro)
 628 - Isco (Real Betis) -- (Sobre Premium Oro)
 629 - Joan García -- Relevación Oro (FC Barcelona) -- (Sobre Premium Oro)
-
-Edición Limitada Firmada
 630 - Williams (Athletic Club) -- (Sobre Premium)
 631 - Ferran Torres (FC Barcelona) -- (Sobre Premium)
 632 - Oyarzabal (Real Sociedad) -- (Sobre Premium)
 633 - Ayoze (Villarreal CF) -- (Sobre Premium)
-
-Premio Premium
-PPA - Premio-Premium A COLECCIÓN -- (Sobre Premium)
-PPB - Premio-Premium B COLECCIÓN -- (Sobre Premium)
-PPC - Premio-Premium C COLECCIÓN -- (Sobre Premium)
-
-Momentum
 651 - Koke (Atlético de Madrid) -- 1ª Edición y Sobre Momentum Oro
 652 - Pedri (FC Barcelona) -- 1ª Edición y Sobre Momentum Oro
 653 - Iago Aspas (RC Celta)
 654 - Etta Eyong (UD Levante)
 655 - Álvaro García (Rayo Vallecano)
 656 - Momentum On-Line (Jugadores Portada) (Múltiple)
-
-MaxiMomentum
 657 - El Clásico (Yamal vs Vinícius) (FC Barcelona/Real Madrid)
-
-Míticos Invencibles
 658 - Oro Puro (CR7, Messi, Modric, Ronaldinho, Benzema) (FC Barcelona/Real Madrid)
 659 - ¡Atleti, Atleti! (Simeone, Oblak, Giménez, Suárez, Koke) (Atlético de Madrid)
-
-Panini Extra Gold
 660 - Lamine Yamal (FC Barcelona) (Panini Extra Gold)
 661 - Bmappé (Real Madrid) (Panini Extra Gold)
-
-Nuevo Momentum
 662 - Joan García (FC Barcelona) --Adrenalyn Plus
 663 - Gonzalo (Real Madrid) --Adrenalyn Plus
-
-Momentum Oro
 664 - RCD Espanyol - 125 Aniversario (RCD Espanyol) -- (Sobre Momentum Oro)
-
-New Master 11
 NM/1 - Vlachodimos (Sevilla FC)
 NM/2 - Radu (RC Celta)
 NM/3 - Trent (Real Madrid)
@@ -855,16 +732,12 @@ NM/12 - Dolan (RCD Espanyol)
 NM/13 - Mikautadze (Villarreal CF)
 NM/14 - Rashford (FC Barcelona)
 NM/15 - Oluwaseyi (Villarreal CF)
-
-Billion
 BI/1 - Williams • Nico Williams (Athletic Club) -- (Sobre Momentum Oro)
 BI/2 - Julián Álvarez • Sorloth (Atlético de Madrid) -- (Sobre Momentum Oro)
 BI/3 - Ferran Torres • Lamine Yamal (FC Barcelona) -- (Sobre Momentum Oro)
 BI/4 - Cucho Hernández • Antony (Real Betis) -- (Sobre Momentum Oro)
 BI/5 - Vinícius • Mbappé (Real Madrid) -- (Sobre Momentum Oro)
 BI/6 - Iago Aspas • Borja Iglesias (Villarreal CF) -- (Sobre Momentum Oro)
-
-Autógrafo Original Premium -- 200
 AO200 1 - Ruiz de Galarreta (Athletic Club)
 AO200 2 - Javi Galán (Atlético de Madrid)
 AO200 3 - Gerard Martín (FC Barcelona)
@@ -885,8 +758,6 @@ AO200 17 - Sergio Herrera (CA Osasuna) -- (Sobre Premium)
 AO200 18 - Fran Pérez (Rayo Vallecano)
 AO200 19 - Sergio Gómez (Real Sociedad) -- (Sobre Premium Oro)
 AO200 20 - Gayá (Valencia CF)
-
-Nuevo Autógrafo Original Premium -- 200
 NAO200 21 - Guruceta (Athletic Club) -- (Adrenalyn Plus)
 NAO200 22 - Carmona (Sevilla FC) -- (Adrenalyn Plus)
 NAO200 23 - Íñaki Peña (Elche CF) -- (Adrenalyn Plus)
@@ -895,8 +766,6 @@ NAO200 25 - Carlos Vicente (D. Alavés) -- (Dream Box)
 NAO200 26 - Nico González (Atlético de Madrid) -- (Dream Box)
 NAO200 27 - Milla (Getafe CF) -- (Dream Box)
 NAO200 28 - Cazorla (Real Oviedo) -- (Dream Box)
-
-Autógrafo Original Premium -- 100
 AO100 1 - Vivian (Athletic Club)
 AO100 2 - Robert Navarro (Athletic Club) -- (Sobre Premium)
 AO100 3 - Hancko (Atlético de Madrid)
@@ -911,12 +780,8 @@ AO100 11 - Isi (Rayo Vallecano)
 AO100 12 - De Frutos (Rayo Vallecano) -- (Sobre Premium)
 AO100 13 - Zubeldia (Real Sociedad)
 AO100 14 - Isaac Romero (Sevilla FC)
-
-Nuevo Autógrafo Original Premium -- 100
 NAO100 15 - Aramburu (Real Sociedad) -- (Adrenalyn Plus)
 NAO100 16 - Unai López (Rayo Vallecano) -- (Dream Box)
-
-Autógrafo Original Premium -- 50
 AO50 1 - Nico Williams (Athletic Club) -- (Sobre Premium Oro)
 AO50 2 - Álex Baena (Atlético de Madrid)
 AO50 3 - Almada (Atlético de Madrid) -- (Sobre Premium)
@@ -927,23 +792,15 @@ AO50 7 - Joan García (FC Barcelona) -- (Sobre Premium)
 AO50 8 - Borja Iglesias (RC Celta)
 AO50 9 - Güler (Real Madrid)
 AO50 10 - Moleiro (Villarreal CF)
-
-Nuevo Autógrafo Original Premium -- 50 
 AO50 11 - Fermín (FC Barcelona) -- (Adrenalyn Plus)
 AO50 12 - Gerard Moreno (Villarreal CF) -- (Adrenalyn Plus)
 NAO50 13 - Araujo (FC Barcelona) -- (Dream Box)
 NAO50 14 - Iago Aspas (RC Celta) -- (Dream Box)
-
-Doble Autógrafo Original Premium -- 50
 DAO50 1 - Isco • Lo Celso (Real Betis)
 DAO50 2 - Militao • Carreras (Real Madrid)
-
-Autógrafo Original Prestige -- 100
 AOP100 1 - Savinho (Girona FC)
 AOP100 2 - Gabri Veiga (FC Celta)
 AOP100 3 - Samu Lino (Atlético de Madrid)
 AOP100 4 - Jesús Rodríguez (Real Betis)
-
-Autógrafo Original Prestige -- 50
 AOP50 1 - David Silva (Real Sociedad)
 AOP50 2 - Fekir (Real Betis)
