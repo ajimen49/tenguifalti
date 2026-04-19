@@ -24,8 +24,8 @@ lines.forEach((line, i) => {
   let name = match[2];
 
   if (ids.has(id)) {
-    errors.push(`Duplicat ID: ${id} (línia ${i})`);
-  }
+  errors.push(`Duplicat ID: ${id} (línia ${i}) -> ${name}`);
+}
   ids.add(id);
 
   const type = detectType(name);
@@ -54,5 +54,13 @@ fs.writeFileSync(path.join(__dirname, config.outputFile), output);
 console.log("✅ Cartes:", cards.length);
 if (errors.length) {
   console.log("⚠️ Errors:");
+  errors.forEach(e => console.log(e));
+}
+
+console.log("Total línies processades:", lines.length);
+console.log("Cartes generades:", cards.length);
+
+if(errors.length){
+  console.log("---- DUPLICATS ----");
   errors.forEach(e => console.log(e));
 }
