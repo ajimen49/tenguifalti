@@ -411,6 +411,7 @@ body.market-mode .grid{
 
     <select id="typeFilter" onchange="render()">
       <option value="all">TIPUS</option>
+      <option value="Bis">Bis</option>
       <option value="Ampliación">Ampliación</option>
       <option value="Base">Base</option>
       <option value="Box Serie Oro">Box Serie Oro</option>
@@ -550,6 +551,7 @@ function toggleClearBtn(){
 }
 
 function getType(card){
+  if(card.id && card.id.toString().trim().endsWith(" Bis")) return "Bis";
   return card.type || "Base";
 }
 
