@@ -411,22 +411,16 @@ body.market-mode .grid{
 
     <select id="typeFilter" onchange="render()">
       <option value="all">TIPUS</option>
-      <option value="base">Base</option>
-      <option value="vamos">Vamos</option>
-      <option value="guantes">Guantes</option>
-      <option value="kryptonita">Kryptonita</option>
-      <option value="diamantes">Diamantes</option>
-      <option value="influencers">Influencers</option>
-      <option value="protas">Protas</option>
-      <option value="nuevo-protas">Nuevo Protas</option>
-      <option value="supercrack">Supercrack</option>
-      <option value="champions">Champions</option>
-      <option value="balonoro">Balón Oro</option>
-      <option value="momentum">Momentum</option>
-      <option value="limitada">Limitada</option>
-      <option value="autografo">Autógrafos</option>
-      <option value="total-kings">Total Kings</option>
-      <option value="new-master">New Master</option>
+      <option value="Ampliación">Ampliación</option>
+      <option value="Base">Base</option>
+      <option value="Box Serie Oro">Box Serie Oro</option>
+      <option value="Dream Box">Dream Box</option>
+      <option value="Momentum">Momentum</option>
+      <option value="Momentum Oro">Momentum Oro</option>
+      <option value="Nuevo Fichaje">Nuevo Fichaje</option>
+      <option value="Platinum">Platinum</option>
+      <option value="Premium">Premium</option>
+      <option value="Premium Oro">Premium Oro</option>
     </select>
   </div>
 </div>
@@ -556,23 +550,7 @@ function toggleClearBtn(){
 }
 
 function getType(card){
-  const n=card.name.toLowerCase();
-  if(n.includes("¡vamos")) return "vamos";
-  if(n.includes("guantes de oro")) return "guantes";
-  if(n.includes("kryptonita")) return "kryptonita";
-  if(n.includes("diamante")) return "diamantes";
-  if(n.includes("influencer")) return "influencers";
-  if(n.includes("nuevo prota")) return "nuevo-protas";
-  if(n.includes("prota")) return "protas";
-  if(n.includes("supercrack")) return "supercrack";
-  if(n.includes("champions")) return "champions";
-  if(n.includes("balón de oro") || n.includes("balon de oro")) return "balonoro";
-  if(n.includes("momentum")) return "momentum";
-  if(n.includes("ed. limitada") || n.includes("limitada")) return "limitada";
-  if(n.includes("autógrafo") || n.includes("autografo")) return "autografo";
-  if(n.includes("total kings")) return "total-kings";
-  if(n.includes("new master")) return "new-master";
-  return "base";
+  return card.type || "Base";
 }
 
 function idsByStatus(status){
