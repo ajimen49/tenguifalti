@@ -460,7 +460,7 @@ body.market-mode .grid{
   <div class="modal-box">
     <button class="btn-export btn-text" onclick="exportText()">Exporta text (tot)</button>
     <button class="btn-export btn-qr" onclick="exportQR()">Exporta QR (tot)</button>
-    <button class="btn-import btn-text" onclick="importText()">Importa text (tot)</button>
+    <button class="btn-import btn-text" onclick="openImportModal()">Importa text (tot)</button>
     <button class="btn-import btn-qr" onclick="importQR()">Importa QR (tot)</button>
     <button class="btn-cancel" onclick="closeData()">CANCEL·LA</button>
     <div id="qrOut"></div>
@@ -468,6 +468,16 @@ body.market-mode .grid{
   </div>
 </div>
 
+<div class="modal" id="importModal">
+  <div class="modal-box">
+    <p style="margin-bottom:8px;font-size:14px;color:var(--muted)">Enganxa el text o JSON exportat:</p>
+    <textarea id="importInput" rows="8" style="width:100%;background:var(--surface-soft);color:var(--text);border:1px solid #3a455c;border-radius:8px;padding:10px;font-size:14px;resize:vertical"></textarea>
+    <button class="btn-import" onclick="confirmImport()">Importa</button>
+    <button class="btn-cancel" onclick="closeImportModal()">Cancel·la</button>
+  </div>
+</div>
+
+  
 <script type="module">
 import { cards } from "./data/laliga-2026.js";
 
@@ -774,17 +784,23 @@ function applyImportedPayload(payload){
   render();
 }
 
-function importText(){
-  const input=prompt("Enganxa el text exportat o el JSON exportat (text o QR):");
-  if(!input) return;
+function openImportModal(){
+  document.getElementById("importInput").value="";
+  document.getElementById("importModal").classList.add("open");
+}
+function closeImportModal(){
+  document.getElementById("importModal").classList.remove("open");
+}
+function confirmImport(){
+  const input=document.getElementById("importInput").value;
+  if(!input.trim()) return;
   try{
     let payload;
-    try{
-      payload=normalizeImport(input);
-    }catch{
-      payload=parseFormattedTextImport(input);
-    }
+    try{ payload=normalizeImport(input); }
+    catch{ payload=parseFormattedTextImport(input); }
     applyImportedPayload(payload);
+    closeImportModal();
+    closeData();
   }catch{
     alert("Format no vàlid. Cal enganxar el text o JSON exportat.");
   }
@@ -840,6 +856,9 @@ window.exportText     = exportText;
 window.exportQR       = exportQR;
 window.importText     = importText;
 window.importQR       = importQR;
+window.openImportModal  = openImportModal;
+window.closeImportModal = closeImportModal;
+window.confirmImport    = confirmImport;
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 setMode("album");
