@@ -477,7 +477,22 @@ body.market-mode .grid{
 import { cards } from "./data/laliga-2026.js";
 
 let mode="album";
-  
+
+// DOM refs — explicit, no implicit globals inside modules
+const search      = document.getElementById("search");
+const grid        = document.getElementById("grid");
+const keypad      = document.getElementById("keypad");
+const filter      = document.getElementById("filter");
+const typeFilter  = document.getElementById("typeFilter");
+const btnAlbum    = document.getElementById("btnAlbum");
+const btnMarket   = document.getElementById("btnMarket");
+const countT      = document.getElementById("countT");
+const countG      = document.getElementById("countG");
+const countO      = document.getElementById("countO");
+const countR      = document.getElementById("countR");
+const qrOut       = document.getElementById("qrOut");
+const qrReader    = document.getElementById("qrReader");
+
 // Approximate byte limit that keeps QR payloads reliably scannable on mobile.
 const MAX_QR_PAYLOAD_SIZE=2000;
 const textEncoder=new TextEncoder();
@@ -824,6 +839,25 @@ async function stopQrReader(){
   qrScanner=null;
 }
 
+// ── Expose functions needed by inline onclick handlers ──────────────────────
+// Els mòduls ES6 tenen scope propi; sense això, els onclick del HTML no troben
+// les funcions i llancen "ReferenceError: setMode is not defined", etc.
+window.setMode        = setMode;
+window.quickFilter    = quickFilter;
+window.clearSearch    = clearSearch;
+window.autoGrowSearch = autoGrowSearch;
+window.render         = render;
+window.toggleClearBtn = toggleClearBtn;
+window.kp             = kp;
+window.kpBack         = kpBack;
+window.openData       = openData;
+window.closeData      = closeData;
+window.exportText     = exportText;
+window.exportQR       = exportQR;
+window.importText     = importText;
+window.importQR       = importQR;
+
+// ── Init ─────────────────────────────────────────────────────────────────────
 setMode("album");
 toggleClearBtn();
 autoGrowSearch();
