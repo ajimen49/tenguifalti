@@ -552,7 +552,7 @@ function toggleClearBtn(){
 
 function getType(card){
   if(card.id && card.id.toString().trim().endsWith(" Bis")) return "Bis";
-  return card.type || "Base";
+  return (card.type || "Base").trim();
 }
 
 function idsByStatus(status){
@@ -570,13 +570,17 @@ function render(){
     list=cards.filter(c=>ids.includes(c.id));
   }else{
     if(txt){
-      list=list.filter(c=>c.id.includes(txt)||c.name.toLowerCase().includes(txt));
+      list=list.filter(c=>c.id.toLowerCase().includes(txt)||c.name.toLowerCase().includes(txt)||(c.type||"").toLowerCase().includes(txt));
     }
     if(filter.value!=="all"){
       list=list.filter(c=>getState(c.id)===filter.value);
     }
     if(typeFilter.value!=="all"){
-      list=list.filter(c=>getType(c)===typeFilter.value);
+      if(typeFilter.value==="Bis"){
+        list=list.filter(c=>c.id&&c.id.toString().trim().endsWith(" Bis"));
+      } else {
+        list=list.filter(c=>(c.type||"Base").trim()===typeFilter.value);
+      }
     }
   }
 
