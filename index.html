@@ -8,7 +8,6 @@
 <meta name="format-detection" content="telephone=no, date=no, email=no, address=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="mobile-web-app-capable" content="yes">
 
 <title>ADRENALYN XL 2025-2026</title>
 
@@ -53,7 +52,7 @@ body{
 header{
   position:sticky;
   top:0;
-  z-index:40; /* 🔥 per sobre del modal */
+  z-index:10;
   display:flex;
   flex-direction:column;
   gap:4px;
@@ -571,39 +570,20 @@ function render(){
   let list=cards;
   const txt=search.value.toLowerCase();
 
-let list = cards;
-const txt = search.value.toLowerCase().trim();
-
-if(mode==="market"){
-
-  const ids = txt.split(/[\/,\s]+/).filter(Boolean);
-
-  list = cards.filter(c =>
-    ids.includes(c.id) ||
-    c.name.toLowerCase().includes(txt)
-  );
-
-}else{
-
-  // 🔎 CERCA
-  if(txt){
-    list = list.filter(c =>
-      c.id.toLowerCase().includes(txt) ||
-      c.name.toLowerCase().includes(txt)
-    );
+  if(mode==="market"){
+    const ids=txt.split(/[\/,\s]+/).filter(Boolean);
+    list=cards.filter(c=>ids.includes(c.id));
+  }else{
+    if(txt){
+      list=list.filter(c=>c.id.includes(txt)||c.name.toLowerCase().includes(txt));
+    }
+    if(filter.value!=="all"){
+      list=list.filter(c=>getState(c.id)===filter.value);
+    }
+    if(typeFilter.value!=="all"){
+      list=list.filter(c=>getType(c)===typeFilter.value);
+    }
   }
-
-  // 🎯 FILTRE ESTAT
-  if(filter.value !== "all"){
-    list = list.filter(c => getState(c.id) === filter.value);
-  }
-
-  // 🧩 FILTRE TIPUS
-  if(typeFilter.value !== "all"){
-    list = list.filter(c => getType(c) === typeFilter.value);
-  }
-
-}
 
   list.forEach(c=>{
     const st=getState(c.id);
@@ -687,18 +667,13 @@ function exportText(){
   const missSet=new Set(payload.missing||[]);
   const repeatedLines=cards.filter(c=>repSet.has(c.id)).map(c=>`${c.id} – ${c.name}`);
   const missingLines=cards.filter(c=>missSet.has(c.id)).map(c=>`${c.id} – ${c.name}`);
-const payload = getInventoryPayload();
-
-const text = [
-  "FORMAT: TENGUIFALTI_V2",
-  JSON.stringify(payload),
-  "",
-  `🟠 REPETIDES (${payload.repeated.length}):`,
-  ...(payload.repeated.length ? payload.repeated : ["—"]),
-  "",
-  `🔴 FALTEN (${payload.missing.length}):`,
-  ...(payload.missing.length ? payload.missing : ["—"])
-].join("\n");
+  const text=[
+    `🟠 REPETIDES (${repeatedLines.length}):`,
+    ...(repeatedLines.length?repeatedLines:["—"]),
+    "",
+    `🔴 FALTEN (${missingLines.length}):`,
+    ...(missingLines.length?missingLines:["—"])
+  ].join("\n");
   navigator.clipboard?.writeText(text).catch(()=>{});
   const msg=document.createElement("p");
   msg.textContent="Dades copiades al portapapers";
@@ -768,11 +743,7 @@ function parseFormattedTextImport(raw){
     if(trimmed==="—") return;
     if(!section) return;
 
-    const separatorMatch = trimmed.match(/\s[–-]\s/);
-    if (!separatorMatch) return;
-
-    const separator = separatorMatch[0];
-    
+    const separator=trimmed.includes(" – ")?" – ":(trimmed.includes(" - ")?" - ":null);
     if(!separator) return;
 
     const id=trimmed.split(separator)[0].trim();
@@ -809,18 +780,15 @@ function importText(){
   if(!input) return;
   try{
     let payload;
-
-try {
-  // 🔥 intenta detectar JSON dins text exportat
-  const jsonLine = input.split("\n").find(l => l.startsWith("{"));
-  if(jsonLine){
-    payload = normalizeImport(jsonLine);
-  }else{
-    payload = normalizeImport(input);
+    try{
+      payload=normalizeImport(input);
+    }catch{
+      payload=parseFormattedTextImport(input);
+    }
+    applyImportedPayload(payload);
+  }catch{
+    alert("Format no vàlid. Cal enganxar el text o JSON exportat.");
   }
-} catch {
-  payload = parseFormattedTextImport(input);
-}
 }
 
 let qrScanner=null;
@@ -863,19 +831,6 @@ updateModalOffset();
 window.addEventListener("resize",updateModalOffset);
 render();
 
-// 🔥 EXPOSE GLOBAL FUNCTIONS (FIX onclick)
-window.setMode = setMode;
-window.openData = openData;
-window.closeData = closeData;
-window.quickFilter = quickFilter;
-window.clearSearch = clearSearch;
-window.kp = kp;
-window.kpBack = kpBack;
-window.exportText = exportText;
-window.exportQR = exportQR;
-window.importText = importText;
-window.importQR = importQR;
-  
 </script>
    
 </body>
