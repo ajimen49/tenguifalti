@@ -12,8 +12,8 @@
 <title>ADRENALYN XL 2025-2026</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-<script src="https://unpkg.com/html5-qrcode"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>-->
+<!--<script src="https://unpkg.com/html5-qrcode"></script>-->
 
 <style>
 :root{
@@ -459,9 +459,9 @@ body.market-mode .grid{
 <div class="modal" id="dataModal">
   <div class="modal-box">
     <button class="btn-export btn-text" onclick="exportText()">Exporta text (tot)</button>
-    <button class="btn-export btn-qr" onclick="exportQR()">Exporta QR (tot)</button>
+    <!--<button class="btn-export btn-qr" onclick="exportQR()">Exporta QR (tot)</button>-->
     <button class="btn-import btn-text" onclick="openImportModal()">Importa text (tot)</button>
-    <button class="btn-import btn-qr" onclick="importQR()">Importa QR (tot)</button>
+    <!--<button class="btn-import btn-qr" onclick="importQR()">Importa QR (tot)</button>-->
     <button class="btn-cancel" onclick="closeData()">CANCEL·LA</button>
     <div id="qrOut"></div>
     <div id="qrReader"></div>
@@ -499,7 +499,10 @@ const qrOut       = document.getElementById("qrOut");
 const qrReader    = document.getElementById("qrReader");
 
 // Approximate byte limit that keeps QR payloads reliably scannable on mobile.
+/*
 const MAX_QR_PAYLOAD_SIZE=2000;
+*/
+  
 const textEncoder=new TextEncoder();
 const state=JSON.parse(localStorage.getItem("cards")||"{}");
 let saveTimer=null;
@@ -656,10 +659,12 @@ function closeData(){
   clearQrUi();
 }
 
+/*
 function clearQrUi(){
   qrOut.innerHTML="";
   qrReader.innerHTML="";
 }
+*/
 
 function getInventoryPayload(){
   return {
@@ -692,6 +697,7 @@ function exportText(){
   qrOut.appendChild(msg);
 }
 
+/*
 function exportQR(){
   clearQrUi();
   const payload=JSON.stringify(getInventoryPayload());
@@ -709,6 +715,7 @@ function exportQR(){
   }
   new QRCode(qrOut,{text:payload,width:220,height:220});
 }
+*/
 
 function applyImportedIds(status, ids){
   cards.forEach(c=>{
@@ -806,7 +813,11 @@ function confirmImport(){
   }
 }
 
+/*
 let qrScanner=null;
+*/
+  
+/*
 async function importQR(){
   clearQrUi();
   if(typeof Html5Qrcode==="undefined"){
@@ -831,14 +842,17 @@ async function importQR(){
     alert("No s'ha pogut iniciar la càmera.");
   }
 }
-
+*/
+  
+/*
 async function stopQrReader(){
   if(!qrScanner) return;
   try{await qrScanner.stop();}catch{}
   try{await qrScanner.clear();}catch{}
   qrScanner=null;
 }
-
+*/
+  
 // ── Expose functions needed by inline onclick handlers ──────────────────────
 // Els mòduls ES6 tenen scope propi; sense això, els onclick del HTML no troben
 // les funcions i llancen "ReferenceError: setMode is not defined", etc.
@@ -853,8 +867,11 @@ window.kpBack         = kpBack;
 window.openData       = openData;
 window.closeData      = closeData;
 window.exportText     = exportText;
+/*
 window.exportQR       = exportQR;
 window.importQR       = importQR;
+*/
+  
 window.openImportModal  = openImportModal;
 window.closeImportModal = closeImportModal;
 window.confirmImport    = confirmImport;
