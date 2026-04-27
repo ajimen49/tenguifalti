@@ -678,7 +678,6 @@ function getInventoryPayload(){
 }
 
 function exportText(){
-  clearQrUi();
   const payload=getInventoryPayload();
   const repSet=new Set(payload.repeated||[]);
   const missSet=new Set(payload.missing||[]);
@@ -691,13 +690,11 @@ function exportText(){
     `🔴 FALTEN (${missingLines.length}):`,
     ...(missingLines.length?missingLines:["—"])
   ].join("\n");
-  navigator.clipboard?.writeText(text).catch(()=>{});
-  const msg=document.createElement("p");
-  msg.textContent="Dades copiades al portapapers";
-  msg.style.color="#92f7b6";
-  msg.style.textAlign="center";
-  msg.style.fontSize="14px";
-  qrOut.appendChild(msg);
+  navigator.clipboard.writeText(text).then(()=>{
+    alert("El contingut s'ha copiat al portapapers.");
+  }).catch(()=>{
+    alert("No s'ha pogut copiar automàticament. Copia el text manualment.");
+  });
 }
 
 /*
