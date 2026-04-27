@@ -527,7 +527,7 @@ function updateTotals(){
     return acc;
   },{green:0,orange:0,red:0});
   countT.textContent=cards.length;
-  countG.textContent=totals.green;
+  countG.textContent=totals.green+totals.orange;
   countO.textContent=totals.orange;
   countR.textContent=totals.red;
 }
