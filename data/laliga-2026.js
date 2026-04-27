@@ -5006,7 +5006,7 @@ export const cards = [
   },
   {
     "id": "661",
-    "name": "Bmappé (Real Madrid) (Panini Extra Gold)",
+    "name": "Mbappé (Real Madrid) (Panini Extra Gold)",
     "team": "Real Madrid",
     "type": "Base",
     "owned": false
